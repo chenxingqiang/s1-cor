@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.2.27)  3 JAN 2026 21:30
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.2.27)  3 JAN 2026 21:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1335,12 +1335,32 @@ Underfull \hbox (badness 10000) in paragraph at lines 506--507
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 559--561
+Underfull \hbox (badness 10000) in paragraph at lines 553--554
+[]\T1/pcr/m/n/9 [Self-Rating:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 553--554
+\T1/pcr/m/n/9 Consistency=9/10,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 553--554
+\T1/pcr/m/n/9 Completeness=8/10,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 553--554
+\T1/pcr/m/n/9 Accuracy=9/10,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 561--563
 \T1/stix/m/n/9 (+20) Final An-swer: $\LS1/stix/m/it/9 E \LS1/stix/m/n/9 =
  []
 
 
-LaTeX Warning: Float too large for page by 32.87666pt on input line 566.
+LaTeX Warning: Float too large for page by 66.99117pt on input line 568.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1350,7 +1370,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [5] [6]
-Underfull \hbox (badness 10000) in paragraph at lines 621--622
+Underfull \hbox (badness 10000) in paragraph at lines 623--624
 []\T1/stix/b/n/10 (+20) Assumption 6.3 \T1/stix/m/n/10 (+20) (Ref-er-ence Reg-u
 -lar-iza-tion)\T1/stix/b/n/10 (+20) .
  []
@@ -1360,19 +1380,19 @@ Underfull \hbox (badness 10000) in paragraph at lines 621--622
 
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 699--700
+Underfull \hbox (badness 10000) in paragraph at lines 701--702
 []\T1/stix/b/n/10 (+20) Proposition 6.10 \T1/stix/m/n/10 (+20) (Cal-i-bra-tion 
 Im-prove-ment)\T1/stix/b/n/10 (+20) .
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 699--700
+Underfull \hbox (badness 10000) in paragraph at lines 701--702
 []\T1/stix/m/it/10 (+20) If in-trin-sic re-ward in-cludes $\LS1/stix/m/it/10 r[
 ] \LS1/stix/m/n/10 =
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 699--700
+Underfull \hbox (badness 10000) in paragraph at lines 701--702
 [] [][] [][]\LS1/stix/m/n/10 .[][]_10\LS1/stix/m/it/10 ; [][]\LS1/stix/m/n/10 /
 $ \T1/stix/m/it/10 (+20) with
  []
@@ -1380,14 +1400,14 @@ $ \T1/stix/m/it/10 (+20) with
 
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 731--733
+Underfull \hbox (badness 10000) in paragraph at lines 733--735
 \T1/stix/m/n/10 (+20) Since $\LS1/stix/m/n/10 ^^H.\LS1/stix/m/it/10 s\LS1/stix/
 m/n/10 /$ \T1/stix/m/n/10 (+20) is in-de-pen-dent of ac-tion $\LS1/stix/m/it/10
  a$\T1/stix/m/n/10 (+20) , we have
  []
 
 
-Underfull \hbox (badness 4013) in paragraph at lines 731--733
+Underfull \hbox (badness 4013) in paragraph at lines 733--735
 [] [][] \LS1/stix/m/it/10 Q[]\LS1/stix/m/n/10 .\LS1/stix/m/it/10 s; a\LS1/stix/
 m/n/10 / = [] [][] \LS1/stix/m/it/10 Q[]\LS1/stix/m/n/10 .\LS1/stix/m/it/10 s; 
 a\LS1/stix/m/n/10 /$\T1/stix/m/n/10 (+20) . There-fore,
@@ -1397,7 +1417,7 @@ a\LS1/stix/m/n/10 /$\T1/stix/m/n/10 (+20) . There-fore,
 
 [8]
 LaTeX Font Info:    Trying to load font information for TS1+stix on input line 
-774.
+776.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/stix/ts1stix.fd
 File: ts1stix.fd 2015/04/17 v1.1.2-latex STIX TS1 font definitions
 )
@@ -1488,17 +1508,17 @@ Underfull \hbox (badness 2088) in paragraph at lines 329--332
 ]
 
 [15]
-Overfull \hbox (3.93893pt too wide) in paragraph at lines 917--917
+Overfull \hbox (3.93893pt too wide) in paragraph at lines 919--919
 []|\T1/stix/m/n/10 (-20) #Samples| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 917--918
+Underfull \hbox (badness 10000) in paragraph at lines 919--920
 []|\T1/stix/m/n/10 (+20) Avg.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 917--918
+Underfull \hbox (badness 10000) in paragraph at lines 919--920
 \T1/stix/m/n/10 (+20) think-ing
  []
 
@@ -1508,7 +1528,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 917--918
 
 [17]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 994.
+put line 996.
 
 
 [18]
@@ -1517,7 +1537,7 @@ put line 994.
 <figures/training_metrics.pdf, id=924, 1057.49142pt x 261.53648pt>
 File: figures/training_metrics.pdf Graphic file (type pdf)
 <use figures/training_metrics.pdf>
-Package pdftex.def Info: figures/training_metrics.pdf  used on input line 1052.
+Package pdftex.def Info: figures/training_metrics.pdf  used on input line 1054.
 
 (pdftex.def)             Requested size: 487.8225pt x 120.64745pt.
 
@@ -1539,11 +1559,11 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: FFDA80AE77BC4E1D1D4ECA4B0F81A473;6484.
  ) 
 Here is how much of TeX's memory you used:
- 32066 strings out of 473201
- 584216 string characters out of 5716120
- 1027936 words of memory out of 5000000
+ 32078 strings out of 473201
+ 584428 string characters out of 5716120
+ 1029371 words of memory out of 5000000
  54259 multiletter control sequences out of 15000+600000
- 665708 words of font info for 279 fonts, out of 8000000 for 9000
+ 666766 words of font info for 285 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  99i,19n,101p,1825b,787s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
@@ -1568,7 +1588,7 @@ usr/local/texlive/2024/texmf-dist/fonts/type1/public/stix/stix-mathscr.pfb></us
 r/local/texlive/2024/texmf-dist/fonts/type1/public/stix/stix-mathsf.pfb></usr/l
 ocal/texlive/2024/texmf-dist/fonts/type1/public/stix/stix-mathtt.pfb></usr/loca
 l/texlive/2024/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>
-Output written on main.pdf (33 pages, 459631 bytes).
+Output written on main.pdf (33 pages, 460567 bytes).
 PDF statistics:
  1155 PDF objects out of 1200 (max. 8388607)
  974 compressed objects within 10 object streams

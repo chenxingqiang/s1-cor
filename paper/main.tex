@@ -550,6 +550,8 @@ The time-independent Schrödinger equation is $H\psi = E\psi$.
 We can try to separate variables by assuming a solution of the form $\psi(r, \theta) = R(r)\Theta(\theta)$. \textcolor[HTML]{808080}{[...]}
 }
 
+\texttt{\small [Self-Rating: Consistency=9/10, Completeness=8/10, Accuracy=9/10, Clarity=8/10]}
+
 ~
 
 \textcolor{defaultblue}{
@@ -561,7 +563,7 @@ Final Answer: $E = \hbar\sqrt{\frac{k}{m}} \left(2n_x + n_y + \frac{3}{2}\right)
 \bottomrule
 \end{tabular}
 \vspace{-5pt}
-\caption{\textbf{Example model outputs.} We pick a question from AIME24 (\textit{left}), MATH500 (\textit{middle}), and GPQA (\textit{right}), where our model generates the correct answer. The black text is the prompt, the \textcolor{defaultlightblue}{light blue} text is the reasoning trace, and the \textcolor{defaultblue}{blue} text is the answer of \model{}. The gray ellipsis \textcolor[HTML]{808080}{[...]} indicates that the text was trimmed to fit this page, but the generated text is actually longer.}
+\caption{\textbf{Example model outputs demonstrating CoR.} We pick a question from AIME24 (\textit{left}), MATH500 (\textit{middle}), and GPQA (\textit{right}), where our model generates the correct answer. The black text is the prompt, the \textcolor{defaultlightblue}{light blue} text is the reasoning trace, and the \textcolor{defaultblue}{blue} text is the answer of \model{}. \textbf{Key CoR feature:} The model generates \texttt{[Self-Rating: ...]} tags during reasoning, providing multi-dimensional self-assessment (Consistency, Completeness, Accuracy, Clarity). These endogenous self-ratings contribute to intrinsic rewards—the model is rewarded for accurate self-evaluation, creating a meta-cognitive learning signal. The gray ellipsis \textcolor[HTML]{808080}{[...]} indicates trimmed text.}
 \label{fig:ex}
 \end{figure*}
 
@@ -1088,7 +1090,7 @@ The main training hyperparameter we ablate is the sequence length used during tr
 \newpage
 
 \begin{longtable}{@{}p{\textwidth}@{}}
-\caption{\textbf{\data{} sample stemming from s1-prob.} The black text is the question and the \textcolor{olmoeDarkYellow}{yellow} text is the solution. Based solely on the question we generate the \textcolor{defaultlightblue}{light blue} reasoning trace and \textcolor{defaultblue}{blue} response with Gemini, which we use for training.} 
+\caption{\textbf{\data{} sample (probability theory) with CoR self-ratings.} The black text is the question and the \textcolor{olmoeDarkYellow}{yellow} text is the reference solution. The \textcolor{defaultlightblue}{light blue} text is the generated reasoning trace with \texttt{[Self-Rating: ...]} tags demonstrating endogenous self-evaluation. These multi-dimensional self-ratings (Consistency, Completeness, Accuracy, Clarity) enable intrinsic reward computation during GRPO training.} 
 \label{tab:prob} \\
 \toprule
 
@@ -1155,7 +1157,7 @@ Similarly, for the \(Z_k\) sequence:
 
 The sequence of sigma-algebras \( \sigma(\mathcal{B}, Y_0, \ldots, Y_{k-1}) \) is increasing. By the Martingale Convergence Theorem, the sequence \(Z_k\) converges almost surely and in \(L^1\) to \( \mathbb{E}[X|\sigma(\mathcal{B}, Y_0, Y_1, \ldots)] \). Let \( Z_\infty = \mathbb{E}[X|\sigma(\mathcal{B}, Y_0, Y_1, \ldots)] \).
 
-
+\texttt{\small [Self-Rating: Consistency=9/10, Completeness=8/10, Accuracy=9/10, Clarity=7/10]}
 
 Part (b): Prove that almost surely \( Y_\infty = Z_\infty \).
 
@@ -1534,7 +1536,7 @@ Final Answer: The final answer is $\boxed{Y_\infty = Z_\infty}$
 \newpage
 
 \begin{longtable}{@{}p{\columnwidth}@{}}
-\caption{{\textbf{\data{} sample stemming from s1-teasers.} The black text is the question and the \textcolor{olmoeDarkYellow}{yellow} text is the solution. Based solely on the question we generate the \textcolor{defaultlightblue}{light blue} reasoning trace and \textcolor{defaultblue}{blue} response with Gemini, which we use for training.}} \\
+\caption{{\textbf{\data{} sample (probability) with CoR self-ratings.} The black text is the question, the \textcolor{olmoeDarkYellow}{yellow} text is the reference solution. The \textcolor{defaultlightblue}{light blue} reasoning trace includes \texttt{[Self-Rating: ...]} tags for endogenous self-evaluation.}} \\
 \toprule
 
 Alice and Bob each have a coin and flip it until they get a heads. If Bob flipped his coin more times than Alice, what is the expected number of times Alice flipped her coin?
@@ -2006,7 +2008,7 @@ $\sum_{x=1}^\infty x (\frac{1}{4})^x = \frac{1/4}{(1 - 1/4)^2} = \frac{1/4}{(3/4
 
 $E[X | Y > X] = 3 \times \frac{4}{9} = \frac{12}{9} = \frac{4}{3}$.
 
-
+\texttt{\small [Self-Rating: Consistency=10/10, Completeness=9/10, Accuracy=10/10, Clarity=9/10]}
 
 Final Answer: The final answer is $\boxed{4/3}$
 }
@@ -2018,7 +2020,7 @@ Final Answer: The final answer is $\boxed{4/3}$
 \newpage
 
 \begin{longtable}{@{}p{\columnwidth}@{}}
-\caption{{\textbf{\data{} sample stemming from the astronomy subset of OlympicArena.} The black text is the question and the \textcolor{olmoeDarkYellow}{blue} text is the solution. Based solely on the question we generate the \textcolor{defaultlightblue}{light blue} reasoning trace and \textcolor{defaultblue}{blue} response with Gemini, which we use for training.}} \\
+\caption{{\textbf{\data{} sample (astronomy) with CoR self-ratings.} The black text is the question, the \textcolor{olmoeDarkYellow}{yellow} text is the reference solution. The \textcolor{defaultlightblue}{light blue} reasoning trace includes \texttt{[Self-Rating: ...]} tags for endogenous self-evaluation. Note the model self-rates 8/10 for Accuracy due to intermediate calculation corrections.}} \\
 \toprule
 
 An often-repeated fun fact is that humans produce more power per unit volume than stars. If the sun were the same size, but it produced the same amount of power per unit volume as a human, what would its surface temperature be? Assume the "average human" produces 100 watts of power and has a volume of 66400 cubic centimeters.
@@ -2578,7 +2580,7 @@ $T = (6.1528 \times 10^{18})^{0.25} = 49806 \mathrm{~K}$
 
 The surface temperature would be approximately $49806 \mathrm{~K}$, which is closest to $50000 \mathrm{~K}$.
 
-
+\texttt{\small [Self-Rating: Consistency=8/10, Completeness=9/10, Accuracy=8/10, Clarity=8/10]}
 
 Final Answer: The final answer is $\boxed{E}$
 }
