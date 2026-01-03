@@ -244,9 +244,9 @@ Our key innovation is \textit{endogenous self-evaluation}: during reasoning, the
 
 \paragraph{Self-Rating Quality Reward} We evaluate the calibration of self-ratings by comparing them to actual quality:
 \begin{equation}
-r_{\text{self\_rating\_quality}} = \frac{1}{D} \sum_{d=1}^{D} \text{cal}_d(\text{self\_rating}_d / 10, \text{actual\_quality}_d)
+r_{\text{self}} = \frac{1}{D} \sum_{d=1}^{D} \text{cal}_d\!\left(\frac{s_d}{10}, q_d\right)
 \end{equation}
-where the calibration function is:
+where $r_{\text{self}} = r_{\text{self\_rating\_quality}}$, $s_d = \text{self\_rating}_d$, $q_d = \text{actual\_quality}_d$, and the calibration function is:
 \begin{equation}
 \text{cal}_d(u, v) = 1 - |u - v|, \quad u, v \in [0,1]
 \end{equation}
@@ -273,8 +273,8 @@ A^{(i)}_{\text{total}} &= A^{(i)}_{\text{ext}} + \lambda A^{(i)}_{\text{int}}
 
 \paragraph{Objective Function} The GRPO objective with clipping and KL penalty (Theorem~\ref{thm:clipped}):
 \begin{align}
-J(\theta) ={}& \mathbb{E}_{x \sim \mathcal{D}} \left[ \frac{1}{N} \sum_{i=1}^{N} \min\left( r_i A^{(i)}, \text{clip}(r_i, 1-\delta, 1+\delta) A^{(i)} \right) \right] \nonumber \\
-&- \beta D_{\text{KL}}(\pi_\theta \Vert \pi_{\text{ref}})
+J(\theta) ={}& \mathbb{E}_{x} \Big[ \frac{1}{N} \sum_{i=1}^{N} \min\big( r_i A^{(i)}, \nonumber \\
+& \quad \text{clip}(r_i, 1{-}\delta, 1{+}\delta) A^{(i)} \big) \Big] - \beta D_{\text{KL}}
 \end{align}
 where $r_i = \frac{\pi_\theta(c^{(i)} \mid x)}{\pi_{\theta_{\text{old}}}(c^{(i)} \mid x)}$ is the importance sampling ratio, $A^{(i)} = \frac{R(c^{(i)}) - \mu_R}{\sigma_R + \varepsilon}$ is the normalized advantage (Theorem~\ref{thm:unbiased}), $\text{clip}(r, a, b) = \max(a, \min(b, r))$, and $\beta > 0$ controls KL regularization against a reference policy $\pi_{\text{ref}}$ (initialized from SFT).
 
@@ -297,9 +297,10 @@ Under bounded rewards and appropriate regularization, GRPO with CoR yields monot
 \begin{table}[htbp]
 \centering
 \caption{\textbf{\model{} is a strong open reasoning model.} We evaluate \model{}, Qwen, and Gemini (some entries are unknown (N.A.), see \autoref{sec:results}). Other results are from the respective reports~\citep{qwen2024qwen25technicalreport,qwq-32b-preview,o1,r1,bespoke_stratos,sky_t1}. \# ex. = number examples used for reasoning finetuning.}
+\resizebox{\columnwidth}{!}{%
 \begin{tabular}{lrrrr}
 \toprule
-Model & \makecell{\# ex.} & \makecell{AIME\\2024} & \makecell{MATH\\500} & \makecell{GPQA\\Diamond} \\
+Model & \# ex. & AIME24 & MATH500 & GPQA \\
 \midrule
 \multicolumn{5}{c}{\textbf{API only}} \\
 \midrule
@@ -329,7 +330,7 @@ Bespoke-32B & 17K & \textbf{63.3} & 93.0 & 58.1 \\
 % s1.1-32B & \textbf{1K} & 56.7 & \textbf{95.4} & \textbf{63.6} \\
 \bottomrule
 \label{tab:perf}
-\end{tabular}
+\end{tabular}}
 \end{table}
 
 
@@ -481,7 +482,7 @@ We are given $\mathbf{b} = \begin{pmatrix} 2 \\ 6 \\ 3 \end{pmatrix}$ and $\math
 
 \textcolor{defaultlightblue}{
 First, we need to find the magnitude squared of $\mathbf{b}$, which is $\|\mathbf{b}\|^2$.
-$$\|\mathbf{b}\|^2 = \mathbf{b} \cdot \mathbf{b} = 2^2 + 6^2 + 3^2 = 4 + 36 + 9 = 49.$$
+{\small $$\|\mathbf{b}\|^2 = \mathbf{b} \cdot \mathbf{b} = 2^2 + 6^2 + 3^2 = 49.$$}
 }
 
 
@@ -540,9 +541,9 @@ $$V(r, \theta) = \frac{1}{2} kr^2 (1 + 3\cos^2(\theta)).$$
 The Hamiltonian for a particle in 2D is given by:
 $$H = -\frac{\hbar^2}{2m} \left( \frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial y^2} \right) + V(x, y).$$
 In polar coordinates $(r, \theta)$, the Laplacian operator is:
-$$\nabla^2 = \frac{1}{r} \frac{\partial}{\partial r} \left(r \frac{\partial}{\partial r} \right) + \frac{1}{r^2} \frac{\partial^2}{\partial \theta^2}.$$
+{\small $$\nabla^2 = \frac{1}{r} \frac{\partial}{\partial r} \left(r \frac{\partial}{\partial r} \right) + \frac{1}{r^2} \frac{\partial^2}{\partial \theta^2}.$$}
 So the Hamiltonian in polar coordinates is:
-$$H = -\frac{\hbar^2}{2m} \left[ \frac{1}{r} \frac{\partial}{\partial r} \left(r \frac{\partial}{\partial r} \right) + \frac{1}{r^2} \frac{\partial^2}{\partial \theta^2} \right] + V(r, \theta).$$
+{\footnotesize $$H = -\frac{\hbar^2}{2m} \left[ \frac{1}{r} \partial_r \left(r \partial_r \right) + \frac{1}{r^2} \partial_\theta^2 \right] + V$$}
 }
 \textcolor{defaultlightblue}{
 The time-independent Schrödinger equation is $H\psi = E\psi$.
@@ -637,9 +638,10 @@ Under Assumptions~\ref{assum:bounded}--\ref{assum:lipschitz}, if $\lambda \geq 0
 
 \begin{proof}[Proof Sketch]
 The clipped objective lower-bounds the first-order surrogate (Theorem~\ref{thm:clipped}), ensuring:
-\begin{equation}
-J(\theta_{k+1}) \geq J(\theta_k) + \alpha \nabla_\theta J(\theta_k)^T (\theta_{k+1} - \theta_k) - \frac{L\alpha^2}{2}\|\theta_{k+1} - \theta_k\|^2
-\end{equation}
+\begin{align}
+J(\theta_{k+1}) \geq{}& J(\theta_k) + \alpha \nabla_\theta J(\theta_k)^T (\theta_{k+1} - \theta_k) \nonumber \\
+&- \frac{L\alpha^2}{2}\|\theta_{k+1} - \theta_k\|^2
+\end{align}
 for learning rate $\alpha$. The KL penalty (Assumption~\ref{assum:reference}) prevents policy divergence, ensuring $\|\theta_{k+1} - \theta_k\|$ remains bounded. Bounded rewards (Assumption~\ref{assum:bounded}) ensure finite gradients. By standard trust-region policy optimization arguments~\citep{schulman2017proximal}, the approximation error from clipping is $\mathcal{O}(\delta^2)$, and monotone improvement holds in expectation up to this error.
 \end{proof}
 
@@ -744,14 +746,16 @@ Direct application of Theorem~\ref{thm:potential} with $\Phi = \varphi$. The den
 We extend the standard Bellman equations to incorporate intrinsic rewards at each reasoning step.
 
 \paragraph{Extended Value Function} For state $s$ and action $a$, define:
-\begin{equation}
-Q^\pi(s, a) = \mathbb{E}_{s' \sim P(\cdot \mid s, a)} \left[ r_{\text{int}}(s, a) + \gamma \mathbb{E}_{a' \sim \pi(\cdot \mid s')} Q^\pi(s', a') + \lambda r_{\text{ext}}(s, a) \right]
-\end{equation}
+\begin{align}
+Q^\pi(s, a) = \mathbb{E}_{s'} \big[ & r_{\text{int}}(s, a) + \lambda r_{\text{ext}}(s, a) \nonumber \\
+& + \gamma \mathbb{E}_{a' \sim \pi} Q^\pi(s', a') \big]
+\end{align}
 
 \paragraph{Extended Bellman Optimality Equation} The optimal Q-function satisfies:
-\begin{equation}
-Q^*(s, a) = \mathbb{E}_{s' \sim P(\cdot \mid s, a)} \left[ r_{\text{int}}(s, a) + \gamma \max_{a'} Q^*(s', a') + \lambda r_{\text{ext}}(s, a) \right]
-\end{equation}
+\begin{align}
+Q^*(s, a) = \mathbb{E}_{s'} \big[ & r_{\text{int}}(s, a) + \lambda r_{\text{ext}}(s, a) \nonumber \\
+& + \gamma \max_{a'} Q^*(s', a') \big]
+\end{align}
 
 This extension naturally incorporates step-level intrinsic rewards into the value function, providing dense feedback throughout the reasoning process.
 
@@ -779,9 +783,10 @@ The dimension reward is then: $r_d(y_{\text{think}}) = f_d(\tau) = g_d(\{h_{d,t}
 \subsection{Consistency Constraint (Optional Regularizer)}
 
 To ensure alignment between process quality and outcome correctness, we introduce a consistency loss following THEORY.md Section 6:
-\begin{equation}
-\mathcal{L}_{\text{consistency}} = \mathbb{E}_{\tau \sim \pi_\theta} \left[ \left( \text{sign}\left(\sum_{d=1}^{D} w_d f_d(\tau)\right) - \text{sign}(R_{\text{ext}}(\tau)) \right)^2 \right]
-\end{equation}
+\begin{align}
+\mathcal{L}_{\text{cons}} = \mathbb{E}_{\tau} \Big[ \big( & \text{sign}\big(\textstyle\sum_{d} w_d f_d(\tau)\big) \nonumber \\
+& - \text{sign}(R_{\text{ext}}(\tau)) \big)^2 \Big]
+\end{align}
 where $\text{sign}(x) = 1$ if $x > 0$, $0$ if $x = 0$, and $-1$ if $x < 0$. This loss encourages that when intrinsic quality is high (positive aggregate), the external reward should also be positive (correct answer), and vice versa.
 
 If consistency loss is added, the combined objective becomes:

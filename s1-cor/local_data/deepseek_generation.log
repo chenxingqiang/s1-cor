@@ -1346,3 +1346,899 @@
 2026-01-03 20:50:51,041 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
 2026-01-03 20:50:52,836 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
 2026-01-03 20:50:54,622 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:50:56,869 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  34%|███▎      | 336/1000 [46:30<1:41:53,  9.21s/it]2026-01-03 20:50:58,968 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:51:01,119 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:51:03,051 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:51:04,901 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  34%|███▎      | 337/1000 [46:38<1:38:00,  8.87s/it]2026-01-03 20:51:07,061 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:51:09,218 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:51:11,022 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:51:12,931 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  34%|███▍      | 338/1000 [46:47<1:35:23,  8.65s/it]2026-01-03 20:51:15,184 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:51:17,150 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:51:18,885 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:51:20,688 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  34%|███▍      | 339/1000 [46:54<1:32:36,  8.41s/it]2026-01-03 20:51:23,025 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:51:25,212 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:51:27,093 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:51:29,013 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:51:31,178 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  34%|███▍      | 340/1000 [47:05<1:39:15,  9.02s/it]2026-01-03 20:51:33,497 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:51:35,465 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  34%|███▍      | 341/1000 [47:09<1:23:10,  7.57s/it]2026-01-03 20:51:37,695 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:51:39,753 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:51:41,876 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:51:44,117 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  34%|███▍      | 342/1000 [47:18<1:27:03,  7.94s/it]2026-01-03 20:51:46,469 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:51:48,481 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:51:50,583 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:51:52,690 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:51:54,738 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  34%|███▍      | 343/1000 [47:29<1:36:01,  8.77s/it]2026-01-03 20:51:57,183 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:51:59,373 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:52:01,636 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:52:03,612 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:52:05,772 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  34%|███▍      | 344/1000 [47:39<1:42:48,  9.40s/it]2026-01-03 20:52:08,057 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:52:09,921 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:52:12,060 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:52:14,076 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  34%|███▍      | 345/1000 [47:47<1:38:18,  9.01s/it]2026-01-03 20:52:16,133 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:52:18,340 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:52:20,099 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:52:22,283 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:52:24,477 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  35%|███▍      | 346/1000 [47:58<1:44:25,  9.58s/it]2026-01-03 20:52:27,048 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:52:29,097 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  35%|███▍      | 347/1000 [48:03<1:27:25,  8.03s/it]2026-01-03 20:52:31,485 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:52:33,390 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:52:35,331 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:52:36,922 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  35%|███▍      | 348/1000 [48:10<1:26:03,  7.92s/it]2026-01-03 20:52:39,145 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:52:40,996 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:52:42,833 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:52:44,901 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  35%|███▍      | 349/1000 [48:19<1:26:46,  8.00s/it]2026-01-03 20:52:47,608 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:52:49,576 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:52:51,754 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:52:53,738 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:52:55,681 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  35%|███▌      | 350/1000 [48:29<1:35:22,  8.80s/it]2026-01-03 20:52:58,013 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:53:00,002 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:53:01,987 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:53:04,062 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:53:05,937 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  35%|███▌      | 351/1000 [48:39<1:39:12,  9.17s/it]2026-01-03 20:53:08,030 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:53:09,931 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:53:11,886 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:53:13,778 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:53:15,716 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  35%|███▌      | 352/1000 [48:49<1:41:09,  9.37s/it]2026-01-03 20:53:17,842 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:53:19,722 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:53:21,633 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:53:23,749 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:53:25,943 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  35%|███▌      | 353/1000 [48:59<1:43:54,  9.64s/it]2026-01-03 20:53:28,162 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:53:29,910 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:53:31,915 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:53:34,166 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  35%|███▌      | 354/1000 [49:08<1:39:32,  9.25s/it]2026-01-03 20:53:36,464 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:53:38,443 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:53:40,323 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:53:42,499 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  36%|███▌      | 355/1000 [49:16<1:36:13,  8.95s/it]2026-01-03 20:53:44,783 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:53:46,947 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:53:48,799 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:53:50,654 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  36%|███▌      | 356/1000 [49:24<1:33:19,  8.70s/it]2026-01-03 20:53:52,835 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:53:54,881 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:53:57,170 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:53:59,346 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:54:01,158 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  36%|███▌      | 357/1000 [49:35<1:39:20,  9.27s/it]2026-01-03 20:54:03,482 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:54:05,350 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  36%|███▌      | 358/1000 [49:39<1:23:33,  7.81s/it]2026-01-03 20:54:07,825 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:54:09,832 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:54:11,853 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:54:14,084 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:54:16,093 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  36%|███▌      | 359/1000 [49:50<1:32:43,  8.68s/it]2026-01-03 20:54:18,525 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:54:20,224 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  36%|███▌      | 360/1000 [49:55<1:19:39,  7.47s/it]2026-01-03 20:54:23,176 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:54:25,403 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  36%|███▌      | 361/1000 [49:59<1:10:14,  6.60s/it]2026-01-03 20:54:27,831 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:54:29,890 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:54:31,754 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:54:33,960 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  36%|███▌      | 362/1000 [50:07<1:15:12,  7.07s/it]2026-01-03 20:54:35,948 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:54:38,120 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:54:40,006 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:54:42,104 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:54:44,196 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  36%|███▋      | 363/1000 [50:18<1:25:39,  8.07s/it]2026-01-03 20:54:46,311 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:54:48,311 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:54:50,185 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:54:52,509 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  36%|███▋      | 364/1000 [50:26<1:27:22,  8.24s/it]2026-01-03 20:54:54,972 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:54:56,916 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:54:58,655 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:55:00,786 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:55:02,625 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  36%|███▋      | 365/1000 [50:36<1:31:50,  8.68s/it]2026-01-03 20:55:04,668 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:55:06,558 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:55:08,698 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:55:10,734 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  37%|███▋      | 366/1000 [50:44<1:30:29,  8.56s/it]2026-01-03 20:55:12,957 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:55:15,122 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  37%|███▋      | 367/1000 [50:49<1:17:43,  7.37s/it]2026-01-03 20:55:17,531 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:55:19,585 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:55:21,562 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:55:23,733 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:55:25,455 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  37%|███▋      | 368/1000 [50:59<1:26:57,  8.26s/it]2026-01-03 20:55:27,863 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:55:29,653 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:55:32,193 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:55:34,406 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  37%|███▋      | 369/1000 [51:08<1:29:11,  8.48s/it]2026-01-03 20:55:36,873 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:55:38,798 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:55:40,684 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:55:42,224 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:55:44,333 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  37%|███▋      | 370/1000 [51:19<1:35:06,  9.06s/it]2026-01-03 20:55:47,265 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:55:49,237 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:55:51,211 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:55:53,416 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:55:55,237 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  37%|███▋      | 371/1000 [51:29<1:39:05,  9.45s/it]2026-01-03 20:55:57,639 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:55:59,626 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:56:01,282 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:56:03,194 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:56:05,133 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  37%|███▋      | 372/1000 [51:39<1:39:57,  9.55s/it]2026-01-03 20:56:07,418 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:56:09,465 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  37%|███▋      | 373/1000 [51:43<1:24:00,  8.04s/it]2026-01-03 20:56:11,942 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:56:14,084 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  37%|███▋      | 374/1000 [51:48<1:12:07,  6.91s/it]2026-01-03 20:56:16,215 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:56:18,367 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:56:20,370 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:56:22,865 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  38%|███▊      | 375/1000 [51:56<1:17:50,  7.47s/it]2026-01-03 20:56:25,033 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:56:27,240 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:56:29,432 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:56:31,478 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  38%|███▊      | 376/1000 [52:05<1:22:16,  7.91s/it]2026-01-03 20:56:33,923 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:56:35,725 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:56:37,793 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:56:39,794 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:56:41,516 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  38%|███▊      | 377/1000 [52:15<1:28:24,  8.51s/it]2026-01-03 20:56:43,845 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:56:45,793 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:56:47,764 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:56:49,608 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  38%|███▊      | 378/1000 [52:23<1:26:37,  8.36s/it]2026-01-03 20:56:51,838 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:56:53,634 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:56:56,246 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:56:58,036 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  38%|███▊      | 379/1000 [52:32<1:27:02,  8.41s/it]2026-01-03 20:57:00,373 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:57:02,151 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:57:04,003 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:57:05,980 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  38%|███▊      | 380/1000 [52:40<1:25:03,  8.23s/it]2026-01-03 20:57:08,197 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:57:10,096 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:57:11,802 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:57:13,663 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  38%|███▊      | 381/1000 [52:47<1:22:44,  8.02s/it]2026-01-03 20:57:15,727 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:57:17,822 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:57:19,799 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  38%|███▊      | 382/1000 [52:54<1:17:44,  7.55s/it]2026-01-03 20:57:22,169 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:57:24,164 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:57:26,044 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:57:28,239 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  38%|███▊      | 383/1000 [53:02<1:20:36,  7.84s/it]2026-01-03 20:57:30,702 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:57:32,613 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:57:34,684 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:57:36,808 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:57:38,917 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  38%|███▊      | 384/1000 [53:13<1:29:29,  8.72s/it]2026-01-03 20:57:41,484 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:57:43,508 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:57:45,461 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:57:47,527 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:57:49,488 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  38%|███▊      | 385/1000 [53:23<1:34:31,  9.22s/it]2026-01-03 20:57:51,852 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:57:53,993 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:57:55,900 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:57:58,043 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  39%|███▊      | 386/1000 [53:32<1:33:35,  9.15s/it]2026-01-03 20:58:00,828 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:58:02,632 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  39%|███▊      | 387/1000 [53:36<1:17:15,  7.56s/it]2026-01-03 20:58:04,680 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:58:06,531 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:58:08,576 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:58:10,756 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  39%|███▉      | 388/1000 [53:45<1:20:17,  7.87s/it]2026-01-03 20:58:13,285 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:58:14,996 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:58:17,027 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:58:19,081 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  39%|███▉      | 389/1000 [53:53<1:21:33,  8.01s/it]2026-01-03 20:58:21,606 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:58:23,768 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:58:25,883 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:58:28,044 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  39%|███▉      | 390/1000 [54:02<1:23:39,  8.23s/it]2026-01-03 20:58:30,347 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:58:32,075 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:58:34,061 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:58:36,111 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  39%|███▉      | 391/1000 [54:10<1:22:59,  8.18s/it]2026-01-03 20:58:38,416 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:58:40,747 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:58:42,741 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:58:45,033 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:58:46,914 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  39%|███▉      | 392/1000 [54:20<1:30:12,  8.90s/it]2026-01-03 20:58:48,998 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:58:50,826 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:58:52,683 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:58:54,606 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  39%|███▉      | 393/1000 [54:28<1:27:00,  8.60s/it]2026-01-03 20:58:56,906 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:58:59,007 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:59:00,896 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:59:02,759 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  39%|███▉      | 394/1000 [54:36<1:25:43,  8.49s/it]2026-01-03 20:59:05,122 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:59:07,367 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:59:09,549 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:59:11,700 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:59:13,419 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  40%|███▉      | 395/1000 [54:47<1:31:13,  9.05s/it]2026-01-03 20:59:15,479 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:59:17,905 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:59:20,385 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:59:22,225 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  40%|███▉      | 396/1000 [54:56<1:30:53,  9.03s/it]2026-01-03 20:59:24,467 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:59:26,276 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:59:28,320 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:59:30,384 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  40%|███▉      | 397/1000 [55:04<1:27:39,  8.72s/it]2026-01-03 20:59:32,468 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:59:34,321 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:59:36,299 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:59:38,533 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  40%|███▉      | 398/1000 [55:12<1:27:13,  8.69s/it]2026-01-03 20:59:41,092 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:59:43,197 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:59:45,108 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:59:47,248 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  40%|███▉      | 399/1000 [55:21<1:26:17,  8.62s/it]2026-01-03 20:59:49,525 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:59:51,607 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:59:53,757 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:59:55,220 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  40%|████      | 400/1000 [55:29<1:24:11,  8.42s/it]2026-01-03 20:59:57,530 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 20:59:59,625 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:00:01,934 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:00:03,724 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:00:05,881 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  40%|████      | 401/1000 [55:40<1:31:13,  9.14s/it]2026-01-03 21:00:08,354 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:00:10,360 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:00:12,495 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:00:14,300 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  40%|████      | 402/1000 [55:48<1:28:04,  8.84s/it]2026-01-03 21:00:16,450 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:00:18,737 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:00:21,185 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:00:23,495 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:00:25,281 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  40%|████      | 403/1000 [55:59<1:35:29,  9.60s/it]2026-01-03 21:00:27,844 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:00:29,618 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:00:31,641 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  40%|████      | 404/1000 [56:05<1:25:17,  8.59s/it]2026-01-03 21:00:34,043 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:00:36,068 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:00:38,126 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:00:39,890 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  40%|████      | 405/1000 [56:13<1:23:25,  8.41s/it]2026-01-03 21:00:42,043 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:00:43,987 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:00:46,115 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:00:48,207 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:00:50,504 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  41%|████      | 406/1000 [56:24<1:29:12,  9.01s/it]2026-01-03 21:00:52,447 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:00:54,853 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:00:57,101 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:00:59,052 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:01:01,169 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  41%|████      | 407/1000 [56:35<1:34:16,  9.54s/it]2026-01-03 21:01:03,214 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:01:05,194 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:01:07,287 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:01:09,058 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  41%|████      | 408/1000 [56:43<1:29:38,  9.09s/it]2026-01-03 21:01:11,244 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:01:13,434 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:01:15,583 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:01:17,690 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  41%|████      | 409/1000 [56:51<1:27:51,  8.92s/it]2026-01-03 21:01:19,784 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:01:21,694 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:01:23,493 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:01:25,577 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  41%|████      | 410/1000 [56:59<1:24:19,  8.58s/it]2026-01-03 21:01:27,548 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:01:29,700 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:01:31,638 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:01:33,458 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:01:35,483 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  41%|████      | 411/1000 [57:09<1:29:02,  9.07s/it]2026-01-03 21:01:37,782 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:01:39,701 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:01:42,075 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:01:44,084 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  41%|████      | 412/1000 [57:18<1:27:48,  8.96s/it]2026-01-03 21:01:46,498 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:01:48,535 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:01:50,606 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:01:52,631 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  41%|████▏     | 413/1000 [57:27<1:27:00,  8.89s/it]2026-01-03 21:01:55,218 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:01:57,116 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:01:59,390 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:02:01,824 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:02:03,576 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  41%|████▏     | 414/1000 [57:37<1:32:44,  9.50s/it]2026-01-03 21:02:06,113 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:02:07,918 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  42%|████▏     | 415/1000 [57:41<1:15:43,  7.77s/it]2026-01-03 21:02:09,864 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:02:12,152 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:02:14,252 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:02:16,456 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:02:18,628 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  42%|████▏     | 416/1000 [57:53<1:26:24,  8.88s/it]2026-01-03 21:02:21,327 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:02:23,296 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:02:25,422 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:02:27,339 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:02:29,033 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  42%|████▏     | 417/1000 [58:02<1:28:53,  9.15s/it]2026-01-03 21:02:31,122 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:02:33,158 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:02:35,561 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:02:37,695 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:02:39,524 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  42%|████▏     | 418/1000 [58:13<1:33:43,  9.66s/it]2026-01-03 21:02:41,964 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:02:44,043 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  42%|████▏     | 419/1000 [58:18<1:18:06,  8.07s/it]2026-01-03 21:02:46,313 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:02:48,496 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  42%|████▏     | 420/1000 [58:22<1:07:34,  6.99s/it]2026-01-03 21:02:50,799 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:02:52,766 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:02:54,647 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:02:56,315 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:02:58,044 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  42%|████▏     | 421/1000 [58:32<1:14:30,  7.72s/it]2026-01-03 21:03:00,218 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:03:02,310 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:03:04,676 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:03:06,734 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  42%|████▏     | 422/1000 [58:41<1:17:58,  8.09s/it]2026-01-03 21:03:09,178 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:03:11,003 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:03:12,936 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:03:15,002 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  42%|████▏     | 423/1000 [58:49<1:18:10,  8.13s/it]2026-01-03 21:03:17,408 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:03:19,211 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:03:21,312 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:03:23,341 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  42%|████▏     | 424/1000 [58:57<1:17:30,  8.07s/it]2026-01-03 21:03:25,330 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:03:27,519 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:03:29,581 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  42%|████▎     | 425/1000 [59:03<1:12:15,  7.54s/it]2026-01-03 21:03:31,626 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:03:33,579 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:03:35,762 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:03:37,842 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:03:39,542 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  43%|████▎     | 426/1000 [59:13<1:18:53,  8.25s/it]2026-01-03 21:03:41,542 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:03:43,640 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:03:45,519 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:03:47,445 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  43%|████▎     | 427/1000 [59:21<1:18:53,  8.26s/it]2026-01-03 21:03:49,824 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:03:51,863 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:03:53,942 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:03:55,771 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  43%|████▎     | 428/1000 [59:29<1:18:13,  8.20s/it]2026-01-03 21:03:57,882 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:03:59,657 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:04:01,872 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:04:03,828 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:04:05,775 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  43%|████▎     | 429/1000 [59:39<1:23:38,  8.79s/it]2026-01-03 21:04:08,048 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:04:09,936 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  43%|████▎     | 430/1000 [59:43<1:09:42,  7.34s/it]2026-01-03 21:04:11,993 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:04:13,877 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:04:15,677 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:04:17,487 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  43%|████▎     | 431/1000 [59:51<1:10:15,  7.41s/it]2026-01-03 21:04:19,563 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:04:21,639 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:04:23,740 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:04:25,895 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:04:27,753 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  43%|████▎     | 432/1000 [1:00:01<1:18:48,  8.32s/it]2026-01-03 21:04:30,027 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:04:32,324 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:04:34,050 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  43%|████▎     | 433/1000 [1:00:07<1:12:14,  7.64s/it]2026-01-03 21:04:36,216 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:04:38,208 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:04:40,043 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:04:41,877 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  43%|████▎     | 434/1000 [1:00:15<1:13:08,  7.75s/it]2026-01-03 21:04:44,092 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:04:46,694 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:04:48,771 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:04:50,845 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  44%|████▎     | 435/1000 [1:00:24<1:16:00,  8.07s/it]2026-01-03 21:04:52,922 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:04:54,876 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:04:57,079 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:04:59,215 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:05:01,111 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  44%|████▎     | 436/1000 [1:00:35<1:22:10,  8.74s/it]2026-01-03 21:05:03,220 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:05:05,144 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:05:07,070 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:05:09,097 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:05:11,219 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  44%|████▎     | 437/1000 [1:00:45<1:26:35,  9.23s/it]2026-01-03 21:05:13,653 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:05:15,491 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  44%|████▍     | 438/1000 [1:00:49<1:11:58,  7.68s/it]2026-01-03 21:05:17,694 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:05:19,520 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:05:21,931 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:05:23,641 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:05:25,497 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  44%|████▍     | 439/1000 [1:00:59<1:18:33,  8.40s/it]2026-01-03 21:05:27,733 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:05:29,472 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:05:31,471 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:05:33,242 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:05:35,341 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  44%|████▍     | 440/1000 [1:01:09<1:22:07,  8.80s/it]2026-01-03 21:05:37,466 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:05:39,448 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:05:41,315 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  44%|████▍     | 441/1000 [1:01:15<1:14:08,  7.96s/it]2026-01-03 21:05:43,458 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:05:45,578 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  44%|████▍     | 442/1000 [1:01:19<1:03:18,  6.81s/it]2026-01-03 21:05:47,571 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:05:49,255 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:05:51,154 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:05:52,865 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:05:54,674 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  44%|████▍     | 443/1000 [1:01:28<1:10:42,  7.62s/it]2026-01-03 21:05:57,086 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:05:58,927 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:06:01,159 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:06:03,181 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:06:05,038 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  44%|████▍     | 444/1000 [1:01:39<1:17:50,  8.40s/it]2026-01-03 21:06:07,317 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:06:09,183 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  44%|████▍     | 445/1000 [1:01:43<1:05:23,  7.07s/it]2026-01-03 21:06:11,306 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:06:13,222 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:06:15,215 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  45%|████▍     | 446/1000 [1:01:49<1:03:06,  6.83s/it]2026-01-03 21:06:17,563 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:06:19,378 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:06:21,248 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:06:22,952 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  45%|████▍     | 447/1000 [1:01:57<1:06:22,  7.20s/it]2026-01-03 21:06:25,623 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:06:27,578 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:06:29,451 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:06:31,341 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  45%|████▍     | 448/1000 [1:02:05<1:08:04,  7.40s/it]2026-01-03 21:06:33,482 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:06:35,378 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:06:37,568 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:06:39,434 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:06:41,262 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  45%|████▍     | 449/1000 [1:02:15<1:16:27,  8.33s/it]2026-01-03 21:06:43,971 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:06:45,756 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:06:47,698 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:06:49,948 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  45%|████▌     | 450/1000 [1:02:23<1:15:54,  8.28s/it]2026-01-03 21:06:52,210 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:06:54,313 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:06:56,032 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:06:58,030 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:06:59,773 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  45%|████▌     | 451/1000 [1:02:33<1:19:25,  8.68s/it]2026-01-03 21:07:01,767 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:07:03,638 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:07:05,511 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  45%|████▌     | 452/1000 [1:02:39<1:12:58,  7.99s/it]2026-01-03 21:07:08,142 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:07:10,038 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:07:11,679 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  45%|████▌     | 453/1000 [1:02:45<1:06:43,  7.32s/it]2026-01-03 21:07:14,028 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:07:15,965 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:07:18,203 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:07:19,892 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:07:21,615 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  45%|████▌     | 454/1000 [1:02:55<1:13:56,  8.13s/it]2026-01-03 21:07:23,904 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:07:25,706 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:07:27,493 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:07:29,621 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:07:31,762 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  46%|████▌     | 455/1000 [1:03:05<1:18:41,  8.66s/it]2026-01-03 21:07:33,809 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:07:35,716 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:07:37,556 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:07:39,584 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  46%|████▌     | 456/1000 [1:03:13<1:16:20,  8.42s/it]2026-01-03 21:07:41,668 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:07:43,639 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:07:45,506 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:07:47,626 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  46%|████▌     | 457/1000 [1:03:21<1:14:57,  8.28s/it]2026-01-03 21:07:49,639 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:07:51,455 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:07:53,283 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:07:55,242 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  46%|████▌     | 458/1000 [1:03:29<1:14:03,  8.20s/it]2026-01-03 21:07:57,631 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:07:59,688 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:08:01,569 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:08:03,347 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  46%|████▌     | 459/1000 [1:03:37<1:12:31,  8.04s/it]2026-01-03 21:08:05,305 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:08:07,421 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:08:09,029 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:08:10,657 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:08:12,607 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  46%|████▌     | 460/1000 [1:03:46<1:16:10,  8.46s/it]2026-01-03 21:08:14,773 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:08:16,499 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:08:18,280 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:08:20,068 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  46%|████▌     | 461/1000 [1:03:53<1:13:02,  8.13s/it]2026-01-03 21:08:22,103 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:08:23,970 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  46%|████▌     | 462/1000 [1:03:57<1:01:17,  6.84s/it]2026-01-03 21:08:25,927 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:08:27,743 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:08:29,391 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:08:31,256 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:08:33,317 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  46%|████▋     | 463/1000 [1:04:07<1:08:17,  7.63s/it]2026-01-03 21:08:35,405 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:08:37,226 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:08:39,242 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:08:41,754 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:08:43,772 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  46%|████▋     | 464/1000 [1:04:17<1:16:11,  8.53s/it]2026-01-03 21:08:46,206 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:08:47,837 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:08:49,740 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:08:51,463 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:08:53,506 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  46%|████▋     | 465/1000 [1:04:27<1:18:41,  8.82s/it]2026-01-03 21:08:55,556 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:08:57,710 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:08:59,626 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:09:01,771 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:09:03,586 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  47%|████▋     | 466/1000 [1:04:37<1:21:55,  9.21s/it]2026-01-03 21:09:05,659 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:09:07,536 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:09:09,402 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  47%|████▋     | 467/1000 [1:04:43<1:12:19,  8.14s/it]2026-01-03 21:09:11,319 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:09:13,028 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:09:15,742 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:09:17,590 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  47%|████▋     | 468/1000 [1:04:51<1:12:28,  8.17s/it]2026-01-03 21:09:19,541 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:09:21,565 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:09:23,681 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:09:25,738 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  47%|████▋     | 469/1000 [1:04:59<1:12:33,  8.20s/it]2026-01-03 21:09:27,809 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:09:29,933 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:09:31,702 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:09:33,400 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:09:35,189 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  47%|████▋     | 470/1000 [1:05:09<1:16:16,  8.63s/it]2026-01-03 21:09:37,458 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:09:39,854 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:09:42,089 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:09:44,121 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  47%|████▋     | 471/1000 [1:05:17<1:16:14,  8.65s/it]2026-01-03 21:09:46,140 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:09:48,171 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:09:49,906 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:09:51,677 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  47%|████▋     | 472/1000 [1:05:25<1:13:42,  8.38s/it]2026-01-03 21:09:53,876 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:09:55,813 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:09:57,548 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:09:59,812 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:10:01,716 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  47%|████▋     | 473/1000 [1:05:35<1:18:19,  8.92s/it]2026-01-03 21:10:04,060 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:10:05,974 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  47%|████▋     | 474/1000 [1:05:40<1:05:50,  7.51s/it]2026-01-03 21:10:08,294 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:10:10,307 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:10:12,118 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:10:13,990 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  48%|████▊     | 475/1000 [1:05:47<1:06:15,  7.57s/it]2026-01-03 21:10:16,171 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:10:17,872 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:10:19,665 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:10:21,818 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:10:23,553 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  48%|████▊     | 476/1000 [1:05:57<1:11:19,  8.17s/it]2026-01-03 21:10:25,591 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:10:27,457 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:10:29,233 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:10:30,952 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  48%|████▊     | 477/1000 [1:06:05<1:10:05,  8.04s/it]2026-01-03 21:10:33,301 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:10:35,393 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:10:37,298 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:10:39,155 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  48%|████▊     | 478/1000 [1:06:13<1:10:07,  8.06s/it]2026-01-03 21:10:41,422 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:10:43,353 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:10:45,048 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:10:46,946 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:10:48,776 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  48%|████▊     | 479/1000 [1:06:22<1:13:33,  8.47s/it]2026-01-03 21:10:50,844 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:10:52,599 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:10:54,366 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:10:56,396 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  48%|████▊     | 480/1000 [1:06:30<1:11:56,  8.30s/it]2026-01-03 21:10:58,740 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:11:00,588 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:11:02,734 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  48%|████▊     | 481/1000 [1:06:36<1:05:57,  7.62s/it]2026-01-03 21:11:04,806 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:11:06,685 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:11:08,807 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:11:10,496 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:11:12,943 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  48%|████▊     | 482/1000 [1:06:47<1:13:24,  8.50s/it]2026-01-03 21:11:15,341 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:11:17,383 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:11:19,403 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:11:21,119 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  48%|████▊     | 483/1000 [1:06:55<1:12:32,  8.42s/it]2026-01-03 21:11:23,567 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:11:25,532 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  48%|████▊     | 484/1000 [1:06:59<1:01:13,  7.12s/it]2026-01-03 21:11:27,654 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:11:29,559 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:11:31,725 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:11:33,698 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  48%|████▊     | 485/1000 [1:07:07<1:04:25,  7.51s/it]2026-01-03 21:11:36,080 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:11:38,133 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  49%|████▊     | 486/1000 [1:07:12<56:16,  6.57s/it]  2026-01-03 21:11:40,488 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:11:42,777 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:11:44,598 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:11:46,705 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  49%|████▊     | 487/1000 [1:07:20<1:00:49,  7.11s/it]2026-01-03 21:11:48,855 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:11:50,964 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:11:53,151 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  49%|████▉     | 488/1000 [1:07:27<59:24,  6.96s/it]  2026-01-03 21:11:55,432 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:11:57,556 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:11:59,333 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  49%|████▉     | 489/1000 [1:07:33<57:40,  6.77s/it]2026-01-03 21:12:01,784 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:12:03,666 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:12:05,624 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:12:07,526 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  49%|████▉     | 490/1000 [1:07:41<1:01:00,  7.18s/it]2026-01-03 21:12:09,910 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:12:12,087 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:12:14,271 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:12:16,476 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  49%|████▉     | 491/1000 [1:07:50<1:04:39,  7.62s/it]2026-01-03 21:12:18,549 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:12:20,358 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:12:22,130 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:12:24,015 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:12:25,793 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  49%|████▉     | 492/1000 [1:08:00<1:09:55,  8.26s/it]2026-01-03 21:12:28,355 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:12:30,187 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:12:31,889 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:12:33,963 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  49%|████▉     | 493/1000 [1:08:08<1:08:54,  8.16s/it]2026-01-03 21:12:36,268 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:12:37,938 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:12:40,118 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  49%|████▉     | 494/1000 [1:08:14<1:04:36,  7.66s/it]2026-01-03 21:12:42,726 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:12:44,802 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:12:46,763 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:12:48,706 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:12:50,696 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  50%|████▉     | 495/1000 [1:08:24<1:10:35,  8.39s/it]2026-01-03 21:12:52,802 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:12:55,035 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:12:57,293 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:12:59,198 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  50%|████▉     | 496/1000 [1:08:33<1:11:00,  8.45s/it]2026-01-03 21:13:01,396 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:13:03,407 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:13:05,586 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:13:07,829 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  50%|████▉     | 497/1000 [1:08:41<1:10:57,  8.46s/it]2026-01-03 21:13:09,891 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:13:12,088 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:13:14,863 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:13:16,835 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:13:18,886 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  50%|████▉     | 498/1000 [1:08:52<1:17:23,  9.25s/it]2026-01-03 21:13:20,981 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:13:22,694 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:13:24,516 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  50%|████▉     | 499/1000 [1:08:58<1:08:01,  8.15s/it]2026-01-03 21:13:26,562 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:13:28,319 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:13:30,869 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:13:33,539 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  50%|█████     | 500/1000 [1:09:08<1:12:44,  8.73s/it]2026-01-03 21:13:36,675 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:13:38,742 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:13:40,680 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:13:42,400 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  50%|█████     | 501/1000 [1:09:16<1:10:39,  8.50s/it]2026-01-03 21:13:44,608 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:13:46,554 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:13:48,297 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:13:50,067 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  50%|█████     | 502/1000 [1:09:24<1:08:34,  8.26s/it]2026-01-03 21:13:52,311 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:13:54,093 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:13:55,854 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:13:57,611 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  50%|█████     | 503/1000 [1:09:31<1:06:25,  8.02s/it]2026-01-03 21:13:59,757 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:14:01,900 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:14:03,891 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:14:05,896 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  50%|█████     | 504/1000 [1:09:40<1:07:24,  8.16s/it]2026-01-03 21:14:08,317 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:14:10,234 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:14:11,962 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:14:13,839 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  50%|█████     | 505/1000 [1:09:48<1:06:59,  8.12s/it]2026-01-03 21:14:16,285 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:14:18,000 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:14:20,078 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:14:22,190 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  51%|█████     | 506/1000 [1:09:56<1:07:17,  8.17s/it]2026-01-03 21:14:24,572 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:14:26,696 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:14:28,416 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:14:30,130 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  51%|█████     | 507/1000 [1:10:03<1:05:35,  7.98s/it]2026-01-03 21:14:32,120 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:14:33,935 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  51%|█████     | 508/1000 [1:10:07<55:32,  6.77s/it]  2026-01-03 21:14:36,050 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:14:37,781 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:14:39,619 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:14:41,732 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:14:43,695 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  51%|█████     | 509/1000 [1:10:17<1:02:50,  7.68s/it]2026-01-03 21:14:45,857 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:14:47,539 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:14:49,194 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:14:51,391 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  51%|█████     | 510/1000 [1:10:25<1:02:41,  7.68s/it]2026-01-03 21:14:53,520 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:14:55,592 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:14:57,663 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:14:59,562 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:15:01,437 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  51%|█████     | 511/1000 [1:10:35<1:09:09,  8.49s/it]2026-01-03 21:15:03,980 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:15:06,036 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:15:08,158 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:15:10,176 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:15:11,941 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  51%|█████     | 512/1000 [1:10:46<1:13:34,  9.05s/it]2026-01-03 21:15:14,256 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:15:15,995 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  51%|█████▏    | 513/1000 [1:10:50<1:00:55,  7.51s/it]2026-01-03 21:15:18,160 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:15:20,415 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:15:22,405 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:15:24,122 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:15:26,179 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  51%|█████▏    | 514/1000 [1:11:00<1:07:01,  8.27s/it]2026-01-03 21:15:28,222 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:15:30,176 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:15:32,019 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:15:33,940 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  52%|█████▏    | 515/1000 [1:11:07<1:05:55,  8.16s/it]2026-01-03 21:15:36,142 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:15:38,215 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  52%|█████▏    | 516/1000 [1:11:12<56:18,  6.98s/it]  2026-01-03 21:15:40,343 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:15:42,306 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:15:44,113 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:15:45,874 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:15:47,672 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  52%|█████▏    | 517/1000 [1:11:21<1:02:32,  7.77s/it]2026-01-03 21:15:50,028 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:15:51,926 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:15:53,674 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:15:55,776 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:15:57,809 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  52%|█████▏    | 518/1000 [1:11:31<1:07:50,  8.45s/it]2026-01-03 21:15:59,990 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:16:01,975 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:16:03,901 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:16:05,970 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  52%|█████▏    | 519/1000 [1:11:39<1:07:02,  8.36s/it]2026-01-03 21:16:08,164 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:16:10,140 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:16:11,839 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:16:13,655 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  52%|█████▏    | 520/1000 [1:11:48<1:06:04,  8.26s/it]2026-01-03 21:16:16,258 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:16:17,998 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:16:19,622 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:16:21,469 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:16:23,252 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  52%|█████▏    | 521/1000 [1:11:57<1:08:46,  8.61s/it]2026-01-03 21:16:25,631 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:16:27,330 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:16:29,207 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:16:31,374 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  52%|█████▏    | 522/1000 [1:12:05<1:06:47,  8.38s/it]2026-01-03 21:16:33,460 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:16:35,268 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:16:37,410 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:16:39,100 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  52%|█████▏    | 523/1000 [1:12:12<1:04:59,  8.17s/it]2026-01-03 21:16:41,382 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:16:43,244 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:16:44,985 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:16:46,963 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  52%|█████▏    | 524/1000 [1:12:20<1:04:20,  8.11s/it]2026-01-03 21:16:49,114 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:16:50,942 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:16:52,871 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:16:54,821 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:16:56,816 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  52%|█████▎    | 525/1000 [1:12:30<1:08:16,  8.63s/it]2026-01-03 21:16:59,016 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:17:01,142 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:17:03,094 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:17:05,129 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  53%|█████▎    | 526/1000 [1:12:39<1:08:28,  8.67s/it]2026-01-03 21:17:07,694 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:17:09,547 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:17:11,848 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:17:14,058 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  53%|█████▎    | 527/1000 [1:12:48<1:07:54,  8.61s/it]2026-01-03 21:17:16,252 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:17:18,270 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:17:21,287 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:17:23,045 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  53%|█████▎    | 528/1000 [1:12:57<1:08:49,  8.75s/it]2026-01-03 21:17:25,246 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:17:27,423 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:17:29,324 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:17:31,026 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  53%|█████▎    | 529/1000 [1:13:04<1:06:29,  8.47s/it]2026-01-03 21:17:33,056 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:17:34,998 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:17:36,815 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:17:38,590 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  53%|█████▎    | 530/1000 [1:13:12<1:04:40,  8.26s/it]2026-01-03 21:17:40,831 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:17:42,870 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:17:44,688 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:17:46,567 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  53%|█████▎    | 531/1000 [1:13:20<1:03:49,  8.16s/it]2026-01-03 21:17:48,789 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:17:50,944 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:17:52,963 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:17:54,871 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  53%|█████▎    | 532/1000 [1:13:29<1:04:43,  8.30s/it]2026-01-03 21:17:57,376 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:17:59,173 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:18:00,936 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:18:02,922 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  53%|█████▎    | 533/1000 [1:13:37<1:03:50,  8.20s/it]2026-01-03 21:18:05,349 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:18:06,935 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:18:08,914 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:18:10,986 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  53%|█████▎    | 534/1000 [1:13:45<1:03:14,  8.14s/it]2026-01-03 21:18:13,379 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:18:15,316 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:18:17,295 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:18:19,062 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:18:20,861 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  54%|█████▎    | 535/1000 [1:13:54<1:06:45,  8.61s/it]2026-01-03 21:18:23,093 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:18:25,035 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  54%|█████▎    | 536/1000 [1:13:59<56:08,  7.26s/it]  2026-01-03 21:18:27,177 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:18:28,935 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:18:30,697 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:18:32,984 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:18:34,832 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  54%|█████▎    | 537/1000 [1:14:09<1:02:36,  8.11s/it]2026-01-03 21:18:37,280 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:18:39,367 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  54%|█████▍    | 538/1000 [1:14:13<53:17,  6.92s/it]  2026-01-03 21:18:41,444 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:18:43,432 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:18:45,395 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:18:47,042 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  54%|█████▍    | 539/1000 [1:14:21<55:13,  7.19s/it]2026-01-03 21:18:49,227 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:18:51,287 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:18:53,048 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:18:54,784 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  54%|█████▍    | 540/1000 [1:14:28<56:38,  7.39s/it]2026-01-03 21:18:57,081 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:18:59,276 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  54%|█████▍    | 541/1000 [1:14:33<50:26,  6.59s/it]2026-01-03 21:19:01,828 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:19:04,089 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:19:05,837 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:19:07,640 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  54%|█████▍    | 542/1000 [1:14:41<53:10,  6.97s/it]2026-01-03 21:19:09,673 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:19:11,355 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:19:13,069 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:19:14,899 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:19:16,609 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  54%|█████▍    | 543/1000 [1:14:50<58:11,  7.64s/it]2026-01-03 21:19:18,881 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:19:20,712 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  54%|█████▍    | 544/1000 [1:14:54<49:33,  6.52s/it]2026-01-03 21:19:22,784 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:19:24,641 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:19:26,348 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:19:28,261 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  55%|█████▍    | 545/1000 [1:15:02<52:10,  6.88s/it]2026-01-03 21:19:30,503 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:19:32,389 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:19:34,215 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:19:36,206 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  55%|█████▍    | 546/1000 [1:15:10<54:04,  7.15s/it]2026-01-03 21:19:38,390 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  55%|█████▍    | 547/1000 [1:15:12<42:45,  5.66s/it]2026-01-03 21:19:40,483 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:19:42,552 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:19:44,361 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:19:46,431 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:19:48,414 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  55%|█████▍    | 548/1000 [1:15:22<53:12,  7.06s/it]2026-01-03 21:19:50,794 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:19:52,542 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  55%|█████▍    | 549/1000 [1:15:26<46:00,  6.12s/it]2026-01-03 21:19:54,730 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:19:56,643 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:19:58,455 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:20:00,470 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  55%|█████▌    | 550/1000 [1:15:34<49:34,  6.61s/it]2026-01-03 21:20:02,517 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:20:04,643 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:20:06,555 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:20:08,414 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  55%|█████▌    | 551/1000 [1:15:42<52:35,  7.03s/it]2026-01-03 21:20:10,473 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:20:12,660 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:20:14,453 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:20:16,792 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  55%|█████▌    | 552/1000 [1:15:51<56:20,  7.55s/it]2026-01-03 21:20:19,244 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:20:21,159 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:20:23,362 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:20:24,961 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  55%|█████▌    | 553/1000 [1:15:58<56:42,  7.61s/it]2026-01-03 21:20:27,007 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:20:28,747 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:20:30,482 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:20:32,124 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:20:34,260 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  55%|█████▌    | 554/1000 [1:16:08<1:00:36,  8.15s/it]2026-01-03 21:20:36,428 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:20:38,265 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:20:40,208 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:20:42,289 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  56%|█████▌    | 555/1000 [1:16:16<1:00:01,  8.09s/it]2026-01-03 21:20:44,377 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:20:46,273 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:20:48,966 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:20:50,417 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:20:52,089 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  56%|█████▌    | 556/1000 [1:16:25<1:03:23,  8.57s/it]2026-01-03 21:20:54,040 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:20:55,595 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:20:57,546 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:20:59,356 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:21:01,062 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  56%|█████▌    | 557/1000 [1:16:35<1:04:52,  8.79s/it]2026-01-03 21:21:03,354 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:21:05,764 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:21:07,495 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:21:09,391 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:21:11,070 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  56%|█████▌    | 558/1000 [1:16:45<1:07:46,  9.20s/it]2026-01-03 21:21:13,509 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:21:15,219 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:21:16,911 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:21:18,911 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:21:20,589 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+DeepSeek Rating:  56%|█████▌    | 559/1000 [1:16:54<1:07:29,  9.18s/it]2026-01-03 21:21:22,657 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:21:24,579 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
