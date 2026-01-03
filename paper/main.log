@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.2.27)  3 JAN 2026 21:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.2.27)  3 JAN 2026 21:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1411,67 +1411,71 @@ Underfull \hbox (badness 1383) in paragraph at lines 14--17
  []
 
 
-Underfull \hbox (badness 1147) in paragraph at lines 62--65
+
+
+Underfull \hbox (badness 1147) in paragraph at lines 68--71
 []\T1/stix/m/n/10 (+20) Gao, L. et al.  Lm eval har-ness: Eval-u-a-tion frame-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 62--65
+Underfull \hbox (badness 10000) in paragraph at lines 68--71
 \T1/stix/m/n/10 (+20) work, 2024a.  URL [][]$\T1/pcr/m/n/10 https : / / github 
 . com /
  []
 
 
 
-
-
 [10]
-Underfull \hbox (badness 3849) in paragraph at lines 175--179
+
+
+Underfull \hbox (badness 3849) in paragraph at lines 215--219
 []\T1/stix/m/n/10 (+20) of Amer-ica, M. A.  Amer-i-can in-vi-ta-tional math-e-
  []
 
 
-Underfull \hbox (badness 2538) in paragraph at lines 175--179
+Underfull \hbox (badness 2538) in paragraph at lines 215--219
 \T1/stix/m/n/10 (+20) mat-ics ex-am-i-na-tion (aime), 2024.  URL [][]$\T1/pcr/m
 /n/10 https :
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 175--179
+Underfull \hbox (badness 10000) in paragraph at lines 215--219
 \T1/pcr/m/n/10 / / www . maa . org / math-[]competitions /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 181--184
+Underfull \hbox (badness 10000) in paragraph at lines 221--224
 []\T1/stix/m/n/10 (+20) OpenAI.  o1: Ad-vanc-ing rea-son-ing, 2024.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 181--184
+Underfull \hbox (badness 10000) in paragraph at lines 221--224
 \T1/stix/m/n/10 (+20) URL [][]$\T1/pcr/m/n/10 https : / / openai . com / index 
 /
  []
 
 
-Underfull \hbox (badness 2096) in paragraph at lines 202--205
+Underfull \hbox (badness 2096) in paragraph at lines 271--274
 \T1/stix/m/n/10 (+20) lems, 2024.  URL [][]$\T1/pcr/m/n/10 https : / / arxiv . 
 org / abs /
  []
 
 
 
-
-Underfull \hbox (badness 2088) in paragraph at lines 255--258
+[11]
+Underfull \hbox (badness 2088) in paragraph at lines 329--332
 []\T1/stix/m/n/10 (+20) Team, S.  Sky-t1-32b-preview: An open rea-son-ing
  []
 
 
 
-[11])
+
+
+[12])
 
 
 
-[12
+[13
 
 ] (./main.toc)
 \tf@toc=\write5
@@ -1479,54 +1483,54 @@ Underfull \hbox (badness 2088) in paragraph at lines 255--258
 
 
 
-[13
+[14
 
 ]
 
-[14]
-Overfull \hbox (3.93893pt too wide) in paragraph at lines 915--915
+[15]
+Overfull \hbox (3.93893pt too wide) in paragraph at lines 917--917
 []|\T1/stix/m/n/10 (-20) #Samples| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 915--916
+Underfull \hbox (badness 10000) in paragraph at lines 917--918
 []|\T1/stix/m/n/10 (+20) Avg.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 915--916
+Underfull \hbox (badness 10000) in paragraph at lines 917--918
 \T1/stix/m/n/10 (+20) think-ing
  []
 
 
 
-[15]
-
 [16]
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 992.
-
 
 [17]
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
+put line 994.
+
 
 [18]
-<figures/training_metrics.pdf, id=861, 1057.49142pt x 261.53648pt>
+
+[19]
+<figures/training_metrics.pdf, id=924, 1057.49142pt x 261.53648pt>
 File: figures/training_metrics.pdf Graphic file (type pdf)
 <use figures/training_metrics.pdf>
-Package pdftex.def Info: figures/training_metrics.pdf  used on input line 1050.
+Package pdftex.def Info: figures/training_metrics.pdf  used on input line 1052.
 
 (pdftex.def)             Requested size: 487.8225pt x 120.64745pt.
 
 
-[19
+[20
 
- <./figures/training_metrics.pdf>] [20] [21] [22]
+ <./figures/training_metrics.pdf>] [21] [22] [23]
 
-[23] [24] [25] [26]
+[24] [25] [26] [27]
 
-[27] [28] [29] [30] [31]
+[28] [29] [30] [31] [32]
 
-[32] (./main.aux)
+[33] (./main.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
@@ -1535,13 +1539,13 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: FFDA80AE77BC4E1D1D4ECA4B0F81A473;6484.
  ) 
 Here is how much of TeX's memory you used:
- 31999 strings out of 473201
- 582565 string characters out of 5716120
- 1026417 words of memory out of 5000000
- 54211 multiletter control sequences out of 15000+600000
- 665502 words of font info for 278 fonts, out of 8000000 for 9000
+ 32066 strings out of 473201
+ 584216 string characters out of 5716120
+ 1027936 words of memory out of 5000000
+ 54259 multiletter control sequences out of 15000+600000
+ 665708 words of font info for 279 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,19n,101p,1827b,787s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,19n,101p,1825b,787s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exist
 , replaced by a fixed one
@@ -1564,10 +1568,10 @@ usr/local/texlive/2024/texmf-dist/fonts/type1/public/stix/stix-mathscr.pfb></us
 r/local/texlive/2024/texmf-dist/fonts/type1/public/stix/stix-mathsf.pfb></usr/l
 ocal/texlive/2024/texmf-dist/fonts/type1/public/stix/stix-mathtt.pfb></usr/loca
 l/texlive/2024/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>
-Output written on main.pdf (32 pages, 453099 bytes).
+Output written on main.pdf (33 pages, 459631 bytes).
 PDF statistics:
- 1091 PDF objects out of 1200 (max. 8388607)
- 911 compressed objects within 10 object streams
- 230 named destinations out of 1000 (max. 500000)
+ 1155 PDF objects out of 1200 (max. 8388607)
+ 974 compressed objects within 10 object streams
+ 247 named destinations out of 1000 (max. 500000)
  36148 words of extra memory for PDF output out of 42996 (max. 10000000)
 

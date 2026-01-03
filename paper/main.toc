@@ -43,15 +43,16 @@
 \contentsline {section}{\numberline {7}Discussion and related work}{9}{section.7}%
 \contentsline {subsection}{\numberline {7.1}Sample-efficient reasoning}{9}{subsection.7.1}%
 \contentsline {paragraph}{Models}{9}{subsection.7.1}%
+\contentsline {paragraph}{Reward design and process supervision}{9}{subsection.7.1}%
 \contentsline {paragraph}{Benchmarks and methods}{9}{subsection.7.1}%
-\contentsline {section}{\numberline {A}Evaluation determinism}{15}{appendix.A}%
-\contentsline {section}{\numberline {B}\textbf {CoR-1K}{} details}{15}{appendix.B}%
-\contentsline {subsection}{\numberline {B.1}\textbf {CoR-1K}{} summary}{15}{subsection.B.1}%
-\contentsline {subsection}{\numberline {B.2}Dataset composition for full 59K questions}{15}{subsection.B.2}%
-\contentsline {subsection}{\numberline {B.3}\textbf {CoR-1K}{} grading prompt}{17}{subsection.B.3}%
-\contentsline {subsection}{\numberline {B.4}\textbf {CoR-1K}{} diversity selection}{17}{subsection.B.4}%
-\contentsline {subsection}{\numberline {B.5}Decontamination}{17}{subsection.B.5}%
-\contentsline {section}{\numberline {C}Training details}{19}{appendix.C}%
-\contentsline {subsection}{\numberline {C.1}Training Ablations: Sequence length}{19}{subsection.C.1}%
-\contentsline {subsection}{\numberline {C.2}Training Samples}{19}{subsection.C.2}%
-\contentsline {section}{\numberline {D}Version Control}{32}{appendix.D}%
+\contentsline {section}{\numberline {A}Evaluation determinism}{16}{appendix.A}%
+\contentsline {section}{\numberline {B}\textbf {CoR-1K}{} details}{16}{appendix.B}%
+\contentsline {subsection}{\numberline {B.1}\textbf {CoR-1K}{} summary}{16}{subsection.B.1}%
+\contentsline {subsection}{\numberline {B.2}Dataset composition for full 59K questions}{16}{subsection.B.2}%
+\contentsline {subsection}{\numberline {B.3}\textbf {CoR-1K}{} grading prompt}{18}{subsection.B.3}%
+\contentsline {subsection}{\numberline {B.4}\textbf {CoR-1K}{} diversity selection}{18}{subsection.B.4}%
+\contentsline {subsection}{\numberline {B.5}Decontamination}{18}{subsection.B.5}%
+\contentsline {section}{\numberline {C}Training details}{20}{appendix.C}%
+\contentsline {subsection}{\numberline {C.1}Training Ablations: Sequence length}{20}{subsection.C.1}%
+\contentsline {subsection}{\numberline {C.2}Training Samples}{20}{subsection.C.2}%
+\contentsline {section}{\numberline {D}Version Control}{33}{appendix.D}%
