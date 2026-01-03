@@ -1,0 +1,20 @@
+openai==1.56.1
+torch==2.5.1
+torchaudio==2.5.1
+torchvision==0.20.1
+transformers==4.46.1
+wandb==0.17.3
+datasets==3.1.0
+accelerate==1.0.1
+vllm>=0.7.0
+ipykernel==6.28.0
+ipython
+gradio==4.44.0
+trl>=0.14.0  # GRPO support requires 0.14+
+pytest>=7.0.0  # For unit tests
+anthropic>=0.18.0  # For Claude API (optional, for LLM-based self-ratings)
+# Trouble shooting: deepseed engine issues
+# pydantic==1.10.9
+bitsandbytes>=0.41.1
+accelerate>=0.25.0
+unsloth>=0.1.0
