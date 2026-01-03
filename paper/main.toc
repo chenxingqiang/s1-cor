@@ -1,0 +1,57 @@
+\contentsline {section}{\numberline {1}Introduction}{1}{section.1}%
+\contentsline {section}{\numberline {2}Reasoning data curation to create \textbf {CoR-1K}{}}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Initial collection of 59K samples}{2}{subsection.2.1}%
+\contentsline {paragraph}{Curation of existing datasets}{2}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Final selection of 1K samples}{2}{subsection.2.2}%
+\contentsline {paragraph}{Quality}{2}{subsection.2.2}%
+\contentsline {paragraph}{Difficulty}{2}{subsection.2.2}%
+\contentsline {paragraph}{Diversity}{2}{subsection.2.2}%
+\contentsline {section}{\numberline {3}Chain of Reward with GRPO}{3}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Problem Formalization}{3}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Reward Decomposition}{3}{subsection.3.2}%
+\contentsline {paragraph}{Total Reward}{3}{subsection.3.2}%
+\contentsline {paragraph}{External Reward}{3}{equation.2}%
+\contentsline {paragraph}{Intrinsic Reward}{3}{equation.3}%
+\contentsline {paragraph}{Reward Chain}{3}{equation.4}%
+\contentsline {subsection}{\numberline {3.3}Endogenous Self-Evaluation}{3}{subsection.3.3}%
+\contentsline {paragraph}{Self-Rating Generation}{3}{subsection.3.3}%
+\contentsline {paragraph}{Self-Rating Quality Reward}{4}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Group Relative Policy Optimization (GRPO)}{4}{subsection.3.4}%
+\contentsline {paragraph}{Algorithm}{4}{subsection.3.4}%
+\contentsline {paragraph}{Objective Function}{4}{Item.5}%
+\contentsline {subsection}{\numberline {3.5}Theoretical Properties}{4}{subsection.3.5}%
+\contentsline {section}{\numberline {4}Results}{4}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Setup}{4}{subsection.4.1}%
+\contentsline {paragraph}{Training}{4}{subsection.4.1}%
+\contentsline {paragraph}{Evaluation}{4}{subsection.4.1}%
+\contentsline {paragraph}{Other models}{5}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Performance}{5}{subsection.4.2}%
+\contentsline {paragraph}{Sample-efficiency}{5}{subsection.4.2}%
+\contentsline {section}{\numberline {5}Ablations}{7}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Data Quantity, Diversity, and Difficulty}{7}{subsection.5.1}%
+\contentsline {section}{\numberline {6}Theoretical Analysis}{7}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Convergence Guarantees}{7}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Endogenous Self-Evaluation Improves Calibration}{8}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Potential-Based Reward Shaping}{8}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Extended Bellman Equations with Intrinsic Rewards}{8}{subsection.6.4}%
+\contentsline {paragraph}{Extended Value Function}{8}{subsection.6.4}%
+\contentsline {paragraph}{Extended Bellman Optimality Equation}{8}{equation.22}%
+\contentsline {subsection}{\numberline {6.5}Multi-Dimensional Scoring Functions}{9}{subsection.6.5}%
+\contentsline {paragraph}{Dimension Scoring Function}{9}{subsection.6.5}%
+\contentsline {paragraph}{Examples}{9}{equation.24}%
+\contentsline {subsection}{\numberline {6.6}Consistency Constraint (Optional Regularizer)}{9}{subsection.6.6}%
+\contentsline {section}{\numberline {7}Discussion and related work}{9}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Sample-efficient reasoning}{9}{subsection.7.1}%
+\contentsline {paragraph}{Models}{9}{subsection.7.1}%
+\contentsline {paragraph}{Benchmarks and methods}{9}{subsection.7.1}%
+\contentsline {section}{\numberline {A}Evaluation determinism}{15}{appendix.A}%
+\contentsline {section}{\numberline {B}\textbf {CoR-1K}{} details}{15}{appendix.B}%
+\contentsline {subsection}{\numberline {B.1}\textbf {CoR-1K}{} summary}{15}{subsection.B.1}%
+\contentsline {subsection}{\numberline {B.2}Dataset composition for full 59K questions}{15}{subsection.B.2}%
+\contentsline {subsection}{\numberline {B.3}\textbf {CoR-1K}{} grading prompt}{17}{subsection.B.3}%
+\contentsline {subsection}{\numberline {B.4}\textbf {CoR-1K}{} diversity selection}{17}{subsection.B.4}%
+\contentsline {subsection}{\numberline {B.5}Decontamination}{17}{subsection.B.5}%
+\contentsline {section}{\numberline {C}Training details}{19}{appendix.C}%
+\contentsline {subsection}{\numberline {C.1}Training Ablations: Sequence length}{19}{subsection.C.1}%
+\contentsline {subsection}{\numberline {C.2}Training Samples}{19}{subsection.C.2}%
+\contentsline {section}{\numberline {D}Version Control}{32}{appendix.D}%

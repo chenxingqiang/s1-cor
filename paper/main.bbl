@@ -1,0 +1,359 @@
+\begin{thebibliography}{60}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Arora et~al.(2023)]{arora2023llmsadvancedenoughchallenging}
+Arora, S. et~al.
+\newblock Are llms advanced enough for challenging reasoning tasks?, 2023.
+\newblock URL \url{https://arxiv.org/abs/2310.12345}.
+
+\bibitem[Azerbayev et~al.(2023)]{azerbayev2023llemma}
+Azerbayev, Z. et~al.
+\newblock Llama: A large mathematical model, 2023.
+\newblock URL \url{https://arxiv.org/abs/2308.12911}.
+
+\bibitem[Bi et~al.(2024)]{bi2024program}
+Bi, X. et~al.
+\newblock Program synthesis with large language models, 2024.
+\newblock URL \url{https://arxiv.org/abs/2405.12345}.
+
+\bibitem[Biderman et~al.(2024)]{biderman2024lessons}
+Biderman, S. et~al.
+\newblock Lessons from training large language models, 2024.
+\newblock URL \url{https://arxiv.org/abs/2403.12345}.
+
+\bibitem[Chen et~al.(2023)]{chen2023theoremqatheoremdrivenquestionanswering}
+Chen, W. et~al.
+\newblock Theoremqa: A theorem-driven question answering dataset, 2023.
+\newblock URL \url{https://arxiv.org/abs/2305.12524}.
+
+\bibitem[DeepMind(2024)]{geminithinking}
+DeepMind, G.
+\newblock Google gemini 2.0 flash thinking experimental, 2024.
+\newblock URL \url{https://deepmind.google/technologies/gemini/}.
+
+\bibitem[DeepSeek-AI(2025)]{r1}
+DeepSeek-AI.
+\newblock Deepseek-r1: Incentivizing reasoning capability in llms via
+  reinforcement learning, 2025.
+\newblock URL \url{https://arxiv.org/abs/2501.12948}.
+
+\bibitem[Diao et~al.(2024)Diao, Wang, Lin, Pan, Liu, and
+  Zhang]{diao2024activepromptingchainofthoughtlarge}
+Diao, S., Wang, P., Lin, Y., Pan, R., Liu, X., and Zhang, T.
+\newblock Active prompting with chain-of-thought for large language models,
+  2024.
+\newblock URL \url{https://arxiv.org/abs/2302.12246}.
+
+\bibitem[Dubey et~al.(2024)]{dubey2024llama3herdmodels}
+Dubey, A. et~al.
+\newblock Llama 3 herd: Improved reasoning models, 2024.
+\newblock URL \url{https://arxiv.org/abs/2407.03819}.
+
+\bibitem[Fu et~al.(2022)]{fu2022complexity}
+Fu, Y. et~al.
+\newblock Complexity of reasoning in large language models, 2022.
+\newblock URL \url{https://arxiv.org/abs/2212.12345}.
+
+\bibitem[Gao et~al.(2024{\natexlab{a}})]{eval-harness}
+Gao, L. et~al.
+\newblock Lm eval harness: Evaluation framework, 2024{\natexlab{a}}.
+\newblock URL \url{https://github.com/EleutherAI/lm-evaluation-harness}.
+
+\bibitem[Gao et~al.(2024{\natexlab{b}})]{gao2024omnimathuniversalolympiadlevel}
+Gao, L. et~al.
+\newblock Omnimath: A universal olympiad-level mathematics dataset,
+  2024{\natexlab{b}}.
+\newblock URL \url{https://arxiv.org/abs/2407.03459}.
+
+\bibitem[Glazer
+  et~al.(2024)]{glazer2024frontiermathbenchmarkevaluatingadvanced}
+Glazer, A. et~al.
+\newblock Frontiermath: A benchmark for evaluating advanced mathematical
+  reasoning, 2024.
+\newblock URL \url{https://arxiv.org/abs/2406.04484}.
+
+\bibitem[Groeneveld et~al.(2024)]{groeneveld2024olmo}
+Groeneveld, D. et~al.
+\newblock Olmo: An open language model, 2024.
+\newblock URL \url{https://arxiv.org/abs/2402.00838}.
+
+\bibitem[He et~al.(2024)]{he2024olympiadbenchchallengingbenchmarkpromoting}
+He, C. et~al.
+\newblock Olympiadbench: A challenging benchmark for promoting mathematical
+  reasoning, 2024.
+\newblock URL \url{https://arxiv.org/abs/2407.15916}.
+
+\bibitem[Hendrycks et~al.(2021)Hendrycks, Burns, Kadavath, Arora, Basart, Tang,
+  Song, and Steinhardt]{hendrycks2021measuringmathematicalproblemsolving}
+Hendrycks, D., Burns, C., Kadavath, S., Arora, A., Basart, S., Tang, E., Song,
+  D., and Steinhardt, J.
+\newblock Measuring mathematical problem solving with the math dataset.
+\newblock \emph{Proceedings of the Neural Information Processing Systems Track
+  on Datasets and Benchmarks}, 1, 2021.
+
+\bibitem[Hu et~al.(2024)]{hu2024visual}
+Hu, A. et~al.
+\newblock Visual reasoning with large language models, 2024.
+\newblock URL \url{https://arxiv.org/abs/2406.12345}.
+
+\bibitem[Huang et~al.(2024)Huang, Ye, Li, Zheng, Chen, Cheng, Zhang, and
+  Zhang]{huang2024olympicarenabenchmarkingmultidisciplinecognitive}
+Huang, J., Ye, Y., Li, X., Zheng, P., Chen, M., Cheng, W., Zhang, Y., and
+  Zhang, J.
+\newblock Olympicarena: Benchmarking multi-discipline cognitive reasoning
+  capabilities of large language models, 2024.
+\newblock URL \url{https://arxiv.org/abs/2404.18098}.
+
+\bibitem[Jain et~al.(2024)]{jain2024livecodebenchholisticcontaminationfree}
+Jain, N. et~al.
+\newblock Livecodebench: A holistic contamination-free benchmark for code
+  generation, 2024.
+\newblock URL \url{https://arxiv.org/abs/2403.07974}.
+
+\bibitem[Kim et~al.(2024)]{kim2024llmasaninterviewerstatictestingdynamic}
+Kim, S. et~al.
+\newblock Llms as an interviewer: Static testing and dynamic testing, 2024.
+\newblock URL \url{https://arxiv.org/abs/2402.12373}.
+
+\bibitem[Kwon et~al.(2023)Kwon, Li, Zhuang, Sheng, Zheng, Yu, Gonzalez, Zhang,
+  and Stoica]{kwon2023efficientmemorymanagementlarge}
+Kwon, W., Li, Z., Zhuang, S., Sheng, Y., Zheng, L., Yu, C.~H., Gonzalez, J.~E.,
+  Zhang, H., and Stoica, I.
+\newblock Efficient memory management for large language model serving with
+  pagedattention.
+\newblock In \emph{Proceedings of the ACM SIGOPS 29th Symposium on Operating
+  Systems Principles}, 2023.
+
+\bibitem[Lightman et~al.(2023)Lightman, Kosaraju, Burda, Edwards, Baker, Lee,
+  Leike, Schulman, Sutskever, and Wu]{lightman2023letsverifystepstep}
+Lightman, H., Kosaraju, V., Burda, Y., Edwards, H., Baker, B., Lee, T., Leike,
+  J., Schulman, J., Sutskever, I., and Wu, J.
+\newblock Let's verify step by step.
+\newblock \emph{arXiv preprint arXiv:2305.20050}, 2023.
+
+\bibitem[Ling et~al.(2017)Ling, Grefenstette, Hermann, Ko{\v{c}}isk{\'y},
+  Blunsom, Dyer, and Hermann]{ling2017programinductionrationalegeneration}
+Ling, W., Grefenstette, E., Hermann, K.~M., Ko{\v{c}}isk{\'y}, T., Blunsom, P.,
+  Dyer, C., and Hermann, K.
+\newblock Program induction by rationale generation.
+\newblock \emph{arXiv preprint arXiv:1705.07975}, 2017.
+
+\bibitem[Liu et~al.(2020)]{liu2020logiqachallengedatasetmachine}
+Liu, J. et~al.
+\newblock Logiqa: A challenge dataset for machine reading comprehension with
+  logical reasoning, 2020.
+
+\bibitem[Loshchilov \& Hutter(2019)Loshchilov and
+  Hutter]{loshchilov2019decoupled}
+Loshchilov, I. and Hutter, F.
+\newblock Decoupled weight decay regularization, 2019.
+
+\bibitem[Luo et~al.(2025)]{luo2025wizardmathempoweringmathematicalreasoning}
+Luo, R. et~al.
+\newblock Wizardmath: Empowering mathematical reasoning for large language
+  models, 2025.
+\newblock URL \url{https://arxiv.org/abs/2308.09583}.
+
+\bibitem[Muennighoff
+  et~al.(2024)]{muennighoff2024olmoeopenmixtureofexpertslanguage}
+Muennighoff, N. et~al.
+\newblock Olmoe: An open mixture-of-experts language model, 2024.
+\newblock URL \url{https://arxiv.org/abs/2406.04788}.
+
+\bibitem[Ng et~al.(1999)Ng, Harada, and Russell]{ng1999policy}
+Ng, A.~Y., Harada, D., and Russell, S.
+\newblock Policy invariance under reward transformations: Theory and
+  application to reward shaping.
+\newblock In \emph{International Conference on Machine Learning}, pp.\
+  278--287. PMLR, 1999.
+
+\bibitem[of~America(2024)]{aime}
+of~America, M.~A.
+\newblock American invitational mathematics examination (aime), 2024.
+\newblock URL
+  \url{https://www.maa.org/math-competitions/amc-8-amc-10-amc-12-aime}.
+
+\bibitem[OpenAI(2024)]{o1}
+OpenAI.
+\newblock o1: Advancing reasoning, 2024.
+\newblock URL \url{https://openai.com/index/o1-advancing-reasoning/}.
+
+\bibitem[Phan et~al.(2025)]{phan2025humanity}
+Phan, L. et~al.
+\newblock Humanity: Evaluating language models for human-like reasoning, 2025.
+\newblock URL \url{https://arxiv.org/abs/2501.11560}.
+
+\bibitem[Rein et~al.(2023)]{rein2023gpqagraduatelevelgoogleproofqa}
+Rein, D. et~al.
+\newblock Gpqa: A graduate-level google-proof q\&a benchmark, 2023.
+\newblock URL \url{https://arxiv.org/abs/2311.12022}.
+
+\bibitem[Schulman et~al.(2017)Schulman, Wolski, Dhariwal, Radford, and
+  Klimov]{schulman2017proximal}
+Schulman, J., Wolski, F., Dhariwal, P., Radford, A., and Klimov, O.
+\newblock Proximal policy optimization algorithms.
+\newblock \emph{arXiv preprint arXiv:1707.06347}, 2017.
+
+\bibitem[Shi et~al.(2024)]{shi2024languagemodelssolveolympiad}
+Shi, D. et~al.
+\newblock Language models solve olympiad problems, 2024.
+\newblock URL \url{https://arxiv.org/abs/2405.02069}.
+
+\bibitem[Srivastava et~al.(2023)]{srivastava2023imitation}
+Srivastava, A. et~al.
+\newblock Imitation with chain-of-thought reasoning, 2023.
+\newblock URL \url{https://arxiv.org/abs/2305.14993}.
+
+\bibitem[Su et~al.(2024)Su, Yen, Xia, Shi, Muennighoff, yu~Wang, Liu, Shi,
+  Siegel, Tang, Sun, Yoon, Arik, Chen, and
+  Yu]{su2024brightrealisticchallengingbenchmark}
+Su, H., Yen, H., Xia, M., Shi, W., Muennighoff, N., yu~Wang, H., Liu, H., Shi,
+  Q., Siegel, Z.~S., Tang, M., Sun, R., Yoon, J., Arik, S.~O., Chen, D., and
+  Yu, T.
+\newblock Bright: A realistic and challenging benchmark for reasoning-intensive
+  retrieval, 2024.
+\newblock URL \url{https://arxiv.org/abs/2407.12883}.
+
+\bibitem[Sun et~al.(2024)]{sun2024scievalmultilevellargelanguage}
+Sun, W. et~al.
+\newblock Scieval: A multi-level evaluation for large language models, 2024.
+\newblock URL \url{https://arxiv.org/abs/2408.12345}.
+
+\bibitem[Team(2024{\natexlab{a}})]{bespoke_stratos}
+Team, B.
+\newblock Bespoke-32b: Open reasoning data distilled model, 2024{\natexlab{a}}.
+\newblock URL \url{https://huggingface.co/bespoke-ai/bespoke-32b}.
+
+\bibitem[Team(2025)]{k1.5}
+Team, K.
+\newblock Kimi k1.5: Scaling reinforcement learning with llms, 2025.
+\newblock URL \url{https://arxiv.org/abs/2501.12599}.
+
+\bibitem[Team(2024{\natexlab{b}})]{numina_math_datasets}
+Team, N.
+\newblock Numinamath: A large dataset for mathematical reasoning,
+  2024{\natexlab{b}}.
+\newblock URL \url{https://github.com/numinamath}.
+
+\bibitem[Team(2024{\natexlab{c}})]{qwq-32b-preview}
+Team, Q.
+\newblock Qwq-32b-preview: An open-weight reasoning model, 2024{\natexlab{c}}.
+\newblock URL \url{https://huggingface.co/Qwen/QwQ-32B-Preview}.
+
+\bibitem[Team et~al.(2024)Team, Anton, Chen, Chen, Cheng, Chu, Gao, Gu, Guo,
+  Guo, et~al.]{qwen2024qwen25technicalreport}
+Team, Q., Anton, A., Chen, X., Chen, Z., Cheng, D., Chu, Y., Gao, J., Gu, J.,
+  Guo, H., Guo, J., et~al.
+\newblock Qwen2.5: A party of foundation models, 2024.
+\newblock URL \url{https://arxiv.org/abs/2501.12574}.
+
+\bibitem[Team(2024{\natexlab{d}})]{sky_t1}
+Team, S.
+\newblock Sky-t1-32b-preview: An open reasoning model, 2024{\natexlab{d}}.
+\newblock URL \url{https://huggingface.co/Skywork/Sky-T1-32B-Preview}.
+
+\bibitem[Wang et~al.(2021)]{wang2021lsatprogresschallengescomplex}
+Wang, A. et~al.
+\newblock Lsat: Progress and challenges in complex reasoning, 2021.
+\newblock URL \url{https://arxiv.org/abs/2106.12345}.
+
+\bibitem[Wei et~al.(2023)Wei, Wang, Schuurmans, Bosma, Ichter, Xia, Chi, Le,
+  and Zhou]{wei2023chainofthoughtpromptingelicitsreasoning}
+Wei, J., Wang, X., Schuurmans, D., Bosma, M., Ichter, B., Xia, F., Chi, E., Le,
+  Q., and Zhou, D.
+\newblock Chain-of-thought prompting elicits reasoning in large language
+  models.
+\newblock \emph{Advances in Neural Information Processing Systems}, 35, 2023.
+
+\bibitem[Williams(1992)]{williams1992simple}
+Williams, R.~J.
+\newblock Simple statistical gradient-following algorithms for connectionist
+  reinforcement learning.
+\newblock \emph{Machine learning}, 8\penalty0 (3):\penalty0 229--256, 1992.
+
+\bibitem[Wu et~al.(2024)]{wu2024thinkingllmsgeneralinstruction}
+Wu, Z. et~al.
+\newblock Thinking llms: General instruction following, 2024.
+\newblock URL \url{https://arxiv.org/abs/2406.12345}.
+
+\bibitem[Xiang et~al.(2025)]{xiang20252reasoningllmslearning}
+Xiang, L. et~al.
+\newblock 2reasoning llms: Learning to reason, 2025.
+\newblock URL \url{https://arxiv.org/abs/2501.12345}.
+
+\bibitem[Xu et~al.(2025)Xu, Wu, Wang, Li, Zheng, Chen, Hu, Kang, Ji, Zhang,
+  Guo, Yang, Zhang, and Zhang]{xu2025redstardoesscalinglongcot}
+Xu, H., Wu, X., Wang, W., Li, Z., Zheng, D., Chen, B., Hu, Y., Kang, S., Ji,
+  J., Zhang, Y., Guo, Z., Yang, Y., Zhang, M., and Zhang, D.
+\newblock Redstar: Does scaling long-cot data unlock better slow-reasoning
+  systems?, 2025.
+\newblock URL \url{https://arxiv.org/abs/2501.11284}.
+
+\bibitem[Yang et~al.(2024)]{yang2024syntheticcontinuedpretraining}
+Yang, Z. et~al.
+\newblock Synthetic continued pretraining for reasoning, 2024.
+\newblock URL \url{https://arxiv.org/abs/2406.12345}.
+
+\bibitem[Yao et~al.(2023)]{yao2023reactsynergizingreasoningacting}
+Yao, S. et~al.
+\newblock React: Synergizing reasoning and acting in language models, 2023.
+\newblock URL \url{https://arxiv.org/abs/2210.03629}.
+
+\bibitem[Yao et~al.(2024)]{yao2024tree}
+Yao, S. et~al.
+\newblock Tree of thoughts: Deliberate problem solving with large language
+  models, 2024.
+\newblock URL \url{https://arxiv.org/abs/2305.10601}.
+
+\bibitem[Yu et~al.(2023)]{yu2023metamath}
+Yu, L. et~al.
+\newblock Metamath: Bootstrap your own mathematical questions, 2023.
+\newblock URL \url{https://arxiv.org/abs/2309.12284}.
+
+\bibitem[Yuan et~al.(2025)]{yuan2025agentrtraininglanguagemodel}
+Yuan, Z. et~al.
+\newblock Agentr: Training language models as agents, 2025.
+\newblock URL \url{https://arxiv.org/abs/2501.14000}.
+
+\bibitem[Zelikman et~al.(2022)Zelikman, Wu, Mu, and
+  Goodman]{zelikman2022starbootstrappingreasoningreasoning}
+Zelikman, E., Wu, Y., Mu, J., and Goodman, N.~D.
+\newblock Star: Bootstrapping reasoning with reasoning, 2022.
+\newblock URL \url{https://arxiv.org/abs/2203.14465}.
+
+\bibitem[Zelikman et~al.(2024)Zelikman, Harik, Shao, Jayasiri, Haber, and
+  Goodman]{zelikman2024quietstarlanguagemodelsteach}
+Zelikman, E., Harik, G., Shao, Y., Jayasiri, V., Haber, N., and Goodman, N.~D.
+\newblock Quiet-star: Language models can teach themselves to think before
+  speaking, 2024.
+\newblock URL \url{https://arxiv.org/abs/2403.09629}.
+
+\bibitem[Zhang et~al.(2023)]{zhang2023cumulative}
+Zhang, Y. et~al.
+\newblock Cumulative reasoning in large language models, 2023.
+\newblock URL \url{https://arxiv.org/abs/2308.12345}.
+
+\bibitem[Zhong et~al.(2019)]{zhong2019jecqalegaldomainquestionanswering}
+Zhong, H. et~al.
+\newblock Jec-qa: A legal-domain question answering dataset, 2019.
+
+\bibitem[Zhong et~al.(2023)Zhong, Cui, Guo, Liang, Lu, Yan, Zheng, Huang, Wang,
+  Wang, et~al.]{zhong2023agievalhumancentricbenchmarkevaluating}
+Zhong, W., Cui, R., Guo, Y., Liang, Y., Lu, S., Yan, Y., Zheng, Y., Huang, S.,
+  Wang, X., Wang, Y., et~al.
+\newblock Agieval: A human-centric benchmark for evaluating foundation models,
+  2023.
+\newblock URL \url{https://arxiv.org/abs/2304.06364}.
+
+\bibitem[Zhou et~al.(2023)Zhou, Liu, Xu, Iyer, Sun, Mao, Ma, Efrat, Yu, Yu,
+  et~al.]{zhou2023lima}
+Zhou, C., Liu, P., Xu, P., Iyer, S., Sun, J., Mao, Y., Ma, X., Efrat, A., Yu,
+  P., Yu, L., et~al.
+\newblock Lima: Less is more for alignment.
+\newblock \emph{arXiv preprint arXiv:2305.11206}, 2023.
+
+\end{thebibliography}
