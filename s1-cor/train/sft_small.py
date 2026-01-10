@@ -18,7 +18,7 @@ from dataclasses import dataclass, field
 from typing import Optional
 
 import torch
-from datasets import load_from_disk
+from datasets import load_from_disk, load_dataset
 from transformers import (
     AutoModelForCausalLM,
     AutoTokenizer,
@@ -95,8 +95,14 @@ def parse_args():
         "--dataset",
         type=str,
         default="full",
-        choices=["full", "deepseek"],
-        help="Dataset to use"
+        choices=["full", "deepseek", "hf"],
+        help="Dataset to use (full/deepseek for local, hf for HuggingFace)"
+    )
+    parser.add_argument(
+        "--hf_dataset",
+        type=str,
+        default="xingqiang/s1K-cor-deepseek",
+        help="HuggingFace dataset name (used when --dataset=hf)"
     )
     parser.add_argument(
         "--output_dir",
@@ -118,16 +124,21 @@ def parse_args():
     return parser.parse_args()
 
 
-def prepare_dataset(tokenizer, dataset_name: str, max_length: int):
+def prepare_dataset(tokenizer, dataset_name: str, max_length: int, hf_dataset: str = None):
     """Load and prepare the CoR dataset for SFT."""
     
-    if dataset_name == "deepseek":
+    if dataset_name == "hf":
+        # Load from HuggingFace Hub
+        logger.info(f"Loading dataset from HuggingFace: {hf_dataset}")
+        dataset = load_dataset(hf_dataset, split="train")
+    elif dataset_name == "deepseek":
         dataset_path = "local_data/s1K_cor_deepseek"
+        logger.info(f"Loading dataset from {dataset_path}")
+        dataset = load_from_disk(dataset_path)
     else:
         dataset_path = "local_data/s1K_cor_full"
-    
-    logger.info(f"Loading dataset from {dataset_path}")
-    dataset = load_from_disk(dataset_path)
+        logger.info(f"Loading dataset from {dataset_path}")
+        dataset = load_from_disk(dataset_path)
     
     def tokenize_function(examples):
         """Tokenize the text_cor field which contains the full training text."""
@@ -219,6 +230,7 @@ def main():
         tokenizer,
         args.dataset,
         config["max_length"],
+        hf_dataset=args.hf_dataset,
     )
     
     # Training arguments

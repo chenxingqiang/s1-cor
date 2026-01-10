@@ -24,14 +24,20 @@ set -e
 
 # Configuration
 MODEL_SIZE=${1:-"0.5B"}  # Default to smallest
-DATASET=${2:-"full"}     # full or deepseek
+DATASET=${2:-"hf"}       # hf (HuggingFace), local, or deepseek
 EXPERIMENT_ID="$(date +%Y%m%d_%H%M%S)"
 
-# Dataset path
-if [ "$DATASET" == "deepseek" ]; then
+# Dataset configuration
+HF_DATASET="xingqiang/s1K-cor-deepseek"
+if [ "$DATASET" == "hf" ]; then
+    TRAIN_DATA="$HF_DATASET"
+    DATASET_ARG="--dataset hf --hf_dataset $HF_DATASET"
+elif [ "$DATASET" == "deepseek" ]; then
     TRAIN_DATA="local_data/s1K_cor_deepseek"
+    DATASET_ARG="--dataset deepseek"
 else
     TRAIN_DATA="local_data/s1K_cor_full"
+    DATASET_ARG="--dataset full"
 fi
 
 # Model configurations by size
