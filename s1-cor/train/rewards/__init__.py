@@ -20,6 +20,7 @@ from .intrinsic import (
     ImprovementRewardCalculator,
     ConvergenceRewardCalculator,
 )
+from .training_logger import CoRTrainingLogger, get_logger, log_cor_reward
 
 __all__ = [
     # Core
@@ -37,8 +38,12 @@ __all__ = [
     "ClarityReward",
     "FormatReward",
     "AccuracyReward",
-    # Self-reflection (NEW)
+    # Self-reflection
     "ReflectionReward",
     "ImprovementRewardCalculator",
     "ConvergenceRewardCalculator",
+    # Logging
+    "CoRTrainingLogger",
+    "get_logger",
+    "log_cor_reward",
 ]

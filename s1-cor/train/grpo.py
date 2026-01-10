@@ -30,6 +30,23 @@ import trl
 from trl import GRPOTrainer, GRPOConfig
 
 from rewards import RewardCalculator, RewardConfig
+from rewards.training_logger import CoRTrainingLogger, log_cor_reward
+
+# Global training logger
+_training_logger: CoRTrainingLogger = None
+_global_step: int = 0
+
+
+def get_training_logger(log_every_n: int = 10, verbose: bool = True) -> CoRTrainingLogger:
+    """Get or create training logger."""
+    global _training_logger
+    if _training_logger is None:
+        _training_logger = CoRTrainingLogger(
+            log_every_n=log_every_n,
+            verbose=verbose,
+            log_file="cor_training_log.jsonl"
+        )
+    return _training_logger
 
 
 @dataclass
@@ -69,12 +86,18 @@ class CoRTrainingConfig:
             os.environ['WANDB_ENTITY'] = self.wandb_entity
 
 
-def create_reward_fn(config: CoRTrainingConfig):
+def create_reward_fn(config: CoRTrainingConfig, enable_logging: bool = True):
     """Create reward function for GRPO trainer.
     
     Supports both standard CoR and self-reflection modes.
     Returns a callable compatible with TRL's GRPOTrainer.
+    
+    Args:
+        config: Training configuration
+        enable_logging: Whether to enable detailed CoR logging
     """
+    global _global_step
+    
     reward_config = RewardConfig(
         lambda_intrinsic=config.lambda_intrinsic,
         self_rating_weight=config.self_rating_weight,
@@ -85,11 +108,13 @@ def create_reward_fn(config: CoRTrainingConfig):
     )
     
     calculator = RewardCalculator(reward_config)
+    logger = get_training_logger(log_every_n=10, verbose=True) if enable_logging else None
     
     def reward_fn(completions: List[str], **kwargs) -> List[float]:
         """Compute rewards for completions.
         
         Supports multi-round reflection if enabled.
+        Logs detailed reward breakdowns for validation.
         
         Args:
             completions: List of model-generated completions.
@@ -98,11 +123,13 @@ def create_reward_fn(config: CoRTrainingConfig):
         Returns:
             List of reward values.
         """
+        global _global_step
         rewards = []
         
         ground_truths = kwargs.get('ground_truths', [None] * len(completions))
         
         for i, completion in enumerate(completions):
+            _global_step += 1
             gt = ground_truths[i] if i < len(ground_truths) else None
             
             # Check if completion has multiple reflection rounds
@@ -114,7 +141,7 @@ def create_reward_fn(config: CoRTrainingConfig):
                 
                 if gt is None:
                     # No ground truth - use intrinsic + improvement rewards
-                    intrinsic, _ = calculator.calculate_intrinsic_reward(
+                    intrinsic, dim_scores = calculator.calculate_intrinsic_reward(
                         chain_sequence[-1],
                         include_self_rating=True,
                         final_answer_correct=False
@@ -123,28 +150,103 @@ def create_reward_fn(config: CoRTrainingConfig):
                     improvement = calculator.improvement_calculator.compute_cumulative_improvement(
                         chain_sequence
                     )
-                    rewards.append(intrinsic + config.improvement_weight * improvement)
+                    total = intrinsic + config.improvement_weight * improvement
+                    rewards.append(total)
+                    
+                    # Log
+                    if logger:
+                        self_ratings = calculator.self_rating_extractor.extract(chain_sequence[-1])
+                        logger.log_reward(
+                            step=_global_step,
+                            sample_id=f"sample_{i}",
+                            r_external=0.0,
+                            r_intrinsic=intrinsic,
+                            r_total=total,
+                            dim_scores=dim_scores,
+                            answer_correct=False,
+                            thinking_chain=thinking,
+                            r_improve=improvement,
+                            reflection_rounds=len(chain_sequence),
+                            self_ratings=self_ratings,
+                        )
                 else:
                     output = calculator.calculate_reflection_reward(
                         chain_sequence, answer, gt
                     )
                     rewards.append(output.total_reward)
+                    
+                    # Log
+                    if logger:
+                        self_ratings = calculator.self_rating_extractor.extract(chain_sequence[-1])
+                        logger.log_reward(
+                            step=_global_step,
+                            sample_id=f"sample_{i}",
+                            r_external=output.external_reward,
+                            r_intrinsic=output.intrinsic_reward,
+                            r_total=output.total_reward,
+                            dim_scores=output.dimension_scores,
+                            answer_correct=output.external_reward > 0.5,
+                            thinking_chain=thinking,
+                            r_improve=output.improvement_reward,
+                            r_converge=output.convergence_reward,
+                            reflection_rounds=len(chain_sequence),
+                            self_ratings=self_ratings,
+                        )
             else:
                 # Single-round: standard CoR reward
                 thinking, answer = parse_qwen_completion(completion)
                 
                 if gt is None:
-                    intrinsic, _ = calculator.calculate_intrinsic_reward(
+                    intrinsic, dim_scores = calculator.calculate_intrinsic_reward(
                         thinking,
                         include_self_rating=True,
                         final_answer_correct=False
                     )
                     rewards.append(intrinsic)
+                    
+                    # Log
+                    if logger:
+                        self_ratings = calculator.self_rating_extractor.extract(thinking)
+                        logger.log_reward(
+                            step=_global_step,
+                            sample_id=f"sample_{i}",
+                            r_external=0.0,
+                            r_intrinsic=intrinsic,
+                            r_total=intrinsic,
+                            dim_scores=dim_scores,
+                            answer_correct=False,
+                            thinking_chain=thinking,
+                            self_ratings=self_ratings,
+                        )
                 else:
                     output = calculator.calculate_total_reward(
                         thinking, answer, gt
                     )
                     rewards.append(output.total_reward)
+                    
+                    # Log
+                    if logger:
+                        self_ratings = calculator.self_rating_extractor.extract(thinking)
+                        logger.log_reward(
+                            step=_global_step,
+                            sample_id=f"sample_{i}",
+                            r_external=output.external_reward,
+                            r_intrinsic=output.intrinsic_reward,
+                            r_total=output.total_reward,
+                            dim_scores=output.dimension_scores,
+                            answer_correct=output.external_reward > 0.5,
+                            thinking_chain=thinking,
+                            self_ratings=self_ratings,
+                        )
+        
+        # Log batch summary
+        if logger and len(rewards) > 0:
+            logger.log_batch(
+                step=_global_step,
+                batch_rewards=rewards,
+                batch_correct=[r > 0.5 for r in rewards],
+                mean_reward=sum(rewards) / len(rewards),
+            )
         
         return rewards
     
