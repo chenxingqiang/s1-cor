@@ -522,10 +522,10 @@ bash train/grpo.sh
 如果您使用本项目，请引用：
 
 ```bibtex
-@misc{cor2024,
+@misc{cor2026,
   title={Chain of Reward: Endogenous Self-Evaluation for Reasoning},
-  author={...},
-  year={2024},
+  author={chen, xingqiang},
+  year={2026},
   howpublished={\url{https://github.com/chenxingqiang/s1-cor}}
 }
 ```
