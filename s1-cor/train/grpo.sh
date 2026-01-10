@@ -14,9 +14,10 @@
 uid="$(date +%Y%m%d_%H%M%S)"
 
 # Model configuration
-# Use s1-32B as base (already SFT'd on s1K data)
-base_model="simplescaling/s1-32B"
-ref_model_path="simplescaling/s1-32B"  # s1 SFT model as reference policy
+# Use Qwen2.5-32B-Instruct as base (consistent with run_cor_pipeline.sh)
+# For GRPO, ref_model should be the SFT checkpoint from previous step
+base_model="Qwen/Qwen2.5-32B-Instruct"
+ref_model_path="${REF_MODEL:-ckpts/cor-sft}"  # SFT checkpoint as reference policy
 
 # Training hyperparameters
 lr=1e-6
@@ -47,6 +48,11 @@ echo "Base model: ${base_model}"
 echo "Reference model: ${ref_model_path}"
 echo "Output: ${output_dir}"
 echo "GPUs: ${gpu_count}"
+echo ""
+echo "Note: Run SFT first to create reference model:"
+echo "  python train/sft_small.py --model_size 32B --push_to_hub"
+echo "  or: bash train/run_cor_pipeline.sh --skip-grpo"
+echo ""
 
 torchrun --nproc-per-node ${gpu_count} --master_port 12346 \
     train/grpo.py \
