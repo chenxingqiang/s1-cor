@@ -72,10 +72,11 @@ declare -A BLOCK_SIZES=(
     ["32B"]="32768"
 )
 
+# Per theory.md: N=8 candidates for GRPO (consistent across all scales)
 declare -A NUM_GENS=(
-    ["0.5B"]="4"
-    ["1.5B"]="4"
-    ["3B"]="4"
+    ["0.5B"]="8"
+    ["1.5B"]="8"
+    ["3B"]="8"
     ["7B"]="8"
     ["14B"]="8"
     ["32B"]="8"
@@ -110,6 +111,7 @@ run_experiment() {
     echo "Block size: ${block}"
     echo "Num generations (N): ${num_gen}"
     echo "Learning rate: ${lr}"
+    echo "CoR params: λ=1.0, μ=0.5, ν=0.1, K=3"
     echo "=============================================="
     
     OUTPUT_DIR="ckpts/cor-${size}-${EXPERIMENT_ID}"
@@ -128,6 +130,10 @@ run_experiment() {
             --num_generations=${num_gen} \
             --lambda_intrinsic=1.0 \
             --self_rating_weight=0.2 \
+            --improvement_weight=0.5 \
+            --convergence_weight=0.1 \
+            --max_reflection_rounds=3 \
+            --enable_reflection=True \
             --per_device_train_batch_size=${batch} \
             --gradient_accumulation_steps=${grad_acc} \
             --num_train_epochs=3 \
@@ -152,6 +158,10 @@ run_experiment() {
             --num_generations=${num_gen} \
             --lambda_intrinsic=1.0 \
             --self_rating_weight=0.2 \
+            --improvement_weight=0.5 \
+            --convergence_weight=0.1 \
+            --max_reflection_rounds=3 \
+            --enable_reflection=True \
             --per_device_train_batch_size=${batch} \
             --gradient_accumulation_steps=${grad_acc} \
             --num_train_epochs=3 \

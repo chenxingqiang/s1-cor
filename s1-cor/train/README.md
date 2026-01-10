@@ -138,22 +138,37 @@ python -m pytest train/rewards/test_rewards.py -v
 
 ## Hyperparameters
 
-### CoR Configuration
+### CoR Configuration (per theory.md and design.md)
 
-| Parameter | Default | Description |
-|-----------|---------|-------------|
-| `lambda_intrinsic` | 1.0 | Weight for intrinsic rewards (λ) |
-| `self_rating_weight` | 0.2 | Weight for self-rating quality reward |
-| `calibration_bonus` | 0.2 | Bonus for high-high calibration alignment |
+| Parameter | Symbol | Default | Description |
+|-----------|--------|---------|-------------|
+| `lambda_intrinsic` | λ | 1.0 | Weight for intrinsic rewards |
+| `improvement_weight` | μ | 0.5 | Weight for improvement reward (NEW) |
+| `convergence_weight` | ν | 0.1 | Weight for convergence reward (NEW) |
+| `max_reflection_rounds` | K | 3 | Max reflection iterations (NEW) |
+| `self_rating_weight` | w_self | 0.2 | Weight for self-rating quality reward |
+| `calibration_bonus` | α | 0.2 | Bonus for high-high calibration alignment |
 
 ### GRPO Configuration
 
-| Parameter | Default | Description |
-|-----------|---------|-------------|
-| `num_generations` | 4 | Candidates per input (N) |
-| `epsilon` | 0.2 | Clipping range (δ) |
-| `beta` | 0.01 | KL penalty coefficient (β) |
-| `learning_rate` | 1e-6 | Learning rate |
+| Parameter | Symbol | Default | Description |
+|-----------|--------|---------|-------------|
+| `num_generations` | N | 8 | Candidates per input |
+| `epsilon` | ε | 0.2 | Clipping range |
+| `beta` | β | 0.01 | KL penalty coefficient |
+| `learning_rate` | - | 1e-6 | Learning rate |
+
+### Extended Reward Formula
+
+```
+R(c) = R_ext + λ·R_int + μ·R_improve + ν·R_converge
+
+Where:
+- R_ext: Binary correctness (0 or 1)
+- R_int: Multi-dimensional quality + self-rating calibration
+- R_improve: Quality improvement across reflection rounds
+- R_converge: Convergence stability reward
+```
 
 ## Theory
 

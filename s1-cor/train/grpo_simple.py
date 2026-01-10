@@ -23,7 +23,7 @@ import logging
 import argparse
 import re
 from dataclasses import dataclass
-from typing import List, Dict, Optional, Tuple
+from typing import List, Dict, Optional, Tuple, Any
 
 import torch
 import torch.nn as nn
@@ -62,13 +62,25 @@ MODEL_CONFIGS = {
 
 @dataclass
 class CoRRewardConfig:
-    """Configuration for CoR reward calculation."""
-    lambda_intrinsic: float = 1.0
+    """Configuration for CoR reward calculation.
+    
+    Parameters per theory.md and design.md:
+    - λ (lambda_intrinsic): 1.0 - intrinsic reward weight
+    - μ (improvement_weight): 0.5 - improvement reward weight
+    - ν (convergence_weight): 0.1 - convergence reward weight
+    - K (max_reflection_rounds): 3 - max reflection iterations
+    - w_d (dimension_weights): 0.2 each for 5 dimensions
+    """
+    lambda_intrinsic: float = 1.0       # λ
+    improvement_weight: float = 0.5      # μ (NEW)
+    convergence_weight: float = 0.1      # ν (NEW)
+    max_reflection_rounds: int = 3       # K (NEW)
     dimension_weights: Dict[str, float] = None
     self_rating_weight: float = 0.2
     
     def __post_init__(self):
         if self.dimension_weights is None:
+            # Per design.md: 5 dimensions with equal weights
             self.dimension_weights = {
                 "consistency": 0.2,
                 "completeness": 0.2,
@@ -83,12 +95,14 @@ class CoRRewardCalculator:
     
     def __init__(self, config: CoRRewardConfig = None):
         self.config = config or CoRRewardConfig()
+        # Pattern for 5 dimensions per design.md: Consistency, Completeness, Accuracy, Clarity, Format
         self.rating_pattern = re.compile(
             r'\[Self-Rating:\s*'
             r'Consistency=(\d+)/10,?\s*'
             r'Completeness=(\d+)/10,?\s*'
             r'Accuracy=(\d+)/10,?\s*'
-            r'Clarity=(\d+)/10\]',
+            r'Clarity=(\d+)/10,?\s*'
+            r'(?:Format=(\d+)/10)?\]',  # Format is optional for backward compatibility
             re.IGNORECASE
         )
     
@@ -98,37 +112,82 @@ class CoRRewardCalculator:
         if not matches:
             return {}
         
-        # Use last match
+        # Use last match - includes all 5 dimensions
         last_match = matches[-1]
-        return {
+        result = {
             "consistency": float(last_match[0]) / 10,
             "completeness": float(last_match[1]) / 10,
             "accuracy": float(last_match[2]) / 10,
             "clarity": float(last_match[3]) / 10,
         }
+        # Format is optional (5th dimension)
+        if len(last_match) > 4 and last_match[4]:
+            result["format"] = float(last_match[4]) / 10
+        else:
+            result["format"] = 0.5  # Default neutral value
+        return result
     
-    def compute_intrinsic_reward(self, text: str) -> float:
-        """Compute intrinsic reward based on reasoning quality."""
-        reward = 0.0
+    def compute_intrinsic_reward(self, text: str) -> Tuple[float, Dict[str, float]]:
+        """Compute intrinsic reward based on reasoning quality.
+        
+        Implements 5-dimension evaluation per design.md:
+        - Consistency: Logical coherence
+        - Completeness: Step comprehensiveness
+        - Accuracy: Factual correctness
+        - Clarity: Reasoning clarity
+        - Format: Structural correctness
+        
+        Returns:
+            Tuple of (total_reward, dimension_scores)
+        """
+        dim_scores = {}
         
         # 1. Consistency: Check for logical structure
-        if any(marker in text.lower() for marker in ['therefore', 'thus', 'hence', 'so']):
-            reward += self.config.dimension_weights["consistency"]
+        consistency = 0.0
+        if any(marker in text.lower() for marker in ['therefore', 'thus', 'hence', 'so', 'because']):
+            consistency = 1.0
+        elif any(marker in text.lower() for marker in ['given', 'since', 'from']):
+            consistency = 0.5
+        dim_scores["consistency"] = consistency
         
         # 2. Completeness: Check for step markers
         step_count = len(re.findall(r'step\s*\d+|first|second|third|finally', text.lower()))
-        if step_count >= 2:
-            reward += self.config.dimension_weights["completeness"]
+        completeness = min(step_count / 3.0, 1.0)  # Normalize to [0, 1]
+        dim_scores["completeness"] = completeness
         
-        # 3. Format: Check for proper structure
+        # 3. Accuracy: Check for mathematical content and verification
+        accuracy = 0.5  # Neutral baseline
+        if re.search(r'\d+\s*[\+\-\*\/\=]\s*\d+', text):
+            accuracy += 0.25
+        if re.search(r'verify|check|confirm', text.lower()):
+            accuracy += 0.25
+        dim_scores["accuracy"] = min(accuracy, 1.0)
+        
+        # 4. Clarity: Check for definitions and structure
+        clarity = 0.5  # Neutral baseline
+        if re.search(r'let\s+\w+\s*=|define|denote', text.lower()):
+            clarity += 0.25
+        if len(text.split('\n\n')) >= 2:  # Has paragraph breaks
+            clarity += 0.25
+        dim_scores["clarity"] = min(clarity, 1.0)
+        
+        # 5. Format: Check for proper structure and self-rating
+        format_score = 0.0
         has_answer = bool(re.search(r'answer|result|solution', text.lower()))
         has_rating = bool(self.rating_pattern.search(text))
         if has_answer:
-            reward += self.config.dimension_weights["format"] * 0.5
+            format_score += 0.5
         if has_rating:
-            reward += self.config.dimension_weights["format"] * 0.5
+            format_score += 0.5
+        dim_scores["format"] = format_score
         
-        # 4. Self-rating quality (calibration)
+        # Weighted sum of dimension scores
+        reward = sum(
+            self.config.dimension_weights.get(dim, 0.2) * score
+            for dim, score in dim_scores.items()
+        )
+        
+        # Self-rating quality bonus
         self_ratings = self.extract_self_ratings(text)
         if self_ratings:
             # Reward well-calibrated self-ratings (not too extreme)
@@ -136,7 +195,7 @@ class CoRRewardCalculator:
             if 0.3 <= avg_rating <= 0.9:
                 reward += self.config.self_rating_weight
         
-        return reward
+        return reward, dim_scores
     
     def compute_external_reward(
         self, 
@@ -166,10 +225,17 @@ class CoRRewardCalculator:
         self, 
         response: str, 
         ground_truth: Optional[str] = None
-    ) -> Tuple[float, Dict[str, float]]:
-        """Compute total CoR reward."""
+    ) -> Tuple[float, Dict[str, Any]]:
+        """Compute total CoR reward.
+        
+        Formula per theory.md:
+        R(c) = R_ext(c) + λ·R_int(c)
+        
+        Returns:
+            Tuple of (total_reward, details_dict)
+        """
         r_ext = self.compute_external_reward(response, ground_truth)
-        r_int = self.compute_intrinsic_reward(response)
+        r_int, dim_scores = self.compute_intrinsic_reward(response)
         
         total = r_ext + self.config.lambda_intrinsic * r_int
         
@@ -177,6 +243,8 @@ class CoRRewardCalculator:
             "external": r_ext,
             "intrinsic": r_int,
             "total": total,
+            "dimension_scores": dim_scores,
+            "self_ratings": self.extract_self_ratings(response),
         }
         
         return total, details

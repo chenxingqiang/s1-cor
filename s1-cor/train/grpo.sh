@@ -29,9 +29,12 @@ num_generations=8  # N=8 candidates per input (paper setting)
 epsilon=0.2        # δ=0.2 clipping range
 beta=0.01          # β=0.01 KL penalty coefficient
 
-# CoR specific  
-lambda_intrinsic=1.0
-self_rating_weight=0.2
+# CoR specific (per theory.md Section 15)
+lambda_intrinsic=1.0      # λ: intrinsic reward weight
+self_rating_weight=0.2    # w_self: self-rating quality weight
+improvement_weight=0.5    # μ: improvement reward weight (NEW)
+convergence_weight=0.1    # ν: convergence reward weight (NEW)
+max_reflection_rounds=3   # K: max reflection iterations (NEW)
 
 # Hardware
 gpu_count=$(nvidia-smi -L | wc -l)
@@ -54,6 +57,10 @@ torchrun --nproc-per-node ${gpu_count} --master_port 12346 \
     --num_generations=${num_generations} \
     --lambda_intrinsic=${lambda_intrinsic} \
     --self_rating_weight=${self_rating_weight} \
+    --improvement_weight=${improvement_weight} \
+    --convergence_weight=${convergence_weight} \
+    --max_reflection_rounds=${max_reflection_rounds} \
+    --enable_reflection=True \
     --per_device_train_batch_size=${micro_batch_size} \
     --gradient_accumulation_steps=${gradient_accumulation_steps} \
     --num_train_epochs=${epochs} \
