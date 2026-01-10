@@ -440,3 +440,209 @@ class IntrinsicRewardCalculator:
         match the actual quality metrics.
         """
         return self.compute_all_dimensions(thinking_chain, **kwargs)
+
+
+class ReflectionReward(BaseIntrinsicReward):
+    """Evaluate quality of self-reflection and improvement.
+    
+    Part of CoR-GRPO dual coupling: rewards iterative improvement.
+    Based on theory.md Section 10-12.
+    
+    Checks:
+    - Presence of reflection markers
+    - Identification of weak dimensions
+    - Actual improvement in quality
+    """
+    
+    @property
+    def dimension_name(self) -> str:
+        return "reflection"
+    
+    def __init__(self):
+        self.intrinsic_calc = IntrinsicRewardCalculator()
+    
+    def compute(self, thinking_chain: str, **kwargs) -> float:
+        """Compute reflection quality reward."""
+        score = 0.0
+        
+        # Check for reflection markers
+        reflection_patterns = [
+            r'\[Reflection\]',
+            r'\[Round \d+\]',
+            r'(?:Let me|I should|I need to)\s+(?:reconsider|rethink|revise)',
+            r'(?:Upon|After)\s+(?:reflection|review)',
+            r'(?:I notice|I see)\s+(?:that|an?\s+(?:error|issue|problem))',
+        ]
+        
+        has_reflection = False
+        for pattern in reflection_patterns:
+            if re.search(pattern, thinking_chain, re.IGNORECASE):
+                has_reflection = True
+                score += 0.2
+                break
+        
+        # Check for dimension identification
+        dimension_patterns = [
+            r'(?:consistency|completeness|accuracy|clarity)\s+is\s+(?:low|weak|poor)',
+            r'(?:my|the)\s+(?:consistency|completeness|accuracy|clarity)\s+(?:score|rating)',
+            r'\d+/10.*(?:low|needs improvement)',
+        ]
+        
+        for pattern in dimension_patterns:
+            if re.search(pattern, thinking_chain, re.IGNORECASE):
+                score += 0.15
+                break
+        
+        # Check for revision/improvement markers
+        improvement_patterns = [
+            r'(?:revised|corrected|improved|fixed)',
+            r'(?:better|more accurate|clearer)',
+            r'\[Round 2\]',
+            r'(?:Updated|New)\s+(?:approach|solution|reasoning)',
+        ]
+        
+        for pattern in improvement_patterns:
+            if re.search(pattern, thinking_chain, re.IGNORECASE):
+                score += 0.2
+                break
+        
+        # Check for convergence/stopping
+        convergence_patterns = [
+            r'\[Convergence',
+            r'(?:satisfied|confident)\s+(?:with|in)\s+(?:this|the)\s+(?:answer|solution)',
+            r'Continue[=:]\s*(?:No|False)',
+        ]
+        
+        for pattern in convergence_patterns:
+            if re.search(pattern, thinking_chain, re.IGNORECASE):
+                score += 0.15
+                break
+        
+        # Bonus for multiple rounds with improvement
+        rounds = re.findall(r'\[Round (\d+)\]', thinking_chain)
+        if len(rounds) >= 2:
+            score += 0.1
+        
+        return max(0.0, min(1.0, score))
+
+
+class ImprovementRewardCalculator:
+    """Calculate improvement reward between reasoning chains.
+    
+    R_improve(c_k, c_{k+1}) = Q(c_{k+1}) - Q(c_k)
+    
+    Part of the self-reflection framework.
+    Based on theory.md Section 10.
+    """
+    
+    def __init__(self):
+        self.intrinsic_calc = IntrinsicRewardCalculator()
+    
+    def compute_quality(self, thinking_chain: str, **kwargs) -> float:
+        """Compute overall quality Q(c) of a reasoning chain."""
+        weighted, _ = self.intrinsic_calc.compute_weighted_reward(thinking_chain, **kwargs)
+        return weighted
+    
+    def compute_improvement(
+        self, 
+        chain_old: str, 
+        chain_new: str,
+        **kwargs
+    ) -> float:
+        """Compute improvement reward between two chains.
+        
+        R_improve = Q(c_new) - Q(c_old)
+        
+        Args:
+            chain_old: Previous reasoning chain
+            chain_new: Revised reasoning chain
+            
+        Returns:
+            Improvement score (can be negative if quality decreased)
+        """
+        q_old = self.compute_quality(chain_old, **kwargs)
+        q_new = self.compute_quality(chain_new, **kwargs)
+        
+        return q_new - q_old
+    
+    def compute_cumulative_improvement(
+        self,
+        chain_sequence: List[str],
+        gamma: float = 0.9,
+        **kwargs
+    ) -> float:
+        """Compute cumulative discounted improvement over multiple rounds.
+        
+        R_total = Σ_{k=0}^{K-1} γ^k * R_improve(c_k, c_{k+1})
+        
+        Args:
+            chain_sequence: List of reasoning chains [c_0, c_1, ..., c_K]
+            gamma: Discount factor
+            
+        Returns:
+            Total cumulative improvement
+        """
+        if len(chain_sequence) < 2:
+            return 0.0
+        
+        total = 0.0
+        for k in range(len(chain_sequence) - 1):
+            improvement = self.compute_improvement(
+                chain_sequence[k], 
+                chain_sequence[k + 1],
+                **kwargs
+            )
+            total += (gamma ** k) * improvement
+        
+        return total
+
+
+class ConvergenceRewardCalculator:
+    """Calculate convergence reward to encourage stability.
+    
+    R_converge = -|c_{k+1} - c_k|
+    
+    Encourages the model to converge rather than oscillate.
+    """
+    
+    def __init__(self):
+        self.intrinsic_calc = IntrinsicRewardCalculator()
+    
+    def compute_divergence(self, chain_old: str, chain_new: str, **kwargs) -> float:
+        """Compute divergence between two chains based on quality scores."""
+        scores_old = self.intrinsic_calc.compute_all_dimensions(chain_old, **kwargs)
+        scores_new = self.intrinsic_calc.compute_all_dimensions(chain_new, **kwargs)
+        
+        # L1 distance between score vectors
+        divergence = sum(
+            abs(scores_new.get(d, 0) - scores_old.get(d, 0))
+            for d in set(scores_old.keys()) | set(scores_new.keys())
+        )
+        
+        return divergence
+    
+    def compute_convergence_reward(
+        self, 
+        chain_old: str, 
+        chain_new: str,
+        **kwargs
+    ) -> float:
+        """Compute convergence reward (negative divergence, normalized).
+        
+        Returns value in [0, 1] where 1 = perfect convergence.
+        """
+        divergence = self.compute_divergence(chain_old, chain_new, **kwargs)
+        
+        # Normalize: divergence of 0 -> reward 1, divergence >= 1 -> reward 0
+        return max(0.0, 1.0 - divergence)
+    
+    def has_converged(
+        self, 
+        chain_old: str, 
+        chain_new: str, 
+        threshold: float = 0.1,
+        **kwargs
+    ) -> bool:
+        """Check if reflection has converged."""
+        divergence = self.compute_divergence(chain_old, chain_new, **kwargs)
+        return divergence < threshold

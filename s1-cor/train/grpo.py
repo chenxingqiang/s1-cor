@@ -1,10 +1,11 @@
 """
 GRPO Training Script for Chain of Reward (CoR).
 
-Extends s1's SFT training to use Group Relative Policy Optimization
-with multi-dimensional intrinsic rewards.
+Implements CoR-GRPO dual coupling with self-reflection support.
+Based on DESIGN.md and THEORY.md (Sections 9-17).
 
-Based on DESIGN.md Section 3.2.2 and THEORY.md Section 4.
+Extended reward formula:
+R = R_ext + λ·R_int + μ·R_improve + ν·R_converge
 
 Usage:
     python train/grpo.py --model_name Qwen/Qwen2.5-32B-Instruct \
@@ -13,6 +14,7 @@ Usage:
 """
 
 import os
+import re
 from dataclasses import dataclass, field, asdict
 from typing import Optional, List, Dict, Any
 import warnings
@@ -32,7 +34,7 @@ from rewards import RewardCalculator, RewardConfig
 
 @dataclass
 class CoRTrainingConfig:
-    """Configuration for CoR + GRPO training."""
+    """Configuration for CoR + GRPO training with self-reflection."""
     
     # Model
     model_name: str = field(default="Qwen/Qwen2.5-32B-Instruct")
@@ -50,6 +52,12 @@ class CoRTrainingConfig:
     self_rating_weight: float = field(default=0.2)
     calibration_bonus: float = field(default=0.2)
     
+    # NEW: Self-reflection configuration (theory.md Section 14-15)
+    improvement_weight: float = field(default=0.5)  # μ: R_improve weight
+    convergence_weight: float = field(default=0.1)  # ν: R_converge weight
+    max_reflection_rounds: int = field(default=3)   # K: max iterations
+    enable_reflection: bool = field(default=True)   # Enable multi-round reflection
+    
     # W&B
     wandb_project: Optional[str] = field(default="cor-grpo")
     wandb_entity: Optional[str] = field(default=None)
@@ -64,18 +72,24 @@ class CoRTrainingConfig:
 def create_reward_fn(config: CoRTrainingConfig):
     """Create reward function for GRPO trainer.
     
+    Supports both standard CoR and self-reflection modes.
     Returns a callable compatible with TRL's GRPOTrainer.
     """
     reward_config = RewardConfig(
         lambda_intrinsic=config.lambda_intrinsic,
         self_rating_weight=config.self_rating_weight,
         calibration_bonus=config.calibration_bonus,
+        improvement_weight=config.improvement_weight,
+        convergence_weight=config.convergence_weight,
+        max_reflection_rounds=config.max_reflection_rounds,
     )
     
     calculator = RewardCalculator(reward_config)
     
     def reward_fn(completions: List[str], **kwargs) -> List[float]:
         """Compute rewards for completions.
+        
+        Supports multi-round reflection if enabled.
         
         Args:
             completions: List of model-generated completions.
@@ -89,28 +103,101 @@ def create_reward_fn(config: CoRTrainingConfig):
         ground_truths = kwargs.get('ground_truths', [None] * len(completions))
         
         for i, completion in enumerate(completions):
-            # Parse completion into thinking and answer
-            thinking, answer = parse_qwen_completion(completion)
-            
             gt = ground_truths[i] if i < len(ground_truths) else None
             
-            if gt is None:
-                # No ground truth - use intrinsic reward only
-                intrinsic, _ = calculator.calculate_intrinsic_reward(
-                    thinking,
-                    include_self_rating=True,
-                    final_answer_correct=False
-                )
-                rewards.append(intrinsic)
+            # Check if completion has multiple reflection rounds
+            chain_sequence = extract_reflection_rounds(completion)
+            
+            if len(chain_sequence) > 1 and config.enable_reflection:
+                # Multi-round reflection: use extended reward
+                thinking, answer = parse_qwen_completion(chain_sequence[-1])
+                
+                if gt is None:
+                    # No ground truth - use intrinsic + improvement rewards
+                    intrinsic, _ = calculator.calculate_intrinsic_reward(
+                        chain_sequence[-1],
+                        include_self_rating=True,
+                        final_answer_correct=False
+                    )
+                    # Add improvement reward
+                    improvement = calculator.improvement_calculator.compute_cumulative_improvement(
+                        chain_sequence
+                    )
+                    rewards.append(intrinsic + config.improvement_weight * improvement)
+                else:
+                    output = calculator.calculate_reflection_reward(
+                        chain_sequence, answer, gt
+                    )
+                    rewards.append(output.total_reward)
             else:
-                output = calculator.calculate_total_reward(
-                    thinking, answer, gt
-                )
-                rewards.append(output.total_reward)
+                # Single-round: standard CoR reward
+                thinking, answer = parse_qwen_completion(completion)
+                
+                if gt is None:
+                    intrinsic, _ = calculator.calculate_intrinsic_reward(
+                        thinking,
+                        include_self_rating=True,
+                        final_answer_correct=False
+                    )
+                    rewards.append(intrinsic)
+                else:
+                    output = calculator.calculate_total_reward(
+                        thinking, answer, gt
+                    )
+                    rewards.append(output.total_reward)
         
         return rewards
     
     return reward_fn
+
+
+def extract_reflection_rounds(completion: str) -> List[str]:
+    """Extract individual reflection rounds from a completion.
+    
+    Parses format:
+    [Round 1]
+    ...thinking...
+    [Self-Rating: ...]
+    
+    [Reflection]
+    ...
+    
+    [Round 2]
+    ...thinking...
+    
+    Returns list of thinking chains [c_0, c_1, ..., c_K]
+    """
+    # Check for round markers
+    round_pattern = r'\[Round (\d+)\]'
+    rounds = list(re.finditer(round_pattern, completion))
+    
+    if len(rounds) < 2:
+        # No multiple rounds, return entire completion as single chain
+        return [completion]
+    
+    chain_sequence = []
+    
+    for i, match in enumerate(rounds):
+        start = match.end()
+        
+        # End is either next round or end of string
+        if i + 1 < len(rounds):
+            end = rounds[i + 1].start()
+        else:
+            end = len(completion)
+        
+        # Extract this round's content
+        round_content = completion[start:end].strip()
+        
+        # Remove reflection section if present (belongs to previous round's analysis)
+        reflection_match = re.search(r'\[Reflection\].*$', round_content, re.DOTALL)
+        if reflection_match:
+            round_content = round_content[:reflection_match.start()].strip()
+        
+        if round_content:
+            chain_sequence.append(round_content)
+    
+    return chain_sequence if chain_sequence else [completion]
 
 
 def parse_qwen_completion(completion: str) -> tuple:
