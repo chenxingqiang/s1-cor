@@ -1,5 +1,46 @@
 ### Note that for all of these evaluations you should be in the `eval/lm-evaluation-harness` directory and have the dependencies there installed.
 
+#############################################
+### CoR (Chain of Reward) Evaluation ###
+#############################################
+
+### CoR-GRPO Model (after training) ###
+# AIME24, MATH500, GPQA - No budget forcing
+OPENAI_API_KEY=YOUR_OPENAI_KEY PROCESSOR=gpt-4o-mini lm_eval --model vllm --model_args pretrained=ckpts/cor-grpo,dtype=float32,tensor_parallel_size=8 --tasks aime24_nofigures,openai_math,gpqa_diamond_openai --batch_size auto --apply_chat_template --output_path cor-grpo-eval --log_samples --gen_kwargs "max_gen_toks=32768"
+
+# CoR with budget forcing (thinking budget control)
+OPENAI_API_KEY=YOUR_OPENAI_KEY PROCESSOR=gpt-4o-mini lm_eval --model vllm --model_args pretrained=ckpts/cor-grpo,dtype=float32,tensor_parallel_size=8 --tasks aime24_nofigures,openai_math,gpqa_diamond_openai --batch_size auto --apply_chat_template --output_path cor-grpo-forcing --log_samples --gen_kwargs "max_gen_toks=32768,max_tokens_thinking=auto"
+
+# CoR with reflection rounds (1x "Wait")
+OPENAI_API_KEY=YOUR_OPENAI_KEY PROCESSOR=gpt-4o-mini lm_eval --model vllm --model_args pretrained=ckpts/cor-grpo,dtype=float32,tensor_parallel_size=8 --tasks aime24_nofigures,openai_math,gpqa_diamond_openai --batch_size auto --apply_chat_template --output_path cor-grpo-reflect1 --log_samples --gen_kwargs "max_gen_toks=32768,max_tokens_thinking=auto,thinking_n_ignore=1,thinking_n_ignore_str=Wait"
+
+# CoR with reflection rounds (2x "Wait")
+OPENAI_API_KEY=YOUR_OPENAI_KEY PROCESSOR=gpt-4o-mini lm_eval --model vllm --model_args pretrained=ckpts/cor-grpo,dtype=float32,tensor_parallel_size=8 --tasks aime24_nofigures,openai_math,gpqa_diamond_openai --batch_size auto --apply_chat_template --output_path cor-grpo-reflect2 --log_samples --gen_kwargs "max_gen_toks=32768,max_tokens_thinking=auto,thinking_n_ignore=2,thinking_n_ignore_str=Wait"
+
+### CoR Scale Experiments (0.5B to 7B) ###
+# 0.5B
+OPENAI_API_KEY=YOUR_OPENAI_KEY PROCESSOR=gpt-4o-mini lm_eval --model vllm --model_args pretrained=ckpts/cor-0.5B,dtype=float32 --tasks aime24_nofigures,openai_math,gpqa_diamond_openai --batch_size auto --apply_chat_template --output_path cor-0.5B-eval --log_samples --gen_kwargs "max_gen_toks=32768"
+
+# 1.5B
+OPENAI_API_KEY=YOUR_OPENAI_KEY PROCESSOR=gpt-4o-mini lm_eval --model vllm --model_args pretrained=ckpts/cor-1.5B,dtype=float32 --tasks aime24_nofigures,openai_math,gpqa_diamond_openai --batch_size auto --apply_chat_template --output_path cor-1.5B-eval --log_samples --gen_kwargs "max_gen_toks=32768"
+
+# 3B
+OPENAI_API_KEY=YOUR_OPENAI_KEY PROCESSOR=gpt-4o-mini lm_eval --model vllm --model_args pretrained=ckpts/cor-3B,dtype=float32,tensor_parallel_size=2 --tasks aime24_nofigures,openai_math,gpqa_diamond_openai --batch_size auto --apply_chat_template --output_path cor-3B-eval --log_samples --gen_kwargs "max_gen_toks=32768"
+
+# 7B
+OPENAI_API_KEY=YOUR_OPENAI_KEY PROCESSOR=gpt-4o-mini lm_eval --model vllm --model_args pretrained=ckpts/cor-7B,dtype=float32,tensor_parallel_size=4 --tasks aime24_nofigures,openai_math,gpqa_diamond_openai --batch_size auto --apply_chat_template --output_path cor-7B-eval --log_samples --gen_kwargs "max_gen_toks=32768"
+
+### Baseline Comparison ###
+# Qwen2.5-32B-Instruct (baseline without CoR)
+OPENAI_API_KEY=YOUR_OPENAI_KEY PROCESSOR=gpt-4o-mini lm_eval --model vllm --model_args pretrained=Qwen/Qwen2.5-32B-Instruct,dtype=float32,tensor_parallel_size=8 --tasks aime24_nofigures,openai_math,gpqa_diamond_openai --batch_size auto --apply_chat_template --output_path qwen-baseline --log_samples --gen_kwargs "max_gen_toks=32768"
+
+# CoR-SFT (after SFT, before GRPO)
+OPENAI_API_KEY=YOUR_OPENAI_KEY PROCESSOR=gpt-4o-mini lm_eval --model vllm --model_args pretrained=ckpts/cor-sft,dtype=float32,tensor_parallel_size=8 --tasks aime24_nofigures,openai_math,gpqa_diamond_openai --batch_size auto --apply_chat_template --output_path cor-sft-eval --log_samples --gen_kwargs "max_gen_toks=32768"
+
+#############################################
+### Original s1 Paper Commands (Reference) ###
+#############################################
+
 ### Testing ###
 
 # Testing
