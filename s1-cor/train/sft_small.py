@@ -121,6 +121,23 @@ def parse_args():
         action="store_true",
         help="Use Weights & Biases logging"
     )
+    parser.add_argument(
+        "--push_to_hub",
+        action="store_true",
+        help="Push trained model to HuggingFace Hub"
+    )
+    parser.add_argument(
+        "--hub_model_id",
+        type=str,
+        default=None,
+        help="HuggingFace model ID (default: xingqiang/s1-cor-{size})"
+    )
+    parser.add_argument(
+        "--hub_private",
+        action="store_true",
+        default=True,
+        help="Make the model private on HuggingFace Hub"
+    )
     return parser.parse_args()
 
 
@@ -275,6 +292,27 @@ def main():
     logger.info(f"Saving model to {output_dir}")
     trainer.save_model(output_dir)
     tokenizer.save_pretrained(output_dir)
+    
+    # Push to HuggingFace Hub
+    if args.push_to_hub:
+        hub_model_id = args.hub_model_id or f"xingqiang/s1-cor-{args.model_size}"
+        logger.info(f"Pushing model to HuggingFace Hub: {hub_model_id}")
+        
+        try:
+            # Push model
+            model.push_to_hub(
+                hub_model_id,
+                private=args.hub_private,
+                commit_message=f"CoR SFT trained model - Qwen2.5-{args.model_size}"
+            )
+            # Push tokenizer
+            tokenizer.push_to_hub(
+                hub_model_id,
+                private=args.hub_private,
+            )
+            logger.info(f"Model successfully uploaded to: https://huggingface.co/{hub_model_id}")
+        except Exception as e:
+            logger.error(f"Failed to push to hub: {e}")
     
     logger.info("Training complete!")
 
