@@ -1,4 +1,4 @@
-\begin{thebibliography}{76}
+\begin{thebibliography}{100}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -31,10 +31,21 @@ Biderman, S. et~al.
 \newblock Lessons from training large language models, 2024.
 \newblock URL \url{https://arxiv.org/abs/2403.12345}.
 
+\bibitem[Cai et~al.(2025)Cai, Cai, Shi, Xu, Chen, Qin, and
+  Tan]{cai2025trainingfree_grpo}
+Cai, Y., Cai, S., Shi, Y., Xu, Z., Chen, L., Qin, Y., and Tan, X.
+\newblock Training-free group relative policy optimization, 2025.
+\newblock URL \url{https://arxiv.org/abs/2510.08191}.
+
 \bibitem[Chen et~al.(2023)]{chen2023theoremqatheoremdrivenquestionanswering}
 Chen, W. et~al.
 \newblock Theoremqa: A theorem-driven question answering dataset, 2023.
 \newblock URL \url{https://arxiv.org/abs/2305.12524}.
+
+\bibitem[Chua \& Evans(2025)Chua and Evans]{chua2025deepseek_faithful}
+Chua, J. and Evans, O.
+\newblock Are deepseek r1 and other reasoning models more faithful?, 2025.
+\newblock URL \url{https://arxiv.org/abs/2501.08156}.
 
 \bibitem[DeepMind(2024)]{geminithinking}
 DeepMind, G.
@@ -59,21 +70,41 @@ Dubey, A. et~al.
 \newblock Llama 3 herd: Improved reasoning models, 2024.
 \newblock URL \url{https://arxiv.org/abs/2407.03819}.
 
+\bibitem[Fu et~al.(2025)Fu, Zhao, Yao, Wang, Han, and
+  Xiao]{fu2025reward_shaping}
+Fu, J., Zhao, X., Yao, C., Wang, H., Han, Q., and Xiao, Y.
+\newblock Reward shaping to mitigate reward hacking in rlhf, 2025.
+\newblock URL \url{https://arxiv.org/abs/2502.18770}.
+
 \bibitem[Fu et~al.(2022)]{fu2022complexity}
 Fu, Y. et~al.
 \newblock Complexity of reasoning in large language models, 2022.
 \newblock URL \url{https://arxiv.org/abs/2212.12345}.
 
-\bibitem[Gao et~al.(2024{\natexlab{a}})]{eval-harness}
+\bibitem[Gao et~al.(2024{\natexlab{a}})Gao, Cai, Shuai, Gong, and
+  Li]{gao2024selfcorrection}
+Gao, K., Cai, H., Shuai, Q., Gong, D., and Li, Z.
+\newblock Embedding self-correction as an inherent ability in large language
+  models for enhanced mathematical reasoning, 2024{\natexlab{a}}.
+\newblock URL \url{https://arxiv.org/abs/2410.10735}.
+
+\bibitem[Gao et~al.(2024{\natexlab{b}})]{eval-harness}
 Gao, L. et~al.
-\newblock Lm eval harness: Evaluation framework, 2024{\natexlab{a}}.
+\newblock Lm eval harness: Evaluation framework, 2024{\natexlab{b}}.
 \newblock URL \url{https://github.com/EleutherAI/lm-evaluation-harness}.
 
-\bibitem[Gao et~al.(2024{\natexlab{b}})]{gao2024omnimathuniversalolympiadlevel}
+\bibitem[Gao et~al.(2024{\natexlab{c}})]{gao2024omnimathuniversalolympiadlevel}
 Gao, L. et~al.
 \newblock Omnimath: A universal olympiad-level mathematics dataset,
-  2024{\natexlab{b}}.
+  2024{\natexlab{c}}.
 \newblock URL \url{https://arxiv.org/abs/2407.03459}.
+
+\bibitem[Geng et~al.(2024)Geng, Cai, Wang, and
+  Koeppl]{geng2024calibration_survey}
+Geng, J., Cai, F., Wang, Y., and Koeppl, H.
+\newblock A survey of confidence estimation and calibration in large language
+  models, 2024.
+\newblock URL \url{https://aclanthology.org/2024.naacl-long.366/}.
 
 \bibitem[Glazer
   et~al.(2024)]{glazer2024frontiermathbenchmarkevaluatingadvanced}
@@ -93,6 +124,14 @@ Guo, C., Pleiss, G., Sun, Y., and Weinberger, K.~Q.
 \newblock In \emph{International Conference on Machine Learning}, pp.\
   1321--1330. PMLR, 2017.
 
+\bibitem[Guo et~al.(2025)Guo, Yang, Zhang, Song, Wang, Zhu, and
+  Xu]{guo2025deepseek_r1_nature}
+Guo, D., Yang, D., Zhang, H., Song, J., Wang, P., Zhu, Q., and Xu, R.
+\newblock Deepseek-r1 incentivizes reasoning in llms through reinforcement
+  learning.
+\newblock \emph{Nature}, 2025.
+\newblock URL \url{https://www.nature.com/articles/s41586-025-09422-z}.
+
 \bibitem[He et~al.(2024)]{he2024olympiadbenchchallengingbenchmarkpromoting}
 He, C. et~al.
 \newblock Olympiadbench: A challenging benchmark for promoting mathematical
@@ -106,6 +145,12 @@ Hendrycks, D., Burns, C., Kadavath, S., Arora, A., Basart, S., Tang, E., Song,
 \newblock Measuring mathematical problem solving with the math dataset.
 \newblock \emph{Proceedings of the Neural Information Processing Systems Track
   on Datasets and Benchmarks}, 1, 2021.
+
+\bibitem[Hong et~al.(2024)Hong, Zhang, Pang, and Yu]{hong2024self_verification}
+Hong, R., Zhang, H., Pang, X., and Yu, D.
+\newblock A closer look at the self-verification abilities of large language
+  models in logical reasoning, 2024.
+\newblock URL \url{https://aclanthology.org/2024.naacl-long.52/}.
 
 \bibitem[Hu et~al.(2024)]{hu2024visual}
 Hu, A. et~al.
@@ -125,6 +170,12 @@ Huang, J., Ye, Y., Li, X., Zheng, P., Chen, M., Cheng, W., Zhang, Y., and
 \newblock Olympicarena: Benchmarking multi-discipline cognitive reasoning
   capabilities of large language models, 2024.
 \newblock URL \url{https://arxiv.org/abs/2404.18098}.
+
+\bibitem[Hwang et~al.(2024)Hwang, Kim, Kim, Ye, and Seo]{hwang2024selfexplore}
+Hwang, H., Kim, D., Kim, S., Ye, S., and Seo, M.
+\newblock Self-explore: Enhancing mathematical reasoning in language models
+  with fine-grained rewards, 2024.
+\newblock URL \url{https://arxiv.org/abs/2404.10346}.
 
 \bibitem[Jain et~al.(2024)]{jain2024livecodebenchholisticcontaminationfree}
 Jain, N. et~al.
@@ -153,6 +204,13 @@ Kwon, W., Li, Z., Zhuang, S., Sheng, Y., Zheng, L., Yu, C.~H., Gonzalez, J.~E.,
 \newblock In \emph{Proceedings of the ACM SIGOPS 29th Symposium on Operating
   Systems Principles}, 2023.
 
+\bibitem[Liang et~al.(2024)Liang, Song, Zheng, Wang, Yu, and
+  Li]{liang2024internal_consistency}
+Liang, X., Song, S., Zheng, Z., Wang, H., Yu, Q., and Li, X.
+\newblock Internal consistency and self-feedback in large language models: A
+  survey, 2024.
+\newblock URL \url{https://arxiv.org/abs/2407.14507}.
+
 \bibitem[Lightman et~al.(2023)Lightman, Kosaraju, Burda, Edwards, Baker, Lee,
   Leike, Schulman, Sutskever, and Wu]{lightman2023letsverifystepstep}
 Lightman, H., Kosaraju, V., Burda, Y., Edwards, H., Baker, B., Lee, T., Leike,
@@ -172,6 +230,13 @@ Liu, J. et~al.
 \newblock Logiqa: A challenge dataset for machine reading comprehension with
   logical reasoning, 2020.
 
+\bibitem[Liu et~al.(2025)Liu, Chen, Da, Chen, Lin, and
+  Wei]{liu2025uncertainty_survey}
+Liu, X., Chen, T., Da, L., Chen, C., Lin, Z., and Wei, H.
+\newblock Uncertainty quantification and confidence calibration in large
+  language models: A survey, 2025.
+\newblock URL \url{https://dl.acm.org/doi/abs/10.1145/3711896.3736569}.
+
 \bibitem[Loshchilov \& Hutter(2019)Loshchilov and
   Hutter]{loshchilov2019decoupled}
 Loshchilov, I. and Hutter, F.
@@ -190,6 +255,12 @@ Luo, R. et~al.
   models, 2025.
 \newblock URL \url{https://arxiv.org/abs/2308.09583}.
 
+\bibitem[Ma et~al.(2025)Ma, Chen, Liu, Tian, Liu, and Liu]{ma2025stepreward}
+Ma, Y., Chen, Z., Liu, T., Tian, M., Liu, Z., and Liu, Z.
+\newblock What are step-level reward models rewarding? counterintuitive
+  findings from mcts-boosted mathematical reasoning, 2025.
+\newblock URL \url{https://ojs.aaai.org/index.php/AAAI/article/view/34663}.
+
 \bibitem[Madaan et~al.(2023)Madaan, Tandon, Gupta, Hallinan, Gao, Wiegreffe,
   Alon, Dziri, Prabhumoye, Yang, Gupta, Majumder, Hermann, Welleck,
   Yazdanbakhsh, and Clark]{madaan2023selfrefine}
@@ -197,6 +268,13 @@ Madaan, A., Tandon, N., Gupta, P., Hallinan, S., Gao, L., Wiegreffe, S., Alon,
   U., Dziri, N., Prabhumoye, S., Yang, Y., Gupta, S., Majumder, B.~P., Hermann,
   K., Welleck, S., Yazdanbakhsh, A., and Clark, P.
 \newblock Self-refine: Iterative refinement with self-feedback, 2023.
+
+\bibitem[Muennighoff et~al.(2025)Muennighoff, Yang, Shi, Li, Fei-Fei,
+  Hajishirzi, Zettlemoyer, Liang, Candès, and Hashimoto]{muennighoff2025s1}
+Muennighoff, N., Yang, Z., Shi, W., Li, X.~L., Fei-Fei, L., Hajishirzi, H.,
+  Zettlemoyer, L., Liang, P., Candès, E., and Hashimoto, T.
+\newblock s1: Simple test-time scaling, 2025.
+\newblock URL \url{https://arxiv.org/abs/2501.19393}.
 
 \bibitem[Muennighoff
   et~al.(2024)]{muennighoff2024olmoeopenmixtureofexpertslanguage}
@@ -235,6 +313,12 @@ Ouyang, L., Wu, J., Jiang, X., Almeida, D., Wainwright, C., Mishkin, P., Zhang,
 \newblock Training language models to follow instructions with human feedback.
 \newblock \emph{Advances in Neural Information Processing Systems},
   35:\penalty0 27730--27744, 2022.
+
+\bibitem[Park et~al.(2025)Park, Liu, Gong, and Choi]{park2025tree_search}
+Park, S., Liu, X., Gong, Y., and Choi, E.
+\newblock Ensembling large language models with process reward-guided tree
+  search for better complex reasoning, 2025.
+\newblock URL \url{https://aclanthology.org/2025.naacl-long.515/}.
 
 \bibitem[Pathak et~al.(2017)Pathak, Agrawal, Efros, and
   Darrell]{pathak2017curiosity}
@@ -281,6 +365,13 @@ Shinn, N., Cassano, F., Gopinath, A., Narasimhan, K.~R., and Yao, S.
 Srivastava, A. et~al.
 \newblock Imitation with chain-of-thought reasoning, 2023.
 \newblock URL \url{https://arxiv.org/abs/2305.14993}.
+
+\bibitem[Steyvers et~al.(2024)Steyvers, Tejeda, Kumar, and
+  Belem]{steyvers2024calibration_gap}
+Steyvers, M., Tejeda, H., Kumar, A., and Belem, C.
+\newblock The calibration gap between model and human confidence in large
+  language models, 2024.
+\newblock URL \url{https://arxiv.org/abs/2401.13835}.
 
 \bibitem[Su et~al.(2024)Su, Yen, Xia, Shi, Muennighoff, yu~Wang, Liu, Shi,
   Siegel, Tang, Sun, Yoon, Arik, Chen, and
@@ -356,6 +447,34 @@ Wang, P., Li, L., Shao, Z., Xu, R., Dai, D., Li, Y., Chen, D., Wu, Y., and Sui,
 \newblock Math-shepherd: Verify and reinforce llms step-by-step without human
   annotations, 2024.
 
+\bibitem[Wang et~al.(2025{\natexlab{a}})Wang, Liu, Wang, Li, Wang, and
+  Yan]{wang2025math_reasoning_survey}
+Wang, P., Liu, T., Wang, C., Li, Z., Wang, Y., and Yan, S.
+\newblock A survey on large language models for mathematical reasoning,
+  2025{\natexlab{a}}.
+\newblock URL \url{https://dl.acm.org/doi/abs/10.1145/3786333}.
+
+\bibitem[Wang et~al.(2025{\natexlab{b}})Wang, Jiang, He, Tong, and
+  Yang]{wang2025hierarchical_reward}
+Wang, T., Jiang, Z., He, Z., Tong, S., and Yang, W.
+\newblock Towards hierarchical multi-step reward models for enhanced reasoning
+  in large language models, 2025{\natexlab{b}}.
+\newblock URL \url{https://arxiv.org/abs/2503.13551}.
+
+\bibitem[Wang et~al.(2023)Wang, Wei, Schuurmans, Le, Chi, and
+  Zhou]{wang2023self}
+Wang, X., Wei, J., Schuurmans, D., Le, Q., Chi, E., and Zhou, D.
+\newblock Self-consistency improves chain of thought reasoning in language
+  models.
+\newblock In \emph{International Conference on Learning Representations}, 2023.
+
+\bibitem[Wang et~al.(2025{\natexlab{c}})Wang, Yu, Liang, and
+  He]{wang2025trustworthy_survey}
+Wang, Y., Yu, Y., Liang, J., and He, R.
+\newblock A comprehensive survey on trustworthiness in reasoning with large
+  language models, 2025{\natexlab{c}}.
+\newblock URL \url{https://arxiv.org/abs/2509.03871}.
+
 \bibitem[Wei et~al.(2023)Wei, Wang, Schuurmans, Bosma, Ichter, Xia, Chi, Le,
   and Zhou]{wei2023chainofthoughtpromptingelicitsreasoning}
 Wei, J., Wang, X., Schuurmans, D., Bosma, M., Ichter, B., Xia, F., Chi, E., Le,
@@ -392,12 +511,25 @@ Xiong, M., Hu, Z., Lu, X., Li, Y., Fu, J., He, J., and Hooi, B.
 \newblock Can llms express their uncertainty? an empirical evaluation of
   confidence elicitation in llms, 2024.
 
-\bibitem[Xu et~al.(2025)Xu, Wu, Wang, Li, Zheng, Chen, Hu, Kang, Ji, Zhang,
-  Guo, Yang, Zhang, and Zhang]{xu2025redstardoesscalinglongcot}
+\bibitem[Xiong et~al.(2025)Xiong, Zhang, Ye, Chen, and
+  Jiang]{xiong2025selfrewarding}
+Xiong, W., Zhang, H., Ye, C., Chen, L., and Jiang, N.
+\newblock Self-rewarding correction for mathematical reasoning, 2025.
+\newblock URL \url{https://arxiv.org/abs/2502.19613}.
+
+\bibitem[Xu et~al.(2025{\natexlab{a}})Xu, Hao, Zong, Wang, Zhang, and
+  Wang]{xu2025large_reasoning_survey}
+Xu, F., Hao, Q., Zong, Z., Wang, J., Zhang, Y., and Wang, J.
+\newblock Towards large reasoning models: A survey of reinforced reasoning with
+  large language models, 2025{\natexlab{a}}.
+\newblock URL \url{https://arxiv.org/abs/2501.09686}.
+
+\bibitem[Xu et~al.(2025{\natexlab{b}})Xu, Wu, Wang, Li, Zheng, Chen, Hu, Kang,
+  Ji, Zhang, Guo, Yang, Zhang, and Zhang]{xu2025redstardoesscalinglongcot}
 Xu, H., Wu, X., Wang, W., Li, Z., Zheng, D., Chen, B., Hu, Y., Kang, S., Ji,
   J., Zhang, Y., Guo, Z., Yang, Y., Zhang, M., and Zhang, D.
 \newblock Redstar: Does scaling long-cot data unlock better slow-reasoning
-  systems?, 2025.
+  systems?, 2025{\natexlab{b}}.
 \newblock URL \url{https://arxiv.org/abs/2501.11284}.
 
 \bibitem[Yang et~al.(2024)]{yang2024syntheticcontinuedpretraining}
@@ -439,10 +571,38 @@ Zelikman, E., Harik, G., Shao, Y., Jayasiri, V., Haber, N., and Goodman, N.~D.
   speaking, 2024.
 \newblock URL \url{https://arxiv.org/abs/2403.09629}.
 
+\bibitem[Zhang et~al.(2025{\natexlab{a}})Zhang, Deng, Lin, Wang, Ng, and
+  Ye]{zhang2025deepseek_r1_survey}
+Zhang, C., Deng, Y., Lin, X., Wang, B., Ng, D., and Ye, H.
+\newblock 100 days after deepseek-r1: A survey on replication studies and more
+  directions for reasoning language models, 2025{\natexlab{a}}.
+\newblock URL \url{https://arxiv.org/abs/2505.00551}.
+
+\bibitem[Zhang et~al.(2025{\natexlab{b}})Zhang, Wu, Zhu, Tan, Yu, and
+  He]{zhang2025scafgrpo}
+Zhang, X., Wu, S., Zhu, Y., Tan, H., Yu, S., and He, Z.
+\newblock Scaf-grpo: Scaffolded group relative policy optimization for
+  enhancing llm reasoning, 2025{\natexlab{b}}.
+\newblock URL \url{https://arxiv.org/abs/2510.19807}.
+
 \bibitem[Zhang et~al.(2023)]{zhang2023cumulative}
 Zhang, Y. et~al.
 \newblock Cumulative reasoning in large language models, 2023.
 \newblock URL \url{https://arxiv.org/abs/2308.12345}.
+
+\bibitem[Zhang et~al.(2025{\natexlab{c}})Zhang, Zheng, Wu, Zhang, Lin, and
+  Yu]{zhang2025prm}
+Zhang, Z., Zheng, C., Wu, Y., Zhang, B., Lin, R., and Yu, B.
+\newblock The lessons of developing process reward models in mathematical
+  reasoning, 2025{\natexlab{c}}.
+\newblock URL \url{https://arxiv.org/abs/2501.07301}.
+
+\bibitem[Zheng et~al.(2025)Zheng, Zhu, Ou, Chen, Zhang, and
+  Shan]{zheng2025prm_survey}
+Zheng, C., Zhu, J., Ou, Z., Chen, Y., Zhang, K., and Shan, R.
+\newblock A survey of process reward models: From outcome signals to process
+  supervisions for large language models, 2025.
+\newblock URL \url{https://arxiv.org/abs/2510.08049}.
 
 \bibitem[Zhong et~al.(2019)]{zhong2019jecqalegaldomainquestionanswering}
 Zhong, H. et~al.

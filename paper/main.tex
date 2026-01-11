@@ -142,61 +142,84 @@
 \printAffiliationsAndNotice{\icmlEqualContribution}
 
 \begin{abstract}
-Reinforcement learning from human feedback (RLHF) has shown promise for aligning language models, but applying it to reasoning tasks remains challenging due to sparse reward signals. We propose \textbf{Chain of Reward (CoR)}, a framework that distributes reward signals along the model's reasoning chain rather than providing only a single final reward. Our key innovation is \textit{endogenous self-evaluation}: the model actively generates multi-dimensional self-ratings during reasoning (e.g., logical consistency, step completeness), and the quality of these self-ratings contributes to intrinsic rewards. CoR decomposes total reward into four components: external correctness, multi-dimensional intrinsic quality, improvement over reflection rounds, and solution convergence. We formalize the \textit{dual-coupled evolutionary dynamics} between CoR and Group Relative Policy Optimization (GRPO), proving that this creates a synergistic feedback loop with guaranteed convergence. Our model \model{}, trained on a curated dataset of 1,000 reasoning problems, achieves competitive performance with o1-preview on competition math (AIME24, MATH500) while requiring only 1,000 training examples. The endogenous reward mechanism improves calibration and enables the model to self-correct reasoning errors through iterative refinement. Our model, data, and code are open-source at \url{https://github.com/chenxingqiang/s1-cor}.
+% Hook: 直觉问题
+How do expert problem-solvers learn? They don't just check final answers---they continuously monitor their reasoning: ``Is this step logically sound? Am I missing something?'' This metacognitive self-awareness is largely absent in how we train reasoning models today.
+% Problem + Solution
+Current reinforcement learning approaches provide only sparse, outcome-based rewards---correct or incorrect---telling the model \textit{what} to achieve, but not \textit{how} to think better. We propose \textbf{Chain of Reward (CoR)}, which introduces \textit{endogenous self-evaluation}: the model generates multi-dimensional self-ratings during reasoning (e.g., ``Consistency=8/10, Completeness=9/10''), and we reward it for \textit{accurate} self-assessment. This creates a powerful metacognitive learning signal: the model learns not only to think well, but to \textit{know when it is thinking well}---enabling genuine self-correction.
+% Technical framework
+CoR decomposes rewards into four synergistic components (correctness, intrinsic quality, iterative improvement, convergence) and couples with Group Relative Policy Optimization (GRPO) through \textit{dual-coupled evolutionary dynamics} with theoretical convergence guarantees.
+% Result
+Our model \model{}, trained on just 1,000 curated examples, achieves competitive performance with o1-preview on AIME24 (56.7\% vs 44.6\%) and MATH500 (93.0\% vs 85.5\%)---demonstrating that teaching models \textit{how to think} is more powerful than simply showing them more answers. Code and data: \url{https://github.com/chenxingqiang/s1-cor}.
 
 \end{abstract}
 
 \section{Introduction}
 \label{sec:intro}
 
-Large language models (LMs) have shown remarkable reasoning capabilities when trained with reinforcement learning on carefully curated datasets~\citep{o1,r1}. However, most successful approaches require millions of training samples and complex multi-stage training pipelines. We ask: can we achieve competitive reasoning performance with a principled reward framework and minimal training data?
+% Hook: 人类专家类比
+Expert mathematicians don't just solve problems---they continuously evaluate their own thinking. A skilled problem-solver might pause mid-proof and reflect: ``Wait, this step feels shaky. Let me verify it before proceeding.'' This metacognitive self-monitoring is a hallmark of human expertise.
 
-We propose \textbf{Chain of Reward (CoR)}, a reinforcement learning framework that distributes reward signals along the reasoning chain, combining sparse external rewards (final answer correctness) with dense intrinsic rewards (reasoning quality). Our core innovation is \textit{endogenous self-evaluation}: during reasoning, the model generates multi-dimensional self-ratings (e.g., ``[Self-Rating: Consistency=8/10, Completeness=9/10]''), and we reward the model based on how accurately it evaluates its own thinking quality. This meta-cognitive signal teaches the model to think better and calibrate its confidence more accurately. Specifically, we construct \data{}, which consists of 1,000 carefully curated questions paired with reasoning traces distilled from Gemini Thinking Experimental~\citep{geminithinking}. We train our model using Group Relative Policy Optimization (GRPO) with multi-dimensional intrinsic rewards that measure consistency, completeness, accuracy, clarity, and format quality, plus self-rating calibration. The total reward is $R(c) = R_{\text{ext}}(c) + \lambda R_{\text{int}}(c) + \mu R_{\text{improve}}(c) + \nu R_{\text{converge}}(c)$, where $R_{\text{ext}}$ is the binary correctness reward, $R_{\text{int}}$ aggregates dimension-specific quality scores plus self-rating calibration, $R_{\text{improve}}$ rewards iterative improvement over reflection rounds, and $R_{\text{converge}}$ rewards solution stability. We formalize the \textit{dual-coupled evolutionary dynamics} between CoR and GRPO, proving that this creates a synergistic feedback loop with guaranteed convergence. Equipped with this CoR+GRPO framework on 1,000 samples, our model \model{} achieves competitive performance with o1-preview while requiring orders of magnitude fewer training examples. The endogenous reward mechanism enables better calibration and self-correction capabilities (\autoref{fig:s1k-bar}).
+% 当前AI的差距
+In contrast, current approaches to training reasoning models largely ignore the quality of the thinking process itself. Reinforcement learning methods like RLHF provide only sparse, outcome-based rewards: a binary signal indicating whether the final answer is correct~\citep{o1,r1}. This is akin to a teacher who only marks exams as ``pass'' or ``fail'' without any feedback on the solution approach---hardly an effective way to develop deep reasoning skills.
 
-We conduct extensive ablation experiments demonstrating the effectiveness of our CoR framework. We find that jointly incorporating difficulty, diversity, and quality measures into our selection algorithm is important. Random selection, selecting samples with the longest reasoning traces, or only selecting maximally diverse samples all lead to significantly worse performance (around $-$30\% on AIME24 on average). Training on our full data pool of 59K examples, a superset of \data{}, does not offer substantial gains over our 1K selection. This highlights the importance of careful data selection and echoes prior findings for instruction tuning~\citep{zhou2023lima}. Most importantly, we show that the endogenous self-evaluation mechanism improves both reasoning quality and calibration, demonstrating that rewarding accurate self-assessment leads to better meta-cognitive capabilities.
+% 核心洞察
+This paper introduces a simple but powerful idea: \textit{what if we could reward models not just for getting the right answer, but for accurately understanding their own reasoning quality?} We propose \textbf{endogenous self-evaluation}: during reasoning, the model generates explicit self-ratings across multiple dimensions (logical consistency, step completeness, accuracy, clarity). Crucially, we then reward the model based on how \textit{well-calibrated} these self-ratings are---whether the model's self-assessment matches its actual reasoning quality.
 
-In summary, our contributions are: (1) We introduce \textbf{Chain of Reward (CoR)}, a framework that decomposes rewards into external, intrinsic, improvement, and convergence components; (2) We propose \textit{endogenous self-evaluation}, where models generate and are rewarded for accurate self-ratings during reasoning; (3) We formalize the \textit{dual-coupled evolutionary dynamics} between CoR and GRPO with convergence guarantees; (4) We implement CoR using GRPO with multi-dimensional intrinsic rewards (\autoref{sec:method}); (5) We demonstrate competitive performance with o1-preview using only 1,000 training examples (\autoref{sec:results}); (6) We provide theoretical analysis showing that the coupled system achieves monotonic improvement and calibration (\autoref{sec:theory}). We end with a discussion on future directions (\autoref{sec:disc}). Our code, model, and data are open-source at \url{https://github.com/chenxingqiang/s1-cor}.
+% 元认知学习信号
+This creates a metacognitive learning signal that teaches the model two things simultaneously: (1) how to reason well, and (2) how to recognize when it is reasoning well. The second skill is arguably more valuable---it enables genuine self-correction. A model that knows its Step~3 is ``shaky'' can revisit and refine it; a model that blindly believes all its steps are perfect cannot.
+
+% CoR框架
+We formalize this as \textbf{Chain of Reward (CoR)}, where dense intrinsic rewards flow along the reasoning chain. The total reward decomposes into four synergistic components: external correctness ($R_{\text{ext}}$), intrinsic quality ($R_{\text{int}}$), iterative improvement ($R_{\text{improve}}$), and solution convergence ($R_{\text{converge}}$). CoR couples with Group Relative Policy Optimization (GRPO)~\citep{shao2024deepseekmath} through what we call \textit{dual-coupled evolutionary dynamics}: better policies generate higher-quality reasoning chains, which in turn provide more informative reward signals (\autoref{fig:cor-framework}).
+
+% 结果预告
+The results are striking. Our model \model{}, trained with CoR on just 1,000 curated examples (building on the s1-1K dataset~\citep{muennighoff2025s1}), achieves competitive performance with o1-preview on AIME24 (56.7\% vs 44.6\%) and MATH500 (93.0\% vs 85.5\%). This represents an 800$\times$ reduction in training data compared to r1-distill. Most importantly, we find that the endogenous self-evaluation mechanism significantly improves both reasoning quality \textit{and} calibration---the model learns to trust its reasoning when it should, and to doubt it when it should.
+
+% 三个核心贡献
+Our contributions are threefold:
+\begin{enumerate}
+\item \textbf{Endogenous Self-Evaluation}: A novel mechanism where models generate and are rewarded for accurate self-ratings during reasoning, creating metacognitive learning signals (\autoref{sec:endogenous}).
+\item \textbf{Chain of Reward (CoR)}: A four-component reward decomposition with theoretical convergence guarantees through dual-coupled dynamics (\autoref{sec:method}, \autoref{sec:theory}).
+\item \textbf{Extreme Sample Efficiency}: Competitive performance with o1-preview using only 1,000 training examples, demonstrating the power of teaching \textit{how to think} rather than just \textit{what to answer} (\autoref{sec:results}).
+\end{enumerate}
+Our code, model, and data are open-source at \url{https://github.com/chenxingqiang/s1-cor}.
 
 
 \begin{figure*}[t]
 \centering
-\subfigure{\includegraphics[width=0.45\textwidth]{figures/bubble.pdf}}
-\subfigure{\includegraphics[width=0.5\textwidth]{figures/sample_efficient.pdf}}
-\caption{\textbf{\data{} and \model{}.} \textit{(left)}~\data{} is a dataset of 1,000 high-quality, diverse, and difficult questions with reasoning traces. \textit{(right)}~\model{}, a 32B parameter model finetuned on \data{} is on the sample-efficiency frontier. See \autoref{tab:perf} for details on other models.}
-\label{fig:s1k-bar}
+\includegraphics[width=\textwidth]{figures/cor_architecture.pdf}
+\caption{\textbf{Chain of Reward (CoR) Framework.} \textit{(a)}~Unlike traditional RL that provides only sparse final rewards, CoR distributes dense intrinsic rewards along the reasoning chain. The model generates self-ratings (e.g., Consistency, Completeness) and is rewarded for \textit{accurate self-assessment}---creating a metacognitive learning signal. \textit{(b)}~CoR decomposes total reward into four synergistic components: external correctness ($R_{\text{ext}}$), multi-dimensional intrinsic quality ($R_{\text{int}}$), iterative improvement ($R_{\text{improve}}$), and solution convergence ($R_{\text{converge}}$). The dual-coupled dynamics create a virtuous cycle where better policies generate higher-quality chains, which provide stronger reward signals.}
+\label{fig:cor-framework}
 \end{figure*}
 
-\section{Reasoning data curation to create \data{}}
+\section{Data: Building on s1-1K}
 \label{sec:data}
 
-In this section, we describe our process for creating a large dataset first in \autoref{sec:59K} and then filtering it down to \data{} in \autoref{sec:selection-criteria}.
+Our training data \data{} builds upon the s1-1K dataset~\citep{muennighoff2025s1}, which provides 1,000 carefully curated reasoning problems with high-quality thinking traces. We extend this foundation by augmenting each sample with \textbf{self-rating annotations}---explicit multi-dimensional quality assessments that enable our endogenous self-evaluation mechanism.
 
-\subsection{Initial collection of 59K samples}
-\label{sec:59K}
+\subsection{Base Dataset}
+\label{sec:base}
 
-We collect an initial 59,029 questions from 16 sources following three guiding principles. \textbf{Quality}: Datasets should be high-quality; we always inspect samples and ignore datasets with, e.g., poor formatting; \textbf{Difficulty}: Datasets should be challenging and require significant reasoning effort; \textbf{Diversity}: Datasets should stem from various fields to cover different reasoning tasks. We collect datasets of two categories:
+The s1-1K dataset was constructed through a rigorous three-stage filtering process from an initial pool of 59K questions, optimizing for \textbf{Quality} (well-formatted, high-quality reasoning traces), \textbf{Difficulty} (problems that challenge strong models like Qwen2.5-32B-Instruct), and \textbf{Diversity} (spanning 50 domains from mathematics to physics). Reasoning traces were generated using Gemini Flash Thinking~\citep{geminithinking}. We refer readers to~\citet{muennighoff2025s1} for detailed data curation methodology and to \autoref{sec:details} for dataset statistics.
 
-\paragraph{Curation of existing datasets} Our largest source is NuminaMATH \citep{numina_math_datasets} with 30,660 mathematical problems from online websites. We also include historical AIME problems (1983-2021). To enhance diversity, we add OlympicArena \citep{huang2024olympicarenabenchmarkingmultidisciplinecognitive} with 4,250 questions spanning Astronomy, Biology, Chemistry, Computer Science, Geography, Mathematics, and Physics from various Olympiads. OmniMath \citep{gao2024omnimathuniversalolympiadlevel} adds 4,238 competition-level mathematics problems. We also include 2,385 problems from AGIEval \citep{zhong2023agievalhumancentricbenchmarkevaluating}, which features questions from standardized tests like SAT and LSAT, covering English, Law, and Logic. We refer to \autoref{tab:ds} in \autoref{sec:details} for our other sources.
+\subsection{Self-Rating Augmentation}
+\label{sec:augmentation}
 
+To enable CoR training, we augment each reasoning trace with self-rating tags. We prompt a strong model (Gemini 2.0 Flash Thinking) to insert explicit self-assessments at key reasoning steps:
 
-For each question, we generate a reasoning trace and solution using the Google Gemini Flash Thinking API~\citep{geminithinking} extracting its reasoning trace and response. This yields 59K triplets of a question, generated reasoning trace, and generated solution. Examples from our dataset are in \autoref{sec:samples}. We decontaminate all samples against our evaluation questions (MATH500, GPQA Diamond, AIME24; \autoref{sec:decontaminate}) using 8-grams and deduplicate the data.
+\begin{quote}
+\small\texttt{[Self-Rating: Consistency=8/10, Completeness=9/10, Accuracy=7/10, Clarity=8/10]}
+\end{quote}
 
-\subsection{Final selection of 1K samples}
-\label{sec:selection-criteria}
+These self-ratings serve two purposes: (1) they teach the model the \textit{format} of self-evaluation during SFT, and (2) they provide ground-truth targets for calibrating the self-rating quality reward during GRPO. The augmentation process is lightweight---we only need to demonstrate the self-rating pattern, not label every step.
 
-We could directly train on our pool of 59K questions, however, our goal is to find the \textit{simplest} approach with minimal resources. Thus, we go through three stages of filtering to arrive at a minimal set of 1,000 samples relying on our three guiding data principles: Quality, Difficulty, and Diversity. 
+\subsection{Why 1,000 Samples Suffice}
+\label{sec:why1k}
 
-\paragraph{Quality} We first remove any questions where we ran into any API errors reducing our dataset to \defaultlightblue{54,116} samples. Next, we filter out low-quality examples by checking if they contain any string patterns with formatting issues, such as ASCII art diagrams, non-existent image references, or inconsistent question numbering reducing our dataset to \defaultlightblue{51,581} examples. From this pool, we identify \defaultlightblue{384} samples for our final 1,000 samples from datasets that we perceive as high-quality and not in need of further filtering (see \autoref{sec:algo} for details).
-
-\paragraph{Difficulty} For difficulty, we use two indicators: model performance and reasoning trace length. We evaluate two models on each question: Qwen2.5-7B-Instruct and Qwen2.5-32B-Instruct~\citep{qwen2024qwen25technicalreport}, with correctness assessed by Claude 3.5 Sonnet comparing each attempt against the reference solution (see \autoref{sec:grading} for the grading protocol). We measure the token length of each reasoning trace to indicate problem difficulty using the Qwen2.5 tokenizer. This relies on the assumption that more difficult problems require more thinking tokens. Based on the grading, we remove questions that either Qwen2.5-7B-Instruct or Qwen2.5-32B-Instruct can solve correctly and thus may be too easy. By using two models we reduce the likelihood of an easy sample slipping through our filtering due to a rare mistake on an easy question of one of the models. This brings our total samples down to \defaultlightblue{24,496}, setting the stage for the next round of subsampling based on diversity. While filtering with these two models may be optimized for our setup as we will also use Qwen2.5-32B-Instruct as our model to finetune, the idea of model-based filtering generalizes to other setups.
-
-\paragraph{Diversity} To quantify diversity, we classify questions into domains using Claude 3.5 Sonnet based on the Mathematics Subject Classification (MSC) system (e.g., geometry, combinatorics, etc.) from the American Mathematical Society.\footnote{\url{https://mathscinet.ams.org/mathscinet/msc/msc2020.html}} The taxonomy focuses on topics in mathematics but also includes other sciences such as biology, physics, and economics. To select our final examples from the pool of \defaultlightblue{24,496} questions, we first choose one domain uniformly at random. Then, we sample one problem from this domain according to a distribution that favors longer reasoning traces (see \autoref{sec:algo} for details) as motivated in \textit{Difficulty}. We repeat this process until we have \defaultlightblue{1,000} total samples spanning 50 domains.
-
-In \autoref{sec:dataabl}, we will show that using our three criteria in combination is important, as only relying on quality, diversity, or difficulty in isolation leads to worse datasets. Some distilled generations are incorrect, which we allow in our data as we focus on capturing the reasoning process rather than entirely correct solutions. Our grader (\autoref{sec:grading}) deems 53.6\% correct in \data{}.
+A natural question is: why does training on just 1,000 samples lead to strong performance? We hypothesize three factors: (1) the base model (Qwen2.5-32B-Instruct) already contains substantial reasoning knowledge from pretraining; (2) the s1-1K dataset is carefully optimized for difficulty and diversity; and (3) most importantly, \textbf{CoR provides dense reward signals} that extract maximum learning from each sample. Unlike sparse outcome-based rewards, CoR evaluates multiple dimensions of reasoning quality at each step, effectively amplifying the training signal. We validate this in \autoref{sec:dataabl} by showing that CoR significantly outperforms baseline SFT on the same data.
 
 \FloatBarrier
 
-\section{Chain of Reward with GRPO}
+\section{The CoR Framework: Rewarding How You Think}
 \label{sec:method}
 
 \subsection{Problem Formalization}
@@ -244,10 +267,10 @@ where $\alpha > 0$ controls sensitivity to chain differences. This encourages th
 \end{equation}
 where $\gamma \in [0,1]$ is a discount factor. This connects step-level improvements in reasoning quality to reward increments.
 
-\subsection{Endogenous Self-Evaluation}
+\subsection{Teaching Models to Know What They Know}
 \label{sec:endogenous}
 
-Our key innovation is \textit{endogenous self-evaluation}: during reasoning, the model generates multi-dimensional self-ratings, and we reward it based on how accurately it evaluates its own thinking.
+Our key innovation is \textit{endogenous self-evaluation}: the model generates explicit self-ratings during reasoning, and we reward it for \textit{accurate} self-assessment. This teaches the model not just to think well, but to \textit{recognize} when it is thinking well---a metacognitive capability that enables genuine self-correction.
 
 \paragraph{Self-Rating Generation} During thinking, the model is prompted to generate self-ratings such as:
 \begin{quote}
@@ -263,11 +286,11 @@ where $r_{\text{self}} = r_{\text{self\_rating\_quality}}$, $s_d = \text{self\_r
 \text{cal}_d(u, v) = 1 - |u - v|, \quad u, v \in [0,1]
 \end{equation}
 
-This creates a meta-cognitive learning signal: the model is incentivized to both think well \textit{and} accurately assess its own thinking quality, improving calibration and enabling self-correction.
+This creates a meta-cognitive learning signal: the model is incentivized to both think well \textit{and} accurately assess its own thinking quality, improving calibration and enabling self-correction. This approach is related to internal consistency~\citep{liang2024internal_consistency, wang2023self} but differs in that the self-ratings are generated endogenously and directly rewarded. Recent surveys~\citep{liu2025uncertainty_survey, wang2025math_reasoning_survey} highlight the importance of calibration in LLM reasoning.
 
 \subsection{Group Relative Policy Optimization (GRPO)}
 
-We implement CoR using GRPO, which optimizes policies by comparing candidates within groups rather than requiring absolute reward values.
+We implement CoR using GRPO~\citep{shao2024deepseekmath}, which optimizes policies by comparing candidates within groups rather than requiring absolute reward values. Recent extensions include scaffolded GRPO for enhanced reasoning~\citep{zhang2025scafgrpo} and training-free variants~\citep{cai2025trainingfree_grpo}. Process reward-guided tree search~\citep{park2025tree_search} further extends the paradigm for complex reasoning tasks.
 
 \paragraph{Algorithm} For each input $x$:
 \begin{enumerate}
@@ -294,9 +317,9 @@ where $r_i = \frac{\pi_\theta(c^{(i)} \mid x)}{\pi_{\theta_{\text{old}}}(c^{(i)}
 
 Under bounded rewards and appropriate regularization, GRPO with CoR yields monotone improvement. The endogenous self-evaluation mechanism improves calibration over time (see \autoref{sec:theory} for formal analysis).
 
-\subsection{Dual-Coupled Evolutionary Dynamics}
+\subsection{The Virtuous Cycle: Better Thinking $\leftrightarrow$ Better Rewards}
 
-A key insight of our framework is the \textit{dual-coupled evolutionary logic} between CoR (reward signal) and GRPO (policy optimization). Let $\mathbf{r}_t = (R_{\text{ext}}, R_{\text{int}}, R_{\text{improve}}, R_{\text{converge}})_t$ be the reward vector and $\theta_t$ be the policy parameters at iteration $t$. The coupled dynamics are:
+A key insight of our framework is the \textit{dual-coupled evolutionary dynamics} between CoR (reward signal) and GRPO (policy optimization). Let $\mathbf{r}_t = (R_{\text{ext}}, R_{\text{int}}, R_{\text{improve}}, R_{\text{converge}})_t$ be the reward vector and $\theta_t$ be the policy parameters at iteration $t$. The coupled dynamics are:
 \begin{align}
 \theta_{t+1} &= \theta_t + \alpha \nabla_\theta J(\theta_t; \mathbf{r}_t) \quad \text{(GRPO update)} \\
 \mathbf{r}_{t+1} &= \mathcal{R}(\pi_{\theta_{t+1}}) \quad \text{(CoR evaluation)}
@@ -354,6 +377,12 @@ Bespoke-32B & 17K & \textbf{63.3} & 93.0 & 58.1 \\
 \end{tabular}}
 \end{table}
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth]{figures/cor_efficiency.pdf}
+\caption{\textbf{Sample efficiency comparison.} CoR achieves competitive performance with only 1K training samples---800$\times$ fewer than r1-distill. The dashed line shows o1-preview performance.}
+\label{fig:efficiency}
+\end{figure}
 
 % \begin{table}[htbp]
 % \centering
@@ -396,7 +425,7 @@ Bespoke-32B & 17K & \textbf{63.3} & 93.0 & 58.1 \\
 \subsection{Performance}
 
 
-\paragraph{Sample-efficiency} In \autoref{fig:s1k-bar} (right) and \autoref{tab:perf} we compare \model{} with other models. We find that \model{} is the most sample-efficient open data reasoning model. It performs significantly better than our base model (Qwen2.5-32B-Instruct) despite just training it on an additional 1,000 samples. The concurrently released r1-32B shows stronger performance than \model{} while also only using SFT~\citep{r1}. However, it is trained on 800 $\times$ more reasoning samples. It is an open question whether one can achieve their performance with just 1,000 samples. Finally, our model nearly matches Gemini 2.0 Thinking on AIME24. As the data for \model{} is distilled from Gemini 2.0, this shows our distillation procedure was likely effective. 
+\paragraph{Sample-efficiency} In \autoref{fig:efficiency} and \autoref{tab:perf} we compare \model{} with other models. We find that \model{} is the most sample-efficient open data reasoning model. It performs significantly better than our base model (Qwen2.5-32B-Instruct) despite just training it on an additional 1,000 samples. The concurrently released r1-32B shows stronger performance than \model{} while also only using SFT~\citep{r1}. However, it is trained on 800 $\times$ more reasoning samples. It is an open question whether one can achieve their performance with just 1,000 samples. Finally, our model nearly matches Gemini 2.0 Thinking on AIME24. As the data for \model{} is distilled from Gemini 2.0, this shows our distillation procedure was likely effective. 
 
 \begin{figure*}[p]
 \footnotesize
@@ -619,6 +648,20 @@ In \autoref{sec:data} we outlined our three guiding principles in curating \data
 
 
 
+
+\subsection{CoR Reward Components}
+\label{sec:corabl}
+
+We ablate the contribution of each CoR reward component to understand their individual and combined effects on model performance (\autoref{fig:ablation}).
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth]{figures/cor_ablation.pdf}
+\caption{\textbf{CoR component ablation.} Removing intrinsic rewards ($R_{\text{int}}$) or self-rating calibration both degrade performance, demonstrating the importance of each component. The full CoR reward achieves the best results across all benchmarks.}
+\label{fig:ablation}
+\end{figure}
+
+\textbf{SFT only}: Without any CoR-GRPO training, the model achieves baseline performance. \textbf{w/o $R_{\text{int}}$}: Removing the intrinsic reward component (keeping only $R_{\text{ext}}$) reduces performance by 4.4\% on AIME24, showing that dense process rewards significantly improve reasoning. \textbf{w/o Self-Rating}: Removing the self-rating calibration term from $R_{\text{int}}$ reduces the metacognitive learning signal, leading to a 3.2\% drop. \textbf{CoR (full)}: The complete four-component reward achieves the best performance, validating the synergistic design.
 
 \FloatBarrier
 
@@ -852,14 +895,26 @@ J_{\text{total}}(\theta) = J(\theta) - \eta \mathcal{L}_{\text{consistency}}
 \end{equation}
 where $\eta \geq 0$ is a regularization coefficient.
 
-\section{Discussion and related work}
+\section{Discussion and Related Work}
 \label{sec:disc}
 
-\subsection{Sample-efficient reasoning}
+\subsection{Why Does CoR Work So Well with So Little Data?}
 
-\paragraph{Models} There are a number of concurrent efforts to build models that replicate the performance of o1~\citep{o1}. For example, DeepSeek-r1 and k1.5~\citep{r1, k1.5} are built with reinforcement learning methods, while others rely on SFT using tens of thousands of distilled examples~\citep{sky_t1,xu2025redstardoesscalinglongcot, bespoke_stratos}. We show that GRPO~\citep{shao2024deepseekmath} with CoR on only 1,000 examples suffices to build a competitive reasoning model matching o1-preview and produces a model that lies on the pareto frontier (\autoref{fig:s1k-bar}). Our key innovations are: (1) \textit{endogenous self-evaluation}, where models generate and are rewarded for accurate self-ratings during reasoning; (2) \textit{multi-component reward decomposition} into external, intrinsic, improvement, and convergence rewards; and (3) \textit{dual-coupled evolutionary dynamics} between CoR and GRPO with theoretical convergence guarantees. Why does GRPO with CoR on just 1,000 samples lead to such performance gains? First, the model is already exposed to large amounts of reasoning data during pretraining. Second, CoR provides dense intrinsic rewards along the reasoning chain, similar to intrinsic motivation approaches in RL~\citep{pathak2017curiosity, oudeyer2007intrinsic}, but applied to language model reasoning. Third, the improvement and convergence rewards enable iterative self-refinement, teaching the model to ``think more to think better.'' Fourth, the endogenous reward mechanism creates meta-cognitive learning signals~\citep{kadavath2022language, xiong2024can} that improve both thinking quality and calibration~\citep{guo2017calibration}. This is similar to the "Superficial Alignment Hypothesis" presented in LIMA~\citep{zhou2023lima}, but extended to reasoning tasks with multi-dimensional reward signals and formal convergence analysis.
+A natural question is: why does GRPO with CoR on just 1,000 samples lead to such striking performance gains? We hypothesize four complementary factors:
 
-\paragraph{Reward design and process supervision} Our work is related to the growing literature on reward design for language models. Process reward models~\citep{lightman2023letsverifystepstep, uesato2022solving, luo2024improve} provide step-level feedback rather than outcome-only rewards, similar to our intrinsic rewards. Math-Shepherd~\citep{wang2024mathshepherd} automatically verifies reasoning steps without human annotations. Fine-grained feedback~\citep{wu2024finegrained} decomposes rewards into multiple dimensions, which we extend with endogenous self-evaluation. Our potential-based intrinsic reward formulation is grounded in classic reward shaping theory~\citep{ng1999policy}. Self-correction approaches~\citep{madaan2023selfrefine, shinn2023reflexion} enable iterative refinement, though recent work questions whether LLMs can self-correct reasoning without external feedback~\citep{huang2023large}. Our endogenous self-evaluation addresses this by training models to generate accurate self-ratings as part of the reward signal.
+\textbf{(1) Dense rewards amplify learning.} Unlike sparse outcome-based rewards that provide a single bit of feedback per sample, CoR evaluates multiple dimensions of reasoning quality at each step. This effectively multiplies the training signal, extracting more learning from each example---similar to intrinsic motivation approaches in RL~\citep{pathak2017curiosity, oudeyer2007intrinsic}, but applied to language model reasoning.
+
+\textbf{(2) Metacognition enables self-correction.} The endogenous self-evaluation mechanism creates meta-cognitive learning signals~\citep{kadavath2022language, xiong2024can} that teach the model to recognize its own reasoning quality. A model that \textit{knows} when it's uncertain can revisit and refine; a model that's blindly confident cannot. This improves both thinking quality and calibration~\citep{guo2017calibration, steyvers2024calibration_gap, geng2024calibration_survey}.
+
+\textbf{(3) The base model already knows a lot.} Qwen2.5-32B-Instruct has been exposed to massive amounts of reasoning data during pretraining. CoR doesn't teach reasoning from scratch---it teaches the model to \textit{use its existing knowledge more effectively} through better self-monitoring.
+
+\textbf{(4) Quality over quantity in data.} Our results echo the ``Superficial Alignment Hypothesis'' from LIMA~\citep{zhou2023lima}: carefully curated data can be far more effective than large-scale noisy data. CoR extends this insight to reasoning tasks with multi-dimensional reward signals.
+
+\subsection{Related Work}
+
+\paragraph{Reasoning models} There are numerous concurrent efforts to replicate o1~\citep{o1} performance. DeepSeek-R1 and k1.5~\citep{r1, k1.5} use reinforcement learning~\citep{guo2025deepseek_r1_nature}, with recent work examining the faithfulness of these models~\citep{chua2025deepseek_faithful}. Others rely on SFT with distilled examples~\citep{sky_t1, xu2025redstardoesscalinglongcot, bespoke_stratos}. Surveys~\citep{zhang2025deepseek_r1_survey, xu2025large_reasoning_survey, wang2025trustworthy_survey} provide systematic analyses. Our work differs by focusing on \textit{how} the model reasons (via endogenous self-evaluation) rather than just scaling data or compute.
+
+\paragraph{Reward design and process supervision} Our work is related to the growing literature on reward design for language models. Process reward models (PRMs)~\citep{lightman2023letsverifystepstep, uesato2022solving, luo2024improve} provide step-level feedback rather than outcome-only rewards, similar to our intrinsic rewards. Recent surveys~\citep{zheng2025prm_survey, zhang2025prm} systematically analyze the development and challenges of PRMs, noting that step-level rewards significantly outperform outcome-only supervision, though~\citet{ma2025stepreward} reveal counterintuitive findings about what step-level rewards actually capture. Math-Shepherd~\citep{wang2024mathshepherd} automatically verifies reasoning steps without human annotations, while hierarchical reward models~\citep{wang2025hierarchical_reward} extend this to multi-level reasoning. Fine-grained feedback~\citep{wu2024finegrained} decomposes rewards into multiple dimensions, which we extend with endogenous self-evaluation. Reward shaping approaches~\citep{fu2025reward_shaping} address reward hacking in RLHF, and our potential-based intrinsic reward formulation is grounded in classic reward shaping theory~\citep{ng1999policy}. Self-correction approaches~\citep{madaan2023selfrefine, shinn2023reflexion, gao2024selfcorrection} enable iterative refinement, with recent work exploring self-rewarding correction~\citep{xiong2025selfrewarding} and self-exploration with fine-grained rewards~\citep{hwang2024selfexplore}. Though some work questions whether LLMs can self-correct reasoning without external feedback~\citep{huang2023large, hong2024self_verification}, our endogenous self-evaluation addresses this by training models to generate accurate self-ratings as part of the reward signal.
 
 \paragraph{Benchmarks and methods} To evaluate and push the limits of these models, increasingly challenging benchmarks have been introduced, such as Olympiad-level science competitions~\cite{he2024olympiadbenchchallengingbenchmarkpromoting,jain2024livecodebenchholisticcontaminationfree,zhong2023agievalhumancentricbenchmarkevaluating} and others~\citep{srivastava2023imitation,glazer2024frontiermathbenchmarkevaluatingadvanced,su2024brightrealisticchallengingbenchmark,kim2024llmasaninterviewerstatictestingdynamic,phan2025humanity}. To enhance models' performance on reasoning-related tasks, researchers have pursued several strategies: Prior works have explored continuing training language models on specialized corpora related to mathematics and science~\citep{azerbayev2023llemma, yang2024syntheticcontinuedpretraining}, sometimes even synthetically generated data~\citep{yu2023metamath}. Others have developed training methodologies specifically aimed at reasoning performance~\citep{zelikman2022starbootstrappingreasoningreasoning,zelikman2024quietstarlanguagemodelsteach,luo2025wizardmathempoweringmathematicalreasoning,yuan2025agentrtraininglanguagemodel,wu2024thinkingllmsgeneralinstruction}. Another significant line of work focuses on prompting-based methods to elicit and improve reasoning abilities, including methods like Chain-of-Thought prompting \citep{wei2023chainofthoughtpromptingelicitsreasoning,yao2024tree,yao2023reactsynergizingreasoningacting,bi2024program,fu2022complexity, zhang2023cumulative,xiang20252reasoningllmslearning,hu2024visual, diao2024activepromptingchainofthoughtlarge}. These combined efforts aim to advance the reasoning ability of language models, enabling them to handle more complex and abstract tasks effectively.
 
@@ -1100,6 +1155,13 @@ We filter all samples by checking for an 8-gram overlap between the selected exa
 \newpage
 \clearpage
 \section{Training details}
+
+\begin{figure*}[htbp]
+\centering
+\includegraphics[width=\textwidth]{figures/cor_pipeline.pdf}
+\caption{\textbf{CoR training pipeline.} Phase 1: Data curation builds CoR-1K from s1-1K with self-rating augmentation. Phase 2: SFT teaches the model the reasoning format. Phase 3: CoR-GRPO training optimizes with four-component rewards. Phase 4: Final model achieves competitive performance with 800$\times$ sample efficiency.}
+\label{fig:pipeline}
+\end{figure*}
 
 We take a model that has already been pretrained and instruction tuned and further finetune it for reasoning. Specifically, we use Qwen2.5-32B-Instruct~\citep{qwen2024qwen25technicalreport}, which on math tasks generally matches or outperforms the larger Qwen2.5-72B-Instruct~\citep{qwen2024qwen25technicalreport} or other open models~\citep{dubey2024llama3herdmodels,groeneveld2024olmo,muennighoff2024olmoeopenmixtureofexpertslanguage}. We use token delimiters to separate the thinking stage from the answering stage. We enclose the thinking stage with \verb@<|im_start|>think@ and \verb@<|im_start|>answer@; both preceded and followed by a newline. Samples from our dataset are in \autoref{sec:samples}. We use basic fine-tuning hyperparameters: we train for 5 epochs with a batch size of 16 for a total of 315 gradient steps. We train in bfloat16 precision with a learning rate of $1e-5$ warmed up linearly for 5\% (16 steps) and then decayed to 0 over the rest of training (299 steps) following a cosine schedule. We use the AdamW optimizer~\citep{loshchilov2019decoupled} with $\beta_1=0.9, \beta_2=0.95$ and weight decay of $1e-4$. We do not compute loss on questions, only on reasoning traces and solutions. We ensure the sequence length is large enough to avoid cutting off any samples; a setting we ablate in \autoref{sec:trainabl}. The training takes just 26 minutes on 16 NVIDIA H100 GPUs.
 \label{sec:details-training}

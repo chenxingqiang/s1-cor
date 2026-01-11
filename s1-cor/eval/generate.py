@@ -129,7 +129,7 @@ def run_evaluation(args):
     tokenizer = AutoTokenizer.from_pretrained(
         args.model_path,
         trust_remote_code=True,
-    )
+        )
     
     # Setup sampling params
     stop_token_ids = tokenizer("<|im_end|>")["input_ids"]

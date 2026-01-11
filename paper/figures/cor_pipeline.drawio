@@ -1,0 +1,173 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.3.0 Chrome/140.0.7339.249 Electron/38.7.2 Safari/537.36" version="29.3.0">
+  <diagram name="Training Pipeline" id="pipeline">
+    <mxGraphModel dx="941" dy="805" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="500" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;fontColor=#1F2937;" value="CoR Training Pipeline" vertex="1">
+          <mxGeometry height="25" width="300" x="400" y="15" as="geometry" />
+        </mxCell>
+        <mxCell id="phase1_box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#10B981;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="140" width="180" x="40" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="phase1_header" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontStyle=1;fontColor=#065F46;" value="Phase 1: Data Curation" vertex="1">
+          <mxGeometry height="20" width="160" x="50" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="data_s1k" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#10B981;strokeWidth=1.5;fontSize=9;fontColor=#374151;" value="s1-1K Dataset" vertex="1">
+          <mxGeometry height="30" width="70" x="55" y="95" as="geometry" />
+        </mxCell>
+        <mxCell id="data_arrow" edge="1" parent="1" style="endArrow=classic;html=1;strokeColor=#10B981;strokeWidth=1.5;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="130" y="110" as="sourcePoint" />
+            <mxPoint x="145" y="110" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="data_llm" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#10B981;strokeWidth=1.5;fontSize=9;fontColor=#374151;" value="LLM Enhance" vertex="1">
+          <mxGeometry height="30" width="60" x="150" y="95" as="geometry" />
+        </mxCell>
+        <mxCell id="data_output" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#10B981;strokeWidth=2;fontSize=10;fontStyle=1;fontColor=#065F46;" value="CoR-1K" vertex="1">
+          <mxGeometry height="35" width="80" x="80" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="data_desc" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=8;fontColor=#6B7280;fontStyle=2;" value="+ Self-Ratings" vertex="1">
+          <mxGeometry height="20" width="90" x="75" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow_12" edge="1" parent="1" style="endArrow=classic;html=1;strokeColor=#6B7280;strokeWidth=2;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="230" y="130" as="sourcePoint" />
+            <mxPoint x="270" y="130" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="phase2_box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EEF2FF;strokeColor=#6366F1;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="140" width="180" x="280" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="phase2_header" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontStyle=1;fontColor=#4338CA;" value="Phase 2: SFT Training" vertex="1">
+          <mxGeometry height="20" width="160" x="290" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="sft_base" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#6366F1;strokeWidth=1.5;fontSize=9;fontColor=#374151;" value="Qwen2.5-32B" vertex="1">
+          <mxGeometry height="30" width="70" x="295" y="95" as="geometry" />
+        </mxCell>
+        <mxCell id="sft_arrow" edge="1" parent="1" style="endArrow=classic;html=1;strokeColor=#6366F1;strokeWidth=1.5;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="370" y="110" as="sourcePoint" />
+            <mxPoint x="385" y="110" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sft_train" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#6366F1;strokeWidth=1.5;fontSize=9;fontColor=#374151;" value="Fine-tune" vertex="1">
+          <mxGeometry height="30" width="55" x="390" y="95" as="geometry" />
+        </mxCell>
+        <mxCell id="sft_output" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C7D2FE;strokeColor=#6366F1;strokeWidth=2;fontSize=10;fontStyle=1;fontColor=#4338CA;" value="SFT Model" vertex="1">
+          <mxGeometry height="35" width="90" x="325" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="sft_desc" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=8;fontColor=#6B7280;fontStyle=2;" value="Learns format" vertex="1">
+          <mxGeometry height="20" width="100" x="320" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow_23" edge="1" parent="1" style="endArrow=classic;html=1;strokeColor=#6B7280;strokeWidth=2;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="470" y="130" as="sourcePoint" />
+            <mxPoint x="510" y="130" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="phase3_box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#F59E0B;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="140" width="280" x="520" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="phase3_header" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontStyle=1;fontColor=#D97706;" value="Phase 3: CoR-GRPO Training" vertex="1">
+          <mxGeometry height="20" width="260" x="530" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="grpo_policy" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#F59E0B;strokeWidth=1.5;fontSize=9;fontColor=#374151;" value="Policy π" vertex="1">
+          <mxGeometry height="30" width="55" x="540" y="95" as="geometry" />
+        </mxCell>
+        <mxCell id="grpo_arrow1" edge="1" parent="1" style="endArrow=classic;html=1;strokeColor=#F59E0B;strokeWidth=1.5;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="600" y="110" as="sourcePoint" />
+            <mxPoint x="620" y="110" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="grpo_gen" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#F59E0B;strokeWidth=1.5;fontSize=9;fontColor=#374151;" value="Generate" vertex="1">
+          <mxGeometry height="30" width="55" x="625" y="95" as="geometry" />
+        </mxCell>
+        <mxCell id="grpo_arrow2" edge="1" parent="1" style="endArrow=classic;html=1;strokeColor=#F59E0B;strokeWidth=1.5;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="685" y="110" as="sourcePoint" />
+            <mxPoint x="705" y="110" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="grpo_reward" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#F59E0B;strokeWidth=1.5;fontSize=9;fontStyle=1;fontColor=#374151;" value="R(c)" vertex="1">
+          <mxGeometry height="30" width="70" x="710" y="95" as="geometry" />
+        </mxCell>
+        <mxCell id="reward_detail" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=7;fontColor=#6B7280;fontStyle=2;" value="ext + int + improve + converge" vertex="1">
+          <mxGeometry height="15" width="90" x="700" y="127" as="geometry" />
+        </mxCell>
+        <mxCell id="update_arrow" edge="1" parent="1" style="endArrow=classic;html=1;strokeColor=#DC2626;strokeWidth=2;curved=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="700" y="175" />
+              <mxPoint x="620" y="175" />
+            </Array>
+            <mxPoint x="730" y="150" as="sourcePoint" />
+            <mxPoint x="570" y="140" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="update_label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;fontStyle=1;fontColor=#DC2626;" value="Update θ" vertex="1">
+          <mxGeometry height="20" width="60" x="630" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow_34" edge="1" parent="1" style="endArrow=classic;html=1;strokeColor=#6B7280;strokeWidth=2;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="810" y="130" as="sourcePoint" />
+            <mxPoint x="850" y="130" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="phase4_box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#3B82F6;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="140" width="180" x="860" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="phase4_header" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontStyle=1;fontColor=#1E40AF;" value="Phase 4: Final Model" vertex="1">
+          <mxGeometry height="20" width="160" x="870" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="output_model" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#3B82F6;strokeColor=#1E40AF;strokeWidth=2;fontSize=12;fontStyle=1;fontColor=#FFFFFF;" value="CoR-32B" vertex="1">
+          <mxGeometry height="40" width="100" x="900" y="95" as="geometry" />
+        </mxCell>
+        <mxCell id="output_feat1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=8;fontColor=#374151;" value="✓ Dense reasoning rewards" vertex="1">
+          <mxGeometry height="15" width="150" x="880" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="output_feat2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=8;fontColor=#374151;" value="✓ Calibrated self-assessment" vertex="1">
+          <mxGeometry height="15" width="150" x="880" y="155" as="geometry" />
+        </mxCell>
+        <mxCell id="output_feat3" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=8;fontColor=#374151;" value="✓ Iterative self-improvement" vertex="1">
+          <mxGeometry height="15" width="150" x="880" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="hyper_box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F9FAFB;strokeColor=#E5E7EB;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="45" width="1000" x="40" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="hyper_title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontStyle=1;fontColor=#374151;" value="Key Hyperparameters:" vertex="1">
+          <mxGeometry height="25" width="130" x="50" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="hyper_lambda" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#3B82F6;strokeWidth=1;fontSize=9;fontColor=#1E40AF;" value="λ = 1.0" vertex="1">
+          <mxGeometry height="22" width="60" x="185" y="232" as="geometry" />
+        </mxCell>
+        <mxCell id="hyper_mu" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#F59E0B;strokeWidth=1;fontSize=9;fontColor=#92400E;" value="μ = 0.5" vertex="1">
+          <mxGeometry height="22" width="60" x="255" y="232" as="geometry" />
+        </mxCell>
+        <mxCell id="hyper_nu" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDE9FE;strokeColor=#8B5CF6;strokeWidth=1;fontSize=9;fontColor=#6D28D9;" value="ν = 0.1" vertex="1">
+          <mxGeometry height="22" width="60" x="325" y="232" as="geometry" />
+        </mxCell>
+        <mxCell id="hyper_n" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3F4F6;strokeColor=#6B7280;strokeWidth=1;fontSize=9;fontColor=#374151;" value="N = 8 groups" vertex="1">
+          <mxGeometry height="22" width="75" x="395" y="232" as="geometry" />
+        </mxCell>
+        <mxCell id="hyper_k" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3F4F6;strokeColor=#6B7280;strokeWidth=1;fontSize=9;fontColor=#374151;" value="K = 3 rounds" vertex="1">
+          <mxGeometry height="22" width="75" x="480" y="232" as="geometry" />
+        </mxCell>
+        <mxCell id="hyper_beta" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3F4F6;strokeColor=#6B7280;strokeWidth=1;fontSize=9;fontColor=#374151;" value="β = 0.01" vertex="1">
+          <mxGeometry height="22" width="60" x="565" y="232" as="geometry" />
+        </mxCell>
+        <mxCell id="hyper_lr" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3F4F6;strokeColor=#6B7280;strokeWidth=1;fontSize=9;fontColor=#374151;" value="lr = 5e-7" vertex="1">
+          <mxGeometry height="22" width="60" x="635" y="232" as="geometry" />
+        </mxCell>
+        <mxCell id="stat_box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#10B981;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="32" width="310" x="720" y="227" as="geometry" />
+        </mxCell>
+        <mxCell id="stat_text" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;fontStyle=1;fontColor=#065F46;" value="1,000 samples → 800x sample efficiency vs r1-distill" vertex="1">
+          <mxGeometry height="22" width="300" x="725" y="232" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,190 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.3.0 Chrome/140.0.7339.249 Electron/38.7.2 Safari/537.36" version="29.3.0">
+  <diagram name="CoR Framework" id="cor-main">
+    <mxGraphModel dx="1086" dy="929" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="600" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontStyle=1;fontColor=#1F2937;" value="Chain of Reward (CoR) Framework" vertex="1">
+          <mxGeometry height="30" width="400" x="358" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="section_a_bg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3F4F6;strokeColor=#E5E7EB;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="250" width="480" x="50" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="section_a_title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1;fontColor=#374151;" value="(a) Dense Rewards Along Reasoning Chain" vertex="1">
+          <mxGeometry height="20" width="300" x="75" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="trad_label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#6B7280;" value="Traditional RL:" vertex="1">
+          <mxGeometry height="20" width="80" x="60" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="trad_input" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#9CA3AF;strokeWidth=1.5;fontSize=10;fontColor=#6B7280;" value="Input" vertex="1">
+          <mxGeometry height="35" width="70" x="60" y="135" as="geometry" />
+        </mxCell>
+        <mxCell id="trad_arrow1" edge="1" parent="1" style="endArrow=classic;html=1;strokeColor=#9CA3AF;strokeWidth=1.5;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="135" y="152" as="sourcePoint" />
+            <mxPoint x="155" y="152" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="trad_think" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#9CA3AF;strokeWidth=1.5;fontSize=10;fontColor=#6B7280;dashed=1;" value="Thinking Chain" vertex="1">
+          <mxGeometry height="35" width="200" x="160" y="135" as="geometry" />
+        </mxCell>
+        <mxCell id="trad_arrow2" edge="1" parent="1" style="endArrow=classic;html=1;strokeColor=#9CA3AF;strokeWidth=1.5;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="365" y="152" as="sourcePoint" />
+            <mxPoint x="385" y="152" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="trad_answer" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#9CA3AF;strokeWidth=1.5;fontSize=10;fontColor=#6B7280;" value="Answer" vertex="1">
+          <mxGeometry height="35" width="70" x="390" y="135" as="geometry" />
+        </mxCell>
+        <mxCell id="trad_arrow3" edge="1" parent="1" style="endArrow=classic;html=1;strokeColor=#9CA3AF;strokeWidth=1.5;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="465" y="152" as="sourcePoint" />
+            <mxPoint x="485" y="152" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="trad_reward" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FEE2E2;strokeColor=#EF4444;strokeWidth=2;fontSize=11;fontStyle=1;fontColor=#EF4444;" value="R" vertex="1">
+          <mxGeometry height="30" width="30" x="490" y="137" as="geometry" />
+        </mxCell>
+        <mxCell id="trad_sparse" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=8;fontColor=#EF4444;fontStyle=2;" value="Sparse" vertex="1">
+          <mxGeometry height="15" width="45" x="485" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="cor_label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontStyle=1;fontColor=#3B82F6;" value="Chain of Reward:" vertex="1">
+          <mxGeometry height="20" width="100" x="60" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="cor_input" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#3B82F6;strokeWidth=2;fontSize=10;fontStyle=1;fontColor=#1E40AF;" value="Input" vertex="1">
+          <mxGeometry height="35" width="60" x="60" y="225" as="geometry" />
+        </mxCell>
+        <mxCell id="cor_arrow1" edge="1" parent="1" style="endArrow=classic;html=1;strokeColor=#3B82F6;strokeWidth=2;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="125" y="242" as="sourcePoint" />
+            <mxPoint x="140" y="242" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cor_step1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#3B82F6;strokeWidth=2;fontSize=10;fontColor=#1E40AF;" value="Step 1" vertex="1">
+          <mxGeometry height="35" width="60" x="145" y="225" as="geometry" />
+        </mxCell>
+        <mxCell id="cor_r1" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#F59E0B;strokeColor=#FFFFFF;strokeWidth=2;fontSize=9;fontStyle=1;fontColor=#FFFFFF;" value="r₁" vertex="1">
+          <mxGeometry height="25" width="25" x="163" y="195" as="geometry" />
+        </mxCell>
+        <mxCell id="cor_arrow2" edge="1" parent="1" style="endArrow=classic;html=1;strokeColor=#3B82F6;strokeWidth=2;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="210" y="242" as="sourcePoint" />
+            <mxPoint x="225" y="242" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cor_step2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#3B82F6;strokeWidth=2;fontSize=10;fontColor=#1E40AF;" value="Step 2" vertex="1">
+          <mxGeometry height="35" width="60" x="230" y="225" as="geometry" />
+        </mxCell>
+        <mxCell id="cor_r2" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#F59E0B;strokeColor=#FFFFFF;strokeWidth=2;fontSize=9;fontStyle=1;fontColor=#FFFFFF;" value="r₂" vertex="1">
+          <mxGeometry height="25" width="25" x="248" y="195" as="geometry" />
+        </mxCell>
+        <mxCell id="cor_arrow3" edge="1" parent="1" style="endArrow=classic;html=1;strokeColor=#3B82F6;strokeWidth=2;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="295" y="242" as="sourcePoint" />
+            <mxPoint x="310" y="242" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cor_step3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#3B82F6;strokeWidth=2;fontSize=10;fontColor=#1E40AF;" value="Step 3" vertex="1">
+          <mxGeometry height="35" width="60" x="315" y="225" as="geometry" />
+        </mxCell>
+        <mxCell id="cor_r3" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#F59E0B;strokeColor=#FFFFFF;strokeWidth=2;fontSize=9;fontStyle=1;fontColor=#FFFFFF;" value="r₃" vertex="1">
+          <mxGeometry height="25" width="25" x="333" y="195" as="geometry" />
+        </mxCell>
+        <mxCell id="cor_arrow4" edge="1" parent="1" style="endArrow=classic;html=1;strokeColor=#3B82F6;strokeWidth=2;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="380" y="242" as="sourcePoint" />
+            <mxPoint x="395" y="242" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cor_answer" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1FAE5;strokeColor=#10B981;strokeWidth=2;fontSize=10;fontStyle=1;fontColor=#065F46;" value="Answer" vertex="1">
+          <mxGeometry height="35" width="60" x="400" y="225" as="geometry" />
+        </mxCell>
+        <mxCell id="cor_rfinal" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#10B981;strokeColor=#FFFFFF;strokeWidth=2;fontSize=10;fontStyle=1;fontColor=#FFFFFF;" value="R" vertex="1">
+          <mxGeometry height="25" width="25" x="418" y="195" as="geometry" />
+        </mxCell>
+        <mxCell id="dense_label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;fontStyle=1;fontColor=#F59E0B;" value="Dense Intrinsic Rewards" vertex="1">
+          <mxGeometry height="15" width="120" x="200" y="175" as="geometry" />
+        </mxCell>
+        <mxCell id="selfrating_box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDE9FE;strokeColor=#8B5CF6;strokeWidth=1.5;dashed=1;dashPattern=5 3;" value="" vertex="1">
+          <mxGeometry height="35" width="315" x="145" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="selfrating_text" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;fontStyle=2;fontColor=#7C3AED;" value="[Self-Rating: Consistency=8, Completeness=9, Accuracy=7, Clarity=8]" vertex="1">
+          <mxGeometry height="25" width="305" x="150" y="275" as="geometry" />
+        </mxCell>
+        <mxCell id="section_b_bg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3F4F6;strokeColor=#E5E7EB;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="252.5" width="470" x="570" y="67.5" as="geometry" />
+        </mxCell>
+        <mxCell id="gbmWPWys85plncBbc21x-1" connectable="0" parent="1" style="group" value="" vertex="1">
+          <mxGeometry height="225" width="605" x="500" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="equation_box" parent="gbmWPWys85plncBbc21x-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#3B82F6;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="35" width="390" x="110" y="25" as="geometry" />
+        </mxCell>
+        <mxCell id="equation_text" parent="gbmWPWys85plncBbc21x-1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1;fontColor=#1F2937;" value="R(c) = R_ext + λ·R_int + μ·R_improve + ν·R_converge" vertex="1">
+          <mxGeometry height="35" width="340" x="120" y="25" as="geometry" />
+        </mxCell>
+        <mxCell id="rext_card" parent="gbmWPWys85plncBbc21x-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#10B981;strokeWidth=2.5;" value="" vertex="1">
+          <mxGeometry height="80" width="84.4186046511628" x="105.79922480620155" y="75" as="geometry" />
+        </mxCell>
+        <mxCell id="rext_formula" parent="gbmWPWys85plncBbc21x-1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=1;fontColor=#10B981;" value="R_ext" vertex="1">
+          <mxGeometry height="25" width="136.0077519379845" x="79.99968992248063" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="rext_name" parent="gbmWPWys85plncBbc21x-1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontStyle=1;fontColor=#374151;" value="External" vertex="1">
+          <mxGeometry height="20" width="136.0077519379845" x="79.99968992248063" y="102.5" as="geometry" />
+        </mxCell>
+        <mxCell id="rext_desc" parent="gbmWPWys85plncBbc21x-1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=8;fontColor=#6B7280;" value="Answer correctness&#xa;(sparse, binary)" vertex="1">
+          <mxGeometry height="25" width="136.0077519379845" x="79.99968992248063" y="122.5" as="geometry" />
+        </mxCell>
+        <mxCell id="rint_card" parent="gbmWPWys85plncBbc21x-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#3B82F6;strokeWidth=2.5;" value="" vertex="1">
+          <mxGeometry height="80" width="84.4186046511628" x="205.7967441860465" y="75" as="geometry" />
+        </mxCell>
+        <mxCell id="rint_formula" parent="gbmWPWys85plncBbc21x-1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=1;fontColor=#3B82F6;" value="R_int" vertex="1">
+          <mxGeometry height="25" width="136.0077519379845" x="179.9972093023256" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="rint_name" parent="gbmWPWys85plncBbc21x-1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontStyle=1;fontColor=#374151;" value="Intrinsic" vertex="1">
+          <mxGeometry height="20" width="136.0077519379845" x="179.9972093023256" y="105" as="geometry" />
+        </mxCell>
+        <mxCell id="rint_desc" parent="gbmWPWys85plncBbc21x-1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=8;fontColor=#6B7280;" value="5D quality scores&#xa;+ self-rating calibration" vertex="1">
+          <mxGeometry height="25" width="136.0077519379845" x="179.9972093023256" y="122.5" as="geometry" />
+        </mxCell>
+        <mxCell id="rimp_card" parent="gbmWPWys85plncBbc21x-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#F59E0B;strokeWidth=2.5;" value="" vertex="1">
+          <mxGeometry height="80" width="84.4186046511628" x="304.8442635658915" y="75" as="geometry" />
+        </mxCell>
+        <mxCell id="rimp_formula" parent="gbmWPWys85plncBbc21x-1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=1;fontColor=#F59E0B;" value="R_improve" vertex="1">
+          <mxGeometry height="25" width="136.0077519379845" x="279.04472868217056" y="77.5" as="geometry" />
+        </mxCell>
+        <mxCell id="rimp_name" parent="gbmWPWys85plncBbc21x-1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontStyle=1;fontColor=#374151;" value="Improvement" vertex="1">
+          <mxGeometry height="20" width="136.0077519379845" x="273.9947286821706" y="102.5" as="geometry" />
+        </mxCell>
+        <mxCell id="rimp_desc" parent="gbmWPWys85plncBbc21x-1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=8;fontColor=#6B7280;" value="Q(c_k+1) - Q(c_k)&#xa;iterative gain" vertex="1">
+          <mxGeometry height="25" width="136.0077519379845" x="279.04472868217056" y="122.5" as="geometry" />
+        </mxCell>
+        <mxCell id="rconv_card" parent="gbmWPWys85plncBbc21x-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;strokeWidth=2.5;" value="" vertex="1">
+          <mxGeometry height="80" width="90" x="410" y="75" as="geometry" />
+        </mxCell>
+        <mxCell id="rconv_formula" parent="gbmWPWys85plncBbc21x-1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=1;fontColor=#8B5CF6;" value="R_converge" vertex="1">
+          <mxGeometry height="25" width="136.0077519379845" x="386.9922480620155" y="77.5" as="geometry" />
+        </mxCell>
+        <mxCell id="rconv_name" parent="gbmWPWys85plncBbc21x-1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontStyle=1;fontColor=#374151;" value="Convergence" vertex="1">
+          <mxGeometry height="20" width="136.0077519379845" x="389.2622480620155" y="105" as="geometry" />
+        </mxCell>
+        <mxCell id="rconv_desc" parent="gbmWPWys85plncBbc21x-1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=8;fontColor=#6B7280;" value="Solution stability&#xa;across rounds" vertex="1">
+          <mxGeometry height="25" width="136.0077519379845" x="389.2622480620155" y="122.5" as="geometry" />
+        </mxCell>
+        <mxCell id="dynamics_box" parent="gbmWPWys85plncBbc21x-1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#3B82F6;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="55" width="393.95348837209303" x="107.86798449612402" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="dynamics_title" parent="gbmWPWys85plncBbc21x-1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontStyle=1;fontColor=#1E40AF;" value="Dual-Coupled Evolutionary Dynamics" vertex="1">
+          <mxGeometry height="20" width="586.2403100775193" x="-0.0003100775193800587" y="175" as="geometry" />
+        </mxCell>
+        <mxCell id="dynamics_flow" parent="gbmWPWys85plncBbc21x-1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#374151;" value="Better Policy  →  Higher-Quality Chains  →  Stronger Reward Signals  →  Better Policy  ⟳" vertex="1">
+          <mxGeometry height="25" width="586.2403100775193" x="11.72968992248062" y="195" as="geometry" />
+        </mxCell>
+        <mxCell id="section_b_title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1;fontColor=#374151;" value="(b) Four-Component Reward Decomposition" vertex="1">
+          <mxGeometry height="20" width="262.6356589147287" x="616.68" y="70" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

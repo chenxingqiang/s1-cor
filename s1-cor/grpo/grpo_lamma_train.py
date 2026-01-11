@@ -390,13 +390,13 @@ def cor_self_rating_reward_func(completions, **kwargs) -> List[float]:
             # Reward for having ratings, bonus for all 5 dimensions
             reward = 0.3
             if len(self_ratings) >= 5:
-                reward += 0.2
+            reward += 0.2
             # Penalize extreme ratings (all 10/10 or all 1/10)
             if self_ratings:
                 avg = sum(self_ratings.values()) / len(self_ratings)
                 if 0.3 <= avg <= 0.9:
                     reward += 0.1
-            rewards.append(reward)
+        rewards.append(reward)
         else:
             rewards.append(0.0)
     
@@ -512,7 +512,7 @@ def get_gsm8k_dataset(split: str = "train", use_cor_prompt: bool = True) -> Data
         
         return {
             'prompt': messages,
-            'answer': extract_hash_answer(x['answer'])
+        'answer': extract_hash_answer(x['answer'])
         }
     
     return data.map(format_example)
@@ -598,9 +598,9 @@ def main():
     print(f"Dataset size: {len(dataset)}")
     
     # Training configuration
-    from trl import GRPOConfig, GRPOTrainer
-    
-    training_args = GRPOConfig(
+from trl import GRPOConfig, GRPOTrainer
+
+training_args = GRPOConfig(
         use_vllm=True,
         learning_rate=5e-6,
         adam_beta1=0.9,
@@ -638,20 +638,20 @@ def main():
     
     # Create trainer with CoR rewards
     print("\nStarting CoR GRPO training...")
-    trainer = GRPOTrainer(
+trainer = GRPOTrainer(
         model=model,
         processing_class=tokenizer,
         reward_funcs=[
             cor_total_reward_func,      # Main CoR reward
             cor_self_rating_reward_func, # Bonus for self-ratings
-        ],
+    ],
         args=training_args,
         train_dataset=dataset,
-    )
+)
     
     # Train
-    trainer.train()
-    
+trainer.train()
+
     # Save model
     print("\nSaving model...")
     output_dir = "outputs/cor-grpo-llama-final"
@@ -663,19 +663,19 @@ def main():
     try:
         model.push_to_hub_merged(
             hub_model_id,
-            tokenizer,
+    tokenizer,
             save_method="merged_16bit",
             token=os.environ.get("HF_TOKEN"),
-        )
+)
         print(f"Model pushed to: https://huggingface.co/{hub_model_id}")
     except Exception as e:
         print(f"Failed to push to hub: {e}")
-    
+
     print("\nTraining complete!")
-    
+
     # Finish wandb
     try:
-        wandb.finish()
+wandb.finish()
     except:
         pass
 
