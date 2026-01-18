@@ -386,11 +386,12 @@ def train():
     logging.info(f"Loading model: {config.model_name}")
     
     model_kwargs = {}
-    if "70B" in config.model_name or "32B" in config.model_name:
+    if any(size in config.model_name for size in ["14B", "32B", "70B"]):
         model_kwargs = {
             "torch_dtype": torch.bfloat16,
-            "attn_implementation": "flash_attention_2",
+            "attn_implementation": "sdpa",  # Use SDPA for broader compatibility
             "use_cache": False,
+            "low_cpu_mem_usage": True,
         }
     
     model = AutoModelForCausalLM.from_pretrained(
