@@ -32,7 +32,6 @@ DATASET="xingqiang/s1K-cor-deepseek"
 BLOCK_SIZE=4096
 BATCH_SIZE=1
 GRAD_ACCUM=4
-NUM_GENERATIONS=4  # Reduced from 8 for memory
 EPOCHS=1
 LR=1e-6
 
@@ -54,7 +53,6 @@ python -m torch.distributed.run \
     --ref_model_name=$REF_MODEL \
     --train_file_path=$DATASET \
     --block_size=$BLOCK_SIZE \
-    --num_generations=$NUM_GENERATIONS \
     --lambda_intrinsic=$LAMBDA_INTRINSIC \
     --improvement_weight=$IMPROVEMENT_WEIGHT \
     --convergence_weight=$CONVERGENCE_WEIGHT \
