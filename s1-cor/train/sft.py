@@ -44,9 +44,6 @@ def train():
     parser = transformers.HfArgumentParser((TrainingConfig, trl.SFTConfig))
     config, args = parser.parse_args_into_dataclasses()
     
-    # Disable gradient checkpointing since we're using FSDP activation checkpointing
-    args.gradient_checkpointing = False
-    
     # Update args.fsdp_config with our custom config
     if hasattr(args, 'fsdp_config'):
         args.fsdp_config.update(config.custom_fsdp_config)
@@ -56,11 +53,19 @@ def train():
 
     # loading model
     kwargs = {}
-    if "70B" in config.model_name:
-        # Removed "low_cpu_mem_usage": True, for 70B, since by default we are in FSDP,
-        # it's more efficient to do  "cpu_ram_efficient_loading": true, in fsdp_config.json
-        kwargs = {"device_map": "auto", "torch_dtype": "auto",
-                  "attn_implementation": "flash_attention_2", "use_cache": False}
+    # Enable optimizations for large models (14B, 32B, 70B)
+    if any(size in config.model_name for size in ["14B", "32B", "70B"]):
+        # For distributed training, don't use device_map="auto"
+        # FSDP will handle device placement
+        kwargs = {
+            "torch_dtype": "auto",
+            "attn_implementation": "sdpa",  # Use SDPA instead of flash_attention_2
+            "use_cache": False,
+            "low_cpu_mem_usage": True,
+        }
+        # Enable gradient checkpointing for large models
+        args.gradient_checkpointing = True
+        config.custom_fsdp_config["activation_checkpointing"] = True
         model = transformers.AutoModelForCausalLM.from_pretrained(config.model_name, **kwargs)
     else:
         model = transformers.AutoModelForCausalLM.from_pretrained(config.model_name)
@@ -126,7 +131,7 @@ def train():
         eval_dataset=tokenized_dataset['test'] if 'test' in tokenized_dataset else tokenized_dataset['train'],
         args=args,
         data_collator=collator,
-        tokenizer=tokenizer,
+        processing_class=tokenizer,  # Use processing_class instead of tokenizer for newer TRL versions
     )
 
     trainer.train()
