@@ -398,14 +398,8 @@ def train():
         **model_kwargs
     )
     
-    # Load reference model (for KL penalty)
-    ref_model_name = config.ref_model_name or config.model_name
-    logging.info(f"Loading reference model: {ref_model_name}")
-    
-    ref_model = AutoModelForCausalLM.from_pretrained(
-        ref_model_name,
-        **model_kwargs
-    )
+    # Note: In newer TRL versions, ref_model is handled internally by GRPOTrainer
+    # via the ref_model_name in GRPOConfig or by creating a copy of the model
     
     # Load tokenizer
     tokenizer = AutoTokenizer.from_pretrained(config.model_name, use_fast=True)
@@ -432,7 +426,6 @@ def train():
     
     trainer = GRPOTrainer(
         model=model,
-        ref_model=ref_model,
         args=grpo_args,
         train_dataset=dataset,
         processing_class=tokenizer,
