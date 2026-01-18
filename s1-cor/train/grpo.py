@@ -93,7 +93,7 @@ class CoRTrainingConfig:
             os.environ['WANDB_ENTITY'] = self.wandb_entity
 
 
-def create_reward_fn(config: CoRTrainingConfig, enable_logging: bool = True):
+def create_reward_fn(config: CoRTrainingConfig, dataset: Dataset = None, enable_logging: bool = True):
     """Create reward function for GRPO trainer.
     
     Supports both standard CoR and self-reflection modes.
@@ -101,6 +101,7 @@ def create_reward_fn(config: CoRTrainingConfig, enable_logging: bool = True):
     
     Args:
         config: Training configuration
+        dataset: Training dataset with ground_truth field for external rewards
         enable_logging: Whether to enable detailed CoR logging
     """
     global _global_step
@@ -117,7 +118,19 @@ def create_reward_fn(config: CoRTrainingConfig, enable_logging: bool = True):
     calculator = RewardCalculator(reward_config)
     logger = get_training_logger(log_every_n=10, verbose=True) if enable_logging else None
     
-    def reward_fn(completions: List[str], **kwargs) -> List[float]:
+    # Build prompt-to-ground_truth mapping if dataset is provided
+    prompt_to_gt = {}
+    if dataset is not None:
+        for item in dataset:
+            prompt = item.get('prompt', '')
+            gt = item.get('ground_truth', '')
+            if prompt and gt:
+                # Use first 500 chars as key to handle variations
+                key = prompt[:500].strip()
+                prompt_to_gt[key] = gt
+        logging.info(f"Built prompt-to-ground_truth mapping with {len(prompt_to_gt)} entries")
+    
+    def reward_fn(completions: List[str], prompts: List[str] = None, **kwargs) -> List[float]:
         """Compute rewards for completions.
         
         Supports multi-round reflection if enabled.
@@ -125,7 +138,8 @@ def create_reward_fn(config: CoRTrainingConfig, enable_logging: bool = True):
         
         Args:
             completions: List of model-generated completions.
-            **kwargs: May include 'prompts', 'ground_truths', etc.
+            prompts: List of input prompts (used to look up ground truths).
+            **kwargs: May include 'ground_truths', etc.
             
         Returns:
             List of reward values.
@@ -133,7 +147,19 @@ def create_reward_fn(config: CoRTrainingConfig, enable_logging: bool = True):
         global _global_step
         rewards = []
         
-        ground_truths = kwargs.get('ground_truths', [None] * len(completions))
+        # Get ground truths from kwargs or look up from dataset
+        ground_truths = kwargs.get('ground_truths', [])
+        
+        if not ground_truths and prompts is not None:
+            # Look up ground truths from prompt mapping
+            ground_truths = []
+            for prompt in prompts:
+                key = prompt[:500].strip() if prompt else ''
+                gt = prompt_to_gt.get(key)
+                ground_truths.append(gt)
+        
+        if not ground_truths:
+            ground_truths = [None] * len(completions)
         
         for i, completion in enumerate(completions):
             _global_step += 1
@@ -255,6 +281,13 @@ def create_reward_fn(config: CoRTrainingConfig, enable_logging: bool = True):
                 mean_reward=sum(rewards) / len(rewards),
             )
         
+        # Debug logging for first few batches
+        if _global_step <= 100:
+            logging.info(f"[Reward Debug] Step {_global_step}: rewards={rewards[:5]}, "
+                        f"mean={sum(rewards)/len(rewards) if rewards else 0:.4f}, "
+                        f"std={torch.tensor(rewards).std().item() if len(rewards) > 1 else 0:.4f}, "
+                        f"has_gt={sum(1 for gt in ground_truths if gt)}/{len(ground_truths)}")
+        
         return rewards
     
     return reward_fn
@@ -351,16 +384,21 @@ def parse_qwen_completion(completion: str) -> tuple:
 def prepare_dataset(dataset_path: str, tokenizer) -> Dataset:
     """Prepare dataset for GRPO training.
     
-    Expects dataset with 'text' field containing prompts.
+    Extracts prompts and ground truth answers from the dataset.
+    The ground truth is used for computing external rewards.
     """
     dataset = load_dataset(dataset_path)
     
     if 'train' in dataset:
         dataset = dataset['train']
     
-    # Extract prompts from text field
-    def extract_prompt(example):
+    # Extract prompts and answers from text field
+    def extract_prompt_and_answer(example):
         text = example.get('text', '')
+        solution = example.get('solution', '')
+        
+        prompt = text
+        ground_truth = None
         
         # Extract user prompt from Qwen format
         if '<|im_start|>user' in text:
@@ -371,12 +409,40 @@ def prepare_dataset(dataset_path: str, tokenizer) -> Dataset:
                 re.DOTALL
             )
             if match:
-                return {'prompt': match.group(1).strip()}
+                prompt = match.group(1).strip()
         
-        # Fallback
-        return {'prompt': text}
+        # Extract ground truth answer
+        # Try to get from solution field first
+        if solution:
+            # Extract boxed answer if present
+            boxed_match = re.search(r'\\boxed\{([^}]+)\}', solution)
+            if boxed_match:
+                ground_truth = boxed_match.group(1).strip()
+            else:
+                # Use last line or "The answer is" pattern
+                answer_match = re.search(r'(?:answer is|Answer:)\s*(.+?)(?:\.|$)', solution, re.IGNORECASE)
+                if answer_match:
+                    ground_truth = answer_match.group(1).strip()
+        
+        # If no solution field, try to extract from text (assistant response)
+        if ground_truth is None and '<|im_start|>assistant' in text:
+            assistant_match = re.search(
+                r'<\|im_start\|>assistant\n(.+?)(?:<\|im_end\|>|$)',
+                text,
+                re.DOTALL
+            )
+            if assistant_match:
+                assistant_text = assistant_match.group(1)
+                boxed_match = re.search(r'\\boxed\{([^}]+)\}', assistant_text)
+                if boxed_match:
+                    ground_truth = boxed_match.group(1).strip()
+        
+        return {
+            'prompt': prompt,
+            'ground_truth': ground_truth if ground_truth else '',
+        }
     
-    return dataset.map(extract_prompt)
+    return dataset.map(extract_prompt_and_answer)
 
 
 def train():
@@ -450,9 +516,13 @@ def train():
     dataset = prepare_dataset(config.train_file_path, tokenizer)
     logging.info(f"Dataset size: {len(dataset)}")
     
-    # Create reward function
+    # Check for ground truth availability
+    gt_count = sum(1 for item in dataset if item.get('ground_truth'))
+    logging.info(f"Samples with ground truth: {gt_count}/{len(dataset)}")
+    
+    # Create reward function with dataset for ground truth lookup
     logging.info("Creating reward function...")
-    reward_fn = create_reward_fn(config)
+    reward_fn = create_reward_fn(config, dataset=dataset)
     
     # Configure GRPO
     grpo_args.max_completion_length = config.block_size
