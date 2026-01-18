@@ -61,8 +61,7 @@ class CoRTrainingConfig:
     train_file_path: str = field(default='simplescaling/s1K_tokenized')
     block_size: int = field(default=32768)
     
-    # GRPO specific (per paper: N=8 candidates)
-    num_generations: int = field(default=8)  # N candidates per input
+    # Note: num_generations is defined in GRPOConfig, not here to avoid conflict
     
     # CoR reward configuration
     lambda_intrinsic: float = field(default=1.0)
