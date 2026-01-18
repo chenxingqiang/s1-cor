@@ -28,6 +28,7 @@ import transformers
 from transformers import AutoModelForCausalLM, AutoTokenizer
 import trl
 from trl import GRPOTrainer, GRPOConfig
+from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
 
 from rewards import RewardCalculator, RewardConfig
 from rewards.training_logger import CoRTrainingLogger, log_cor_reward
@@ -73,6 +74,13 @@ class CoRTrainingConfig:
     convergence_weight: float = field(default=0.1)  # ν: R_converge weight
     max_reflection_rounds: int = field(default=3)   # K: max iterations
     enable_reflection: bool = field(default=True)   # Enable multi-round reflection
+    
+    # PEFT/LoRA configuration for memory-efficient training
+    use_peft: bool = field(default=False)  # Enable PEFT/LoRA
+    lora_r: int = field(default=16)  # LoRA rank
+    lora_alpha: int = field(default=32)  # LoRA alpha
+    lora_dropout: float = field(default=0.05)  # LoRA dropout
+    lora_target_modules: Optional[str] = field(default=None)  # Comma-separated target modules
     
     # W&B
     wandb_project: Optional[str] = field(default="cor-grpo")
@@ -398,8 +406,36 @@ def train():
         **model_kwargs
     )
     
+    # Apply LoRA if enabled
+    if config.use_peft:
+        logging.info(f"Applying LoRA with r={config.lora_r}, alpha={config.lora_alpha}")
+        
+        # Determine target modules
+        if config.lora_target_modules:
+            target_modules = config.lora_target_modules.split(",")
+        else:
+            # Default target modules for Qwen models
+            target_modules = ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]
+        
+        lora_config = LoraConfig(
+            r=config.lora_r,
+            lora_alpha=config.lora_alpha,
+            lora_dropout=config.lora_dropout,
+            target_modules=target_modules,
+            bias="none",
+            task_type="CAUSAL_LM",
+        )
+        
+        # Enable gradient checkpointing before applying LoRA
+        model.gradient_checkpointing_enable()
+        
+        # Apply LoRA
+        model = get_peft_model(model, lora_config)
+        model.print_trainable_parameters()
+    
     # Note: In newer TRL versions, ref_model is handled internally by GRPOTrainer
-    # via the ref_model_name in GRPOConfig or by creating a copy of the model
+    # GRPOTrainer will create its own ref_model copy, which for PEFT models
+    # should share the base weights and only differ in LoRA parameters
     
     # Load tokenizer
     tokenizer = AutoTokenizer.from_pretrained(config.model_name, use_fast=True)
