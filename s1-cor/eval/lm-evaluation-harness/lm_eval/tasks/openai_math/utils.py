@@ -255,9 +255,8 @@ def process_results(doc: dict, results: List[str]) -> Dict[str, int]:
     if os.getenv("PROCESSOR", "") == "gpt-4o-mini":
         sampler = ChatCompletionSampler(model="gpt-4o-mini")
     else:
-        print(f"Warning: PROCESSOR not set; using local matching only (no OpenAI). Set 'PROCESSOR=gpt-4o-mini' and 'OPENAI_API_KEY=YOUR_KEY' for best results.")
-        # Disabled OpenAI requirement - use local matching instead
-        # raise ValueError(f"MATH requires PROCESSOR atm. AIME is fine without it.")
+        print(f"Unknown processor: {os.getenv('PROCESSOR')}; set 'PROCESSOR=gpt-4o-mini' and 'OPENAI_API_KEY=YOUR_KEY' for best results.")
+        raise ValueError(f"MATH requires PROCESSOR atm. AIME is fine without it.")
         sampler = None
 
     if isinstance(doc["answer"], str) and doc["answer"].isdigit():
