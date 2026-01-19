@@ -524,8 +524,11 @@ def train():
     logging.info("Creating reward function...")
     reward_fn = create_reward_fn(config, dataset=dataset)
     
-    # Configure GRPO
-    grpo_args.max_completion_length = config.block_size
+    # Configure GRPO - only set max_completion_length if using default value
+    # This allows command line --max_completion_length to take precedence
+    if grpo_args.max_completion_length == 256:  # TRL default
+        grpo_args.max_completion_length = min(config.block_size, 1024)
+        logging.info(f"Set max_completion_length to {grpo_args.max_completion_length} (from block_size)")
     
     # Initialize trainer
     logging.info("Initializing GRPOTrainer...")
