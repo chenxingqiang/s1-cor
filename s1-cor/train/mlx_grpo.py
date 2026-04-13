@@ -116,7 +116,9 @@ def correctness_reward(response: str, ground_truth: str) -> float:
 
     if response_nums and truth_nums:
         try:
-            if float(response_nums[-1]) == float(truth_nums[-1]):
+            import math
+            if math.isclose(float(response_nums[-1]), float(truth_nums[-1]),
+                            rel_tol=1e-6):
                 return 1.0
         except ValueError:
             pass
