@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """
-Prepare CoR dataset for MLX fine-tuning.
+Prepare CoR dataset for mlx-tune fine-tuning.
 
 Converts HuggingFace Arrow datasets (local_data/*) to JSONL chat format
-that mlx-lm LoRA fine-tuning expects.
+that mlx-tune's SFTTrainer/GRPOTrainer expects (messages format).
+
+See: https://github.com/ARahim3/mlx-tune
 
 Usage:
     python train/mlx_prepare_data.py --dataset deepseek --output_dir train/mlx_data

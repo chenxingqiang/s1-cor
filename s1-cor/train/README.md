@@ -181,32 +181,41 @@ See the paper and `THEORY.md` for full mathematical derivation:
 
 ## MLX Fine-Tuning on Mac (Apple Silicon)
 
-Train and verify CoR models directly on your Mac using [MLX](https://github.com/ml-explore/mlx) and [mlx-lm](https://github.com/ml-explore/mlx-examples/tree/main/llms).
+Train and verify CoR models directly on your Mac using [mlx-tune](https://github.com/ARahim3/mlx-tune) — an Unsloth-compatible API for Apple Silicon via MLX.
+
+**Why mlx-tune?**
+- 🔄 **Same API as Unsloth** — `FastLanguageModel`, `SFTTrainer`, `GRPOTrainer` — your code works on both Mac and CUDA
+- 🚀 **SFT + GRPO** — Full CoR training pipeline with custom reward functions
+- 💾 **Unified memory** — Leverage Mac's shared CPU/GPU memory
+- 📦 **Export anywhere** — HuggingFace format, GGUF for Ollama/llama.cpp
 
 ### Requirements
 
-- macOS with Apple Silicon (M1/M2/M3/M4)
+- macOS with Apple Silicon (M1/M2/M3/M4/M5)
 - Python 3.10+
-- 16GB+ unified memory recommended (32GB+ for 3B/7B models)
+- 16GB+ unified memory recommended (32GB+ for 3B+ models)
 
 ### Quick Start
 
 ```bash
-# 1. Install MLX
-pip install mlx-lm>=0.21.0
+# 1. Install mlx-tune
+pip install mlx-tune
 
-# 2. Prepare data + train (one command)
+# 2. Prepare data + SFT train (one command)
 python train/mlx_finetune.py --prepare_data --model_size 0.5B
 
-# Or use the shell script
+# 3. Or use the shell script
 bash train/mlx_finetune.sh 0.5B deepseek
+
+# 4. Run GRPO with CoR rewards (DeepSeek R1 style)
+python train/mlx_grpo.py --model_size 0.5B --prepare_data
 ```
 
 ### Step-by-Step
 
 #### Step 1: Prepare Data
 
-Convert CoR datasets to JSONL format for MLX:
+Convert CoR datasets to chat JSONL format:
 
 ```bash
 python train/mlx_prepare_data.py --dataset deepseek --output_dir train/mlx_data
@@ -217,7 +226,9 @@ Options:
 - `--dataset full` - Use full CoR dataset
 - `--dataset hf --hf_dataset xingqiang/s1K-cor-deepseek` - Load from HuggingFace Hub
 
-#### Step 2: LoRA Fine-Tuning
+#### Step 2: SFT Fine-Tuning
+
+Uses the same `FastLanguageModel` + `SFTTrainer` API as Unsloth:
 
 ```bash
 # Quick start with presets
@@ -225,24 +236,51 @@ python train/mlx_finetune.py --model_size 0.5B --data train/mlx_data
 
 # Custom configuration
 python train/mlx_finetune.py \
-    --model Qwen/Qwen2.5-1.5B-Instruct \
-    --lora_layers 16 \
-    --batch_size 1 \
-    --iters 500 \
-    --lr 5e-6
+    --model mlx-community/Qwen2.5-1.5B-Instruct-4bit \
+    --lora_rank 16 \
+    --batch_size 2 \
+    --max_steps 200 \
+    --lr 2e-4
 
-# Use YAML config
-python train/mlx_finetune.py --config train/mlx_lora_config.yaml
+# Save merged model + export GGUF
+python train/mlx_finetune.py --model_size 0.5B --save_merged --save_gguf
+```
+
+The code is portable — same script runs on Mac (mlx-tune) or CUDA (Unsloth):
+```python
+# Mac:  from mlx_tune import FastLanguageModel, SFTTrainer, SFTConfig
+# CUDA: from unsloth import FastLanguageModel
+#       from trl import SFTTrainer, SFTConfig
 ```
 
 Available model presets: `0.5B`, `1.5B`, `3B`, `4B` (Qwen3), `7B`
 
-#### Step 3: Test & Evaluate
+#### Step 3: GRPO Training with CoR Rewards
+
+Train reasoning models (DeepSeek R1 style) with custom CoR reward functions:
+
+```bash
+# GRPO with CoR rewards
+python train/mlx_grpo.py --model_size 0.5B --data train/mlx_data
+
+# Custom reward weights
+python train/mlx_grpo.py \
+    --lambda_intrinsic 1.0 \
+    --format_weight 0.3 \
+    --num_generations 4
+```
+
+CoR reward formula: `R = R_ext + λ·R_int + w_fmt·R_fmt`
+- `R_ext`: Correctness reward (binary)
+- `R_int`: Self-rating quality reward (CoR innovation)
+- `R_fmt`: Format compliance reward
+
+#### Step 4: Test & Evaluate
 
 ```bash
 # Single prompt
 python train/mlx_inference.py \
-    --model Qwen/Qwen2.5-0.5B-Instruct \
+    --model mlx-community/Qwen2.5-0.5B-Instruct-4bit \
     --adapter_path ckpts/mlx_lora_adapters \
     --prompt "Solve: 2x + 3 = 7"
 
@@ -253,26 +291,15 @@ python train/mlx_inference.py --interactive
 python train/mlx_inference.py --eval_cor --save_results results.json
 ```
 
-#### Step 4 (Optional): Fuse Adapters
-
-Merge LoRA adapters into the base model for faster inference:
-
-```bash
-python train/mlx_finetune.py \
-    --model_size 0.5B \
-    --fuse \
-    --fused_model_path ckpts/mlx_fused_model
-```
-
-### MLX Files
+### MLX-Tune Files
 
 | File | Description |
 |------|-------------|
-| `train/mlx_prepare_data.py` | Convert CoR datasets to MLX JSONL format |
-| `train/mlx_finetune.py` | Main MLX LoRA fine-tuning script |
-| `train/mlx_finetune.sh` | Shell script for quick fine-tuning |
-| `train/mlx_inference.py` | Inference and evaluation for fine-tuned models |
-| `train/mlx_lora_config.yaml` | Default LoRA configuration |
+| `train/mlx_prepare_data.py` | Convert CoR datasets to chat JSONL format |
+| `train/mlx_finetune.py` | SFT fine-tuning with `FastLanguageModel` + `SFTTrainer` |
+| `train/mlx_grpo.py` | **NEW**: GRPO training with CoR reward functions |
+| `train/mlx_finetune.sh` | Shell script for end-to-end pipeline |
+| `train/mlx_inference.py` | Inference, evaluation, and interactive chat |
 
 ### Memory Requirements
 

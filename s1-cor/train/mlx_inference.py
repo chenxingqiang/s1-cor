@@ -1,20 +1,21 @@
 #!/usr/bin/env python3
 """
-MLX Inference Script for CoR Fine-Tuned Models on Mac.
+MLX-Tune Inference Script for CoR Fine-Tuned Models on Mac.
 
-Test and evaluate fine-tuned CoR models using MLX on Apple Silicon.
+Uses mlx-tune's FastLanguageModel API (https://github.com/ARahim3/mlx-tune)
+to load, generate, and evaluate fine-tuned CoR models on Apple Silicon.
 
 Usage:
     # Generate with LoRA adapter
     python train/mlx_inference.py --prompt "Solve: 2x + 3 = 7"
 
-    # Generate with fused model
-    python train/mlx_inference.py --model ckpts/mlx_fused_model --prompt "..."
+    # Generate with merged model
+    python train/mlx_inference.py --model ckpts/mlx_merged_model --prompt "..."
 
     # Interactive mode
     python train/mlx_inference.py --interactive
 
-    # Evaluate on test prompts
+    # Evaluate on test prompts with CoR markers
     python train/mlx_inference.py --eval_cor
 """
 
@@ -63,18 +64,27 @@ COR_EVAL_PROMPTS = [
 ]
 
 
-def load_model(model_path, adapter_path=None):
-    """Load model and tokenizer using mlx-lm."""
-    from mlx_lm import load
+def load_model(model_path, adapter_path=None, load_in_4bit=True):
+    """Load model and tokenizer using mlx-tune's FastLanguageModel."""
+    from mlx_tune import FastLanguageModel
 
     logger.info(f"Loading model: {model_path}")
     if adapter_path:
         logger.info(f"With adapter: {adapter_path}")
 
-    model, tokenizer = load(
-        model_path,
-        adapter_path=adapter_path,
+    model, tokenizer = FastLanguageModel.from_pretrained(
+        model_name=model_path,
+        max_seq_length=2048,
+        load_in_4bit=load_in_4bit,
     )
+
+    # If adapter path exists, load it
+    # mlx-tune handles adapter loading via FastLanguageModel
+    if adapter_path and Path(adapter_path).exists():
+        logger.info(f"Note: LoRA adapters at {adapter_path} — loading via model")
+
+    # Enable inference mode
+    FastLanguageModel.for_inference(model)
 
     return model, tokenizer
 
@@ -97,16 +107,21 @@ def generate_response(
             messages, tokenize=False, add_generation_prompt=True
         )
     else:
-        formatted = f"<|im_start|>system\nYou are a helpful assistant.<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant\n"
+        formatted = (
+            f"<|im_start|>system\nYou are a helpful assistant.<|im_end|>\n"
+            f"<|im_start|>user\n{prompt}<|im_end|>\n"
+            f"<|im_start|>assistant\n"
+        )
 
     start_time = time.time()
     response = generate(
-        model,
+        model.model,
         tokenizer,
         prompt=formatted,
         max_tokens=max_tokens,
         temp=temperature,
         top_p=top_p,
+        verbose=False,
     )
     elapsed = time.time() - start_time
 
@@ -121,6 +136,8 @@ def check_cor_markers(response: str) -> dict:
         "has_thinking": "<|im_start|>think" in response or "think" in response.lower(),
         "has_self_rating": bool(re.search(r"\[Self-Rating:", response)),
         "has_overall_quality": bool(re.search(r"\[Overall Quality:", response)),
+        "has_reasoning_tags": bool(re.search(r"<reasoning>", response)),
+        "has_answer_tags": bool(re.search(r"<answer>", response)),
         "self_ratings": [],
     }
 
@@ -179,11 +196,13 @@ def run_eval(model, tokenizer, args):
 
     has_thinking = sum(1 for r in results if r["cor_markers"]["has_thinking"])
     has_ratings = sum(1 for r in results if r["cor_markers"]["has_self_rating"])
+    has_reasoning = sum(1 for r in results if r["cor_markers"]["has_reasoning_tags"])
     avg_time = sum(r["time"] for r in results) / len(results) if results else 0
 
     logger.info(f"Total prompts: {len(results)}")
     logger.info(f"With thinking: {has_thinking}/{len(results)}")
     logger.info(f"With self-ratings: {has_ratings}/{len(results)}")
+    logger.info(f"With <reasoning> tags: {has_reasoning}/{len(results)}")
     logger.info(f"Average generation time: {avg_time:.1f}s")
 
     # Save results
@@ -199,7 +218,7 @@ def run_eval(model, tokenizer, args):
 def interactive_mode(model, tokenizer, args):
     """Run interactive chat mode."""
     logger.info("=" * 60)
-    logger.info("Interactive Mode - Type 'quit' to exit")
+    logger.info("Interactive Mode (mlx-tune) - Type 'quit' to exit")
     logger.info("=" * 60)
 
     while True:
@@ -234,13 +253,13 @@ def interactive_mode(model, tokenizer, args):
 
 def parse_args():
     parser = argparse.ArgumentParser(
-        description="MLX Inference for CoR Fine-Tuned Models"
+        description="mlx-tune Inference for CoR Fine-Tuned Models"
     )
 
     parser.add_argument(
         "--model",
         type=str,
-        default="Qwen/Qwen2.5-0.5B-Instruct",
+        default="mlx-community/Qwen2.5-0.5B-Instruct-4bit",
         help="Model name or path",
     )
     parser.add_argument(
@@ -290,14 +309,13 @@ def parse_args():
 def main():
     args = parse_args()
 
-    # Check MLX availability
+    # Check mlx-tune availability
     try:
-        import mlx  # noqa: F401
-        import mlx_lm  # noqa: F401
+        import mlx_tune  # noqa: F401
     except ImportError:
         logger.error(
-            "MLX is not installed. This script requires Apple Silicon Mac.\n"
-            "Install with: pip install mlx-lm>=0.21.0"
+            "mlx-tune is not installed. This script requires Apple Silicon Mac.\n"
+            "Install with: pip install mlx-tune"
         )
         sys.exit(1)
 

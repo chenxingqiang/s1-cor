@@ -1,22 +1,26 @@
 #!/bin/bash
 # =============================================================================
-# MLX Fine-Tuning Script for CoR Models on Mac (Apple Silicon)
+# MLX-Tune Fine-Tuning Script for CoR Models on Mac (Apple Silicon)
 #
-# This script runs the full MLX fine-tuning pipeline:
+# Uses mlx-tune (https://github.com/ARahim3/mlx-tune) which provides an
+# Unsloth-compatible API for fine-tuning on Apple Silicon.
+#
+# This script runs the full pipeline:
 #   1. Data preparation (convert CoR dataset to JSONL)
-#   2. LoRA fine-tuning with mlx-lm
-#   3. Optional: fuse adapters and test
+#   2. SFT fine-tuning with mlx-tune
+#   3. Optional: GRPO training with CoR rewards
+#   4. Test generation
 #
 # Requirements:
-#   - macOS with Apple Silicon (M1/M2/M3/M4)
+#   - macOS with Apple Silicon (M1/M2/M3/M4/M5)
 #   - Python 3.10+
-#   - pip install mlx-lm>=0.21.0
+#   - pip install mlx-tune
 #
 # Usage:
-#   bash train/mlx_finetune.sh                    # Default: 0.5B model
-#   bash train/mlx_finetune.sh 1.5B               # Specify model size
-#   bash train/mlx_finetune.sh 0.5B deepseek      # Specify model + dataset
-#   bash train/mlx_finetune.sh 4B hf              # Qwen3-4B with HF data
+#   bash train/mlx_finetune.sh                    # Default: 0.5B SFT
+#   bash train/mlx_finetune.sh 1.5B               # 1.5B model
+#   bash train/mlx_finetune.sh 0.5B deepseek      # Dataset choice
+#   bash train/mlx_finetune.sh 0.5B deepseek grpo # SFT then GRPO
 # =============================================================================
 
 set -euo pipefail
@@ -24,13 +28,14 @@ set -euo pipefail
 # Parse arguments
 MODEL_SIZE="${1:-0.5B}"
 DATASET="${2:-deepseek}"
-EXTRA_ARGS="${3:-}"
+MODE="${3:-sft}"  # sft, grpo, or both
 
 echo "============================================================"
-echo "MLX LoRA Fine-Tuning for CoR - Qwen ${MODEL_SIZE}"
+echo "mlx-tune Fine-Tuning for CoR - Qwen ${MODEL_SIZE}"
 echo "============================================================"
 echo "Model Size: ${MODEL_SIZE}"
 echo "Dataset: ${DATASET}"
+echo "Mode: ${MODE}"
 echo "Date: $(date)"
 echo ""
 
@@ -40,11 +45,11 @@ if [[ "$(uname)" != "Darwin" ]]; then
     echo "You may encounter issues on other platforms."
 fi
 
-# Check Python and MLX
+# Check Python and mlx-tune
 echo "Checking dependencies..."
-python3 -c "import mlx; print(f'MLX version: {mlx.__version__}')" 2>/dev/null || {
-    echo "MLX not found. Installing mlx-lm..."
-    pip install mlx-lm>=0.21.0
+python3 -c "import mlx_tune; print('mlx-tune is available')" 2>/dev/null || {
+    echo "mlx-tune not found. Installing..."
+    pip install mlx-tune
 }
 
 # Step 1: Prepare data
@@ -54,62 +59,82 @@ echo "-----------------------------------"
 python3 train/mlx_prepare_data.py \
     --dataset "${DATASET}" \
     --output_dir train/mlx_data \
-    --format completions
+    --format chat
 
-# Step 2: Run LoRA fine-tuning
-echo ""
-echo "Step 2: Running LoRA fine-tuning..."
-echo "-----------------------------------"
-python3 train/mlx_finetune.py \
-    --model_size "${MODEL_SIZE}" \
-    --data train/mlx_data \
-    --data_format completions \
-    ${EXTRA_ARGS}
+# Step 2: SFT Fine-Tuning
+if [[ "${MODE}" == "sft" || "${MODE}" == "both" ]]; then
+    echo ""
+    echo "Step 2: Running SFT fine-tuning with mlx-tune..."
+    echo "-----------------------------------"
+    python3 train/mlx_finetune.py \
+        --model_size "${MODEL_SIZE}" \
+        --data train/mlx_data
+fi
 
-# Step 3: Test generation (optional)
+# Step 3: GRPO Training (optional)
+if [[ "${MODE}" == "grpo" || "${MODE}" == "both" ]]; then
+    echo ""
+    echo "Step 3: Running GRPO training with CoR rewards..."
+    echo "-----------------------------------"
+    python3 train/mlx_grpo.py \
+        --model_size "${MODEL_SIZE}" \
+        --data train/mlx_data
+fi
+
+# Step 4: Test generation
 echo ""
-echo "Step 3: Testing fine-tuned model..."
+echo "Step 4: Testing fine-tuned model..."
 echo "-----------------------------------"
+
+ADAPTER_DIR="ckpts/mlx_lora_adapters"
+if [[ "${MODE}" == "grpo" ]]; then
+    ADAPTER_DIR="ckpts/mlx_grpo_adapters"
+fi
 
 # Get model name for the size
 case "${MODEL_SIZE}" in
-    "0.5B") MODEL_NAME="Qwen/Qwen2.5-0.5B-Instruct" ;;
-    "1.5B") MODEL_NAME="Qwen/Qwen2.5-1.5B-Instruct" ;;
-    "3B")   MODEL_NAME="Qwen/Qwen2.5-3B-Instruct" ;;
-    "4B")   MODEL_NAME="Qwen/Qwen3-4B" ;;
-    "7B")   MODEL_NAME="Qwen/Qwen2.5-7B-Instruct" ;;
-    *)      MODEL_NAME="Qwen/Qwen2.5-0.5B-Instruct" ;;
+    "0.5B") MODEL_NAME="mlx-community/Qwen2.5-0.5B-Instruct-4bit" ;;
+    "1.5B") MODEL_NAME="mlx-community/Qwen2.5-1.5B-Instruct-4bit" ;;
+    "3B")   MODEL_NAME="mlx-community/Qwen2.5-3B-Instruct-4bit" ;;
+    "4B")   MODEL_NAME="mlx-community/Qwen3-4B-4bit" ;;
+    "7B")   MODEL_NAME="mlx-community/Qwen2.5-7B-Instruct-4bit" ;;
+    *)      MODEL_NAME="mlx-community/Qwen2.5-0.5B-Instruct-4bit" ;;
 esac
 
-echo "Generating test output with adapter..."
-python3 -m mlx_lm.generate \
+echo "Running CoR evaluation..."
+python3 train/mlx_inference.py \
     --model "${MODEL_NAME}" \
-    --adapter-path ckpts/mlx_lora_adapters \
-    --max-tokens 512 \
-    --prompt "Solve step by step: What is the sum of the first 10 prime numbers?" \
-    || echo "Test generation skipped (model may not be downloaded yet)"
+    --adapter_path "${ADAPTER_DIR}" \
+    --eval_cor \
+    || echo "Evaluation skipped (model may not be downloaded yet)"
 
 echo ""
 echo "============================================================"
 echo "Fine-tuning complete!"
 echo ""
-echo "Adapter saved to: ckpts/mlx_lora_adapters/"
+echo "Adapters saved to: ${ADAPTER_DIR}/"
 echo ""
-echo "To generate with the fine-tuned model:"
-echo "  python3 -m mlx_lm.generate \\"
-echo "    --model ${MODEL_NAME} \\"
-echo "    --adapter-path ckpts/mlx_lora_adapters \\"
-echo "    --max-tokens 512 \\"
-echo "    --prompt 'Your prompt here'"
+echo "Usage examples:"
 echo ""
-echo "To fuse adapters into base model:"
-echo "  python3 -m mlx_lm.fuse \\"
+echo "  # Interactive chat"
+echo "  python3 train/mlx_inference.py \\"
 echo "    --model ${MODEL_NAME} \\"
-echo "    --adapter-path ckpts/mlx_lora_adapters \\"
-echo "    --save-path ckpts/mlx_fused_model"
+echo "    --adapter_path ${ADAPTER_DIR} \\"
+echo "    --interactive"
 echo ""
-echo "To run CoR evaluation:"
-echo "  python3 train/mlx_inference.py --eval_cor \\"
+echo "  # Single prompt"
+echo "  python3 train/mlx_inference.py \\"
 echo "    --model ${MODEL_NAME} \\"
-echo "    --adapter_path ckpts/mlx_lora_adapters"
+echo "    --adapter_path ${ADAPTER_DIR} \\"
+echo "    --prompt 'Solve: 2x + 3 = 7'"
+echo ""
+echo "  # Run GRPO with CoR rewards"
+echo "  python3 train/mlx_grpo.py \\"
+echo "    --model_size ${MODEL_SIZE} \\"
+echo "    --data train/mlx_data"
+echo ""
+echo "  # Save merged model"
+echo "  python3 train/mlx_finetune.py \\"
+echo "    --model_size ${MODEL_SIZE} \\"
+echo "    --save_merged"
 echo "============================================================"
