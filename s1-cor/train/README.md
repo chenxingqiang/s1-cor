@@ -179,6 +179,111 @@ See the paper and `THEORY.md` for full mathematical derivation:
 - **Calibration**: `cal_d(u, v) = 1 - |u - v|`
 - **GRPO Objective**: Uses clipped surrogate with KL penalty
 
+## MLX Fine-Tuning on Mac (Apple Silicon)
+
+Train and verify CoR models directly on your Mac using [MLX](https://github.com/ml-explore/mlx) and [mlx-lm](https://github.com/ml-explore/mlx-examples/tree/main/llms).
+
+### Requirements
+
+- macOS with Apple Silicon (M1/M2/M3/M4)
+- Python 3.10+
+- 16GB+ unified memory recommended (32GB+ for 3B/7B models)
+
+### Quick Start
+
+```bash
+# 1. Install MLX
+pip install mlx-lm>=0.21.0
+
+# 2. Prepare data + train (one command)
+python train/mlx_finetune.py --prepare_data --model_size 0.5B
+
+# Or use the shell script
+bash train/mlx_finetune.sh 0.5B deepseek
+```
+
+### Step-by-Step
+
+#### Step 1: Prepare Data
+
+Convert CoR datasets to JSONL format for MLX:
+
+```bash
+python train/mlx_prepare_data.py --dataset deepseek --output_dir train/mlx_data
+```
+
+Options:
+- `--dataset deepseek` - Use DeepSeek-generated CoR data (default)
+- `--dataset full` - Use full CoR dataset
+- `--dataset hf --hf_dataset xingqiang/s1K-cor-deepseek` - Load from HuggingFace Hub
+
+#### Step 2: LoRA Fine-Tuning
+
+```bash
+# Quick start with presets
+python train/mlx_finetune.py --model_size 0.5B --data train/mlx_data
+
+# Custom configuration
+python train/mlx_finetune.py \
+    --model Qwen/Qwen2.5-1.5B-Instruct \
+    --lora_layers 16 \
+    --batch_size 1 \
+    --iters 500 \
+    --lr 5e-6
+
+# Use YAML config
+python train/mlx_finetune.py --config train/mlx_lora_config.yaml
+```
+
+Available model presets: `0.5B`, `1.5B`, `3B`, `4B` (Qwen3), `7B`
+
+#### Step 3: Test & Evaluate
+
+```bash
+# Single prompt
+python train/mlx_inference.py \
+    --model Qwen/Qwen2.5-0.5B-Instruct \
+    --adapter_path ckpts/mlx_lora_adapters \
+    --prompt "Solve: 2x + 3 = 7"
+
+# Interactive mode
+python train/mlx_inference.py --interactive
+
+# CoR evaluation (checks for self-rating markers)
+python train/mlx_inference.py --eval_cor --save_results results.json
+```
+
+#### Step 4 (Optional): Fuse Adapters
+
+Merge LoRA adapters into the base model for faster inference:
+
+```bash
+python train/mlx_finetune.py \
+    --model_size 0.5B \
+    --fuse \
+    --fused_model_path ckpts/mlx_fused_model
+```
+
+### MLX Files
+
+| File | Description |
+|------|-------------|
+| `train/mlx_prepare_data.py` | Convert CoR datasets to MLX JSONL format |
+| `train/mlx_finetune.py` | Main MLX LoRA fine-tuning script |
+| `train/mlx_finetune.sh` | Shell script for quick fine-tuning |
+| `train/mlx_inference.py` | Inference and evaluation for fine-tuned models |
+| `train/mlx_lora_config.yaml` | Default LoRA configuration |
+
+### Memory Requirements
+
+| Model | Min Memory | Recommended |
+|-------|-----------|-------------|
+| 0.5B  | 8GB       | 16GB        |
+| 1.5B  | 16GB      | 16GB        |
+| 3B    | 16GB      | 32GB        |
+| 4B    | 16GB      | 32GB        |
+| 7B    | 32GB      | 64GB        |
+
 ## Citation
 
 ```bibtex

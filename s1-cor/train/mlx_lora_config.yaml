@@ -1,0 +1,42 @@
+# MLX LoRA Fine-Tuning Configuration for CoR
+#
+# This config is used by mlx_finetune.py and can also be passed directly
+# to `mlx_lm.lora` via the --config flag.
+#
+# Usage:
+#   python -m mlx_lm.lora --config train/mlx_lora_config.yaml
+#   python train/mlx_finetune.py --config train/mlx_lora_config.yaml
+
+# Model - use a small Qwen model that fits in Apple Silicon memory
+model: "Qwen/Qwen2.5-0.5B-Instruct"
+
+# LoRA parameters
+lora_layers: 16           # Number of layers to apply LoRA
+lora_parameters:
+  rank: 8                 # LoRA rank (lower = fewer params, faster)
+  alpha: 16               # LoRA alpha scaling
+  dropout: 0.05           # LoRA dropout
+  scale: 10.0             # LoRA scaling factor
+
+# Training parameters
+learning_rate: 1.0e-5
+batch_size: 1             # Keep small for memory on Mac
+iters: 1000               # Total training iterations
+val_batches: 25           # Number of validation batches
+steps_per_report: 10      # Log every N steps
+steps_per_eval: 100       # Evaluate every N steps
+save_every: 200           # Save adapter every N steps
+max_seq_length: 4096      # Max sequence length
+
+# Data
+data: "train/mlx_data"    # Path to JSONL data directory
+train: true
+
+# Adapter output
+adapter_path: "ckpts/mlx_lora_adapters"
+
+# Gradient checkpointing (saves memory at cost of speed)
+grad_checkpoint: false
+
+# Seed
+seed: 42

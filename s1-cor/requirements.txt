@@ -18,3 +18,5 @@ anthropic>=0.18.0  # For Claude API (optional, for LLM-based self-ratings)
 bitsandbytes>=0.41.1
 accelerate>=0.25.0
 unsloth>=0.1.0
+# MLX dependencies for Mac Apple Silicon fine-tuning (macOS only)
+# pip install mlx-lm>=0.21.0
