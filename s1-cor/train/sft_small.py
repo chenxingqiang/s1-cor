@@ -148,6 +148,16 @@ def parse_args():
         help="Use fp16 on CUDA (recommended for Colab T4; T4 lacks fast bf16)",
     )
     parser.add_argument(
+        "--colab",
+        action="store_true",
+        help="Colab T4 preset: batch=1, max_length=1024, 200 samples, fp16, dynamic padding",
+    )
+    parser.add_argument(
+        "--pad_to_max_length",
+        action="store_true",
+        help="Pad every example to max_length (high VRAM; default is dynamic batch padding)",
+    )
+    parser.add_argument(
         "--use_wandb",
         action="store_true",
         help="Use Weights & Biases logging"
@@ -178,6 +188,7 @@ def prepare_dataset(
     max_length: int,
     hf_dataset: str = None,
     max_samples: Optional[int] = None,
+    pad_to_max_length: bool = False,
 ):
     """Load and prepare the CoR dataset for SFT."""
     
@@ -208,7 +219,7 @@ def prepare_dataset(
             texts,
             truncation=True,
             max_length=max_length,
-            padding="max_length",
+            padding="max_length" if pad_to_max_length else False,
             return_tensors=None,
         )
         
@@ -231,6 +242,16 @@ def prepare_dataset(
 
 def main():
     args = parse_args()
+
+    if args.colab:
+        # Safe defaults for a 15GB T4: avoids 4 x 4096 padded batches (~10GB logits).
+        args.fp16 = True
+        args.batch_size = args.batch_size or 1
+        args.grad_accum = args.grad_accum or 8
+        args.max_length = args.max_length or 1024
+        args.max_samples = args.max_samples or 200
+        args.pad_to_max_length = False
+        logger.info("Colab preset enabled: batch=1, max_length=1024, max_samples=200, fp16")
     
     # Configuration
     model_name = QWEN_MODELS[args.model_size]
@@ -298,6 +319,7 @@ def main():
         config["max_length"],
         hf_dataset=args.hf_dataset,
         max_samples=args.max_samples,
+        pad_to_max_length=args.pad_to_max_length,
     )
     
     use_bf16 = device == "cuda" and dtype == torch.bfloat16

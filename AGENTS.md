@@ -86,9 +86,10 @@ bash train/colab_minimal.sh sft       # Qwen2.5-0.5B, 1 epoch, local deepseek da
 **OOM on T4**: use low-memory flags on `sft_small.py`:
 
 ```bash
-python train/sft_small.py --model_size 0.5B --dataset deepseek --epochs 1 \
-  --batch_size 1 --grad_accum 8 --max_length 2048 --max_samples 200 --fp16
+python train/sft_small.py --model_size 0.5B --dataset deepseek --epochs 1 --colab
 ```
+
+`--colab` sets batch=1, max_length=1024, 200 samples, fp16, and dynamic padding (not pad-to-4096).
 
 Do **not** install `vllm` / `unsloth` on Colab for this smoke path.
 

@@ -31,11 +31,7 @@ case "$MODE" in
       --model_size 0.5B \
       --dataset deepseek \
       --epochs 1 \
-      --batch_size 1 \
-      --grad_accum 8 \
-      --max_length 2048 \
-      --max_samples 200 \
-      --fp16 \
+      --colab \
       --output_dir ckpts/sft-0.5B-colab
     ;;
   *)
