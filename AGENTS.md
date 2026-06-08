@@ -44,8 +44,6 @@ Official README smoke test (needs HuggingFace access or working `local_data`):
 cd s1-cor && python train/validate_cor_logic.py --dataset hf --samples 5
 ```
 
-**Known issue**: `load_from_disk` on `local_data/s1K_cor_*` can fail on datasets 3.1.0 because `dataset_info.json` declares `"cot": {"dtype": "null"}`. Use `sample.json` or HuggingFace until fixed.
-
 ### Training & evaluation (GPU hosts)
 
 See `README.md` and `s1-cor/README.md`:

@@ -18,7 +18,9 @@ from dataclasses import dataclass, field
 from typing import Optional
 
 import torch
-from datasets import load_from_disk, load_dataset
+from datasets import load_dataset
+
+from data_utils import load_cor_dataset_from_disk
 from transformers import (
     AutoModelForCausalLM,
     AutoTokenizer,
@@ -151,11 +153,11 @@ def prepare_dataset(tokenizer, dataset_name: str, max_length: int, hf_dataset: s
     elif dataset_name == "deepseek":
         dataset_path = "local_data/s1K_cor_deepseek"
         logger.info(f"Loading dataset from {dataset_path}")
-        dataset = load_from_disk(dataset_path)
+        dataset = load_cor_dataset_from_disk(dataset_path)
     else:
         dataset_path = "local_data/s1K_cor_full"
         logger.info(f"Loading dataset from {dataset_path}")
-        dataset = load_from_disk(dataset_path)
+        dataset = load_cor_dataset_from_disk(dataset_path)
     
     def tokenize_function(examples):
         """Tokenize the text_cor field which contains the full training text."""

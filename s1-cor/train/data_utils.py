@@ -10,10 +10,52 @@ import logging
 from typing import Dict, List, Optional, Tuple, Any
 from dataclasses import dataclass
 
-from datasets import load_dataset, load_from_disk, Dataset
+import pyarrow.ipc as ipc
+from datasets import Dataset, load_dataset, load_from_disk
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
+
+def load_cor_dataset_from_disk(dataset_path: str) -> Dataset:
+    """Load a local CoR dataset saved with ``datasets.save_to_disk``.
+
+    Older snapshots may ship incompatible HuggingFace feature metadata inside
+    the Arrow files. We first try the normal loader, then fall back to reading
+    the Arrow shard directly with schema metadata stripped.
+    """
+    try:
+        return load_from_disk(dataset_path)
+    except (TypeError, ValueError) as exc:
+        logger.warning(
+            "load_from_disk failed for %s (%s); using Arrow fallback loader",
+            dataset_path,
+            exc,
+        )
+
+    arrow_files = sorted(
+        os.path.join(dataset_path, name)
+        for name in os.listdir(dataset_path)
+        if name.endswith(".arrow")
+    )
+    if not arrow_files:
+        raise FileNotFoundError(f"No Arrow shards found in {dataset_path}")
+
+    tables = []
+    for arrow_file in arrow_files:
+        with open(arrow_file, "rb") as handle:
+            table = ipc.open_stream(handle).read_all()
+        tables.append(table.replace_schema_metadata({}))
+
+    if len(tables) == 1:
+        dataset = Dataset(tables[0])
+    else:
+        combined = tables[0]
+        for table in tables[1:]:
+            combined = combined.combine_chunks(table)
+        dataset = Dataset(combined)
+
+    return dataset
 
 
 @dataclass
@@ -45,7 +87,7 @@ def load_cor_dataset(config: DataConfig) -> Dataset:
     else:
         if os.path.isdir(config.dataset_path):
             logger.info(f"Loading from disk: {config.dataset_path}")
-            dataset = load_from_disk(config.dataset_path)
+            dataset = load_cor_dataset_from_disk(config.dataset_path)
         else:
             logger.info(f"Loading from HuggingFace: {config.dataset_path}")
             dataset = load_dataset(config.dataset_path, split='train')

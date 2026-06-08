@@ -23,7 +23,7 @@
       "_type": "Value"
     },
     "cot": {
-      "dtype": "null",
+      "dtype": "string",
       "_type": "Value"
     },
     "thinking_trajectories": {
@@ -31,7 +31,7 @@
         "dtype": "string",
         "_type": "Value"
       },
-      "_type": "List"
+      "_type": "Sequence"
     },
     "attempt": {
       "dtype": "string",

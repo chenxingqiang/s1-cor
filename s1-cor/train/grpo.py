@@ -195,16 +195,15 @@ def create_reward_fn(config: CoRTrainingConfig, enable_logging: bool = True):
             else:
                 # Single-round: standard CoR reward
                 thinking, answer = parse_qwen_completion(completion)
-            
-            if gt is None:
+
+                if gt is None:
                     intrinsic, dim_scores = calculator.calculate_intrinsic_reward(
-                    thinking,
-                    include_self_rating=True,
-                    final_answer_correct=False
-                )
-                rewards.append(intrinsic)
-                    
-                    # Log
+                        thinking,
+                        include_self_rating=True,
+                        final_answer_correct=False,
+                    )
+                    rewards.append(intrinsic)
+
                     if logger:
                         self_ratings = calculator.self_rating_extractor.extract(thinking)
                         logger.log_reward(
@@ -218,13 +217,12 @@ def create_reward_fn(config: CoRTrainingConfig, enable_logging: bool = True):
                             thinking_chain=thinking,
                             self_ratings=self_ratings,
                         )
-            else:
-                output = calculator.calculate_total_reward(
-                    thinking, answer, gt
-                )
-                rewards.append(output.total_reward)
-                    
-                    # Log
+                else:
+                    output = calculator.calculate_total_reward(
+                        thinking, answer, gt
+                    )
+                    rewards.append(output.total_reward)
+
                     if logger:
                         self_ratings = calculator.self_rating_extractor.extract(thinking)
                         logger.log_reward(
