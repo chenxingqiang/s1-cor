@@ -2,7 +2,7 @@
 
 import pytest
 
-from grpo import CoRTrainingConfig, create_reward_fn, extract_reflection_rounds
+from grpo import CoRTrainingConfig, create_reward_fn, extract_reflection_rounds, prepare_dataset
 
 
 class TestGrpoRewardFn:
@@ -46,6 +46,22 @@ class TestGrpoRewardFn:
         )
         assert len(rewards) == 1
         assert 0 <= rewards[0] <= 2.0
+
+    def test_reference_answer_column_from_grpo_dataset(self):
+        completion = "Step 1: Think.\nTherefore, the answer is 42"
+        rewards = self.reward_fn(
+            [completion],
+            reference_answer=["42"],
+        )
+        assert len(rewards) == 1
+        assert rewards[0] >= 1.0
+
+    def test_prepare_dataset_loads_local_cor_data(self):
+        dataset = prepare_dataset("local_data/s1K_cor_deepseek")
+        assert len(dataset) > 0
+        assert "prompt" in dataset.column_names
+        assert "reference_answer" in dataset.column_names
+        assert dataset[0]["reference_answer"]
 
 
 if __name__ == "__main__":

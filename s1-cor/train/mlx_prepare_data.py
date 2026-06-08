@@ -33,7 +33,9 @@ DATASET_PATHS = {
 
 def load_dataset_from_source(dataset_name: str, hf_dataset: str = None):
     """Load dataset from local disk or HuggingFace Hub."""
-    from datasets import load_from_disk, load_dataset
+    from datasets import load_dataset
+
+    from data_utils import load_cor_dataset_from_disk
 
     if dataset_name == "hf":
         if not hf_dataset:
@@ -43,7 +45,7 @@ def load_dataset_from_source(dataset_name: str, hf_dataset: str = None):
 
     dataset_path = DATASET_PATHS.get(dataset_name, dataset_name)
     logger.info(f"Loading from disk: {dataset_path}")
-    return load_from_disk(dataset_path)
+    return load_cor_dataset_from_disk(dataset_path)
 
 
 def convert_to_chat_format(example: dict) -> dict:

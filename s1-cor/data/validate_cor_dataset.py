@@ -20,7 +20,10 @@ from dataclasses import dataclass
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-from datasets import load_from_disk, load_dataset
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "train"))
+
+from datasets import load_dataset
+from data_utils import load_cor_dataset_from_disk
 
 
 @dataclass
@@ -157,7 +160,7 @@ def validate_dataset(dataset_path: str) -> ValidationResult:
     
     # Load dataset
     if os.path.isdir(dataset_path):
-        dataset = load_from_disk(dataset_path)
+        dataset = load_cor_dataset_from_disk(dataset_path)
     else:
         dataset = load_dataset(dataset_path, split='train')
     

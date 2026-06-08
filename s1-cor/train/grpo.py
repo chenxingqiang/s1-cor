@@ -29,6 +29,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 import trl
 from trl import GRPOTrainer, GRPOConfig
 
+from data_utils import DataConfig, prepare_grpo_dataset
 from rewards import RewardCalculator, RewardConfig
 from rewards.training_logger import CoRTrainingLogger, log_cor_reward
 
@@ -86,6 +87,17 @@ class CoRTrainingConfig:
             os.environ['WANDB_ENTITY'] = self.wandb_entity
 
 
+def resolve_ground_truths(kwargs: Dict[str, Any], num_completions: int) -> List[Optional[str]]:
+    """Map dataset columns passed by TRL into ground-truth answers."""
+    for key in ("ground_truths", "ground_truth", "reference_answer", "attempt", "solution"):
+        if key in kwargs:
+            values = kwargs[key]
+            if isinstance(values, list):
+                return values
+            return [values] * num_completions
+    return [None] * num_completions
+
+
 def create_reward_fn(config: CoRTrainingConfig, enable_logging: bool = True):
     """Create reward function for GRPO trainer.
     
@@ -126,7 +138,7 @@ def create_reward_fn(config: CoRTrainingConfig, enable_logging: bool = True):
         global _global_step
         rewards = []
         
-        ground_truths = kwargs.get('ground_truths', [None] * len(completions))
+        ground_truths = resolve_ground_truths(kwargs, len(completions))
         
         for i, completion in enumerate(completions):
             _global_step += 1
@@ -339,35 +351,13 @@ def parse_qwen_completion(completion: str) -> tuple:
     return completion, completion
 
 
-def prepare_dataset(dataset_path: str, tokenizer) -> Dataset:
-    """Prepare dataset for GRPO training.
-    
-    Expects dataset with 'text' field containing prompts.
-    """
-    dataset = load_dataset(dataset_path)
-    
-    if 'train' in dataset:
-        dataset = dataset['train']
-    
-    # Extract prompts from text field
-    def extract_prompt(example):
-        text = example.get('text', '')
-        
-        # Extract user prompt from Qwen format
-        if '<|im_start|>user' in text:
-            import re
-            match = re.search(
-                r'<\|im_start\|>user\n(.+?)<\|im_end\|>',
-                text,
-                re.DOTALL
-            )
-            if match:
-                return {'prompt': match.group(1).strip()}
-        
-        # Fallback
-        return {'prompt': text}
-    
-    return dataset.map(extract_prompt)
+def prepare_dataset(dataset_path: str, tokenizer=None) -> Dataset:
+    """Prepare dataset for GRPO training with prompts and reference answers."""
+    config = DataConfig(
+        dataset_path=dataset_path,
+        use_hf_hub=not os.path.isdir(dataset_path),
+    )
+    return prepare_grpo_dataset(config)
 
 
 def train():

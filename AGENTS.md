@@ -15,6 +15,10 @@ This repository is an **ML research codebase** for **Chain of Reward (CoR)** / *
 
 Core deps are installed with PyTorch CPU wheels. **vLLM**, **unsloth**, and **bitsandbytes** from `requirements.txt` are GPU-oriented and are not installed in the default Cloud update script.
 
+### Local datasets
+
+Load CoR snapshots with `load_cor_dataset_from_disk()` from `s1-cor/train/data_utils.py` (used by validation, SFT, GRPO, and MLX prep scripts). `datasets.load_from_disk` works for the bundled `local_data/s1K_cor_*` shards after the schema/metadata fixes in this repo.
+
 ### Quick verification (no GPU)
 
 From repo root with venv activated:
