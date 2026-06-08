@@ -71,6 +71,25 @@ Set `WANDB_DISABLED=true` to skip Weights & Biases during training.
 | Weights & Biases | Training logs (disable with `WANDB_DISABLED=true`) |
 | vLLM + CUDA | Local inference and benchmark eval |
 
+### Google Colab (minimal SFT)
+
+Runtime: **GPU (T4)**. From `s1-cor/`:
+
+```bash
+bash train/colab_minimal.sh install   # deps only
+bash train/colab_minimal.sh verify    # smoke tests
+bash train/colab_minimal.sh sft       # Qwen2.5-0.5B, 1 epoch, local deepseek data
+```
+
+**pip / fsspec**: Colab preinstalls `gcsfs` which needs `fsspec==2025.3.0`. `datasets==3.1.0` may pull `fsspec==2024.9.0` and trigger a resolver warning. It is usually harmless for training; to fix, install training deps then pin fsspec last:
+
+```bash
+pip install transformers==4.46.1 datasets==3.1.0 accelerate==1.0.1 "trl>=0.14.0"
+pip install "fsspec==2025.3.0"
+```
+
+Do **not** install `vllm` / `unsloth` on Colab for this smoke path.
+
 ### Lint / test
 
 - **Tests**: `pytest s1-cor/train/rewards/test_rewards.py`
