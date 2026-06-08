@@ -11,10 +11,8 @@ MODE="${1:-sft}"
 export WANDB_DISABLED=true
 
 install_deps() {
-  # Colab ships gcsfs 2025.x which requires fsspec==2025.3.0.
-  # datasets 3.1.0 pulls an older fsspec; reinstall at the end to silence conflicts.
+  # Ignore pip warnings about gcsfs vs fsspec on Colab; training works either way.
   pip install -q transformers==4.46.1 datasets==3.1.0 accelerate==1.0.1 "trl>=0.14.0"
-  pip install -q "fsspec==2025.3.0"
 }
 
 case "$MODE" in
@@ -28,10 +26,16 @@ case "$MODE" in
     ;;
   sft)
     install_deps
+    export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
     python train/sft_small.py \
       --model_size 0.5B \
       --dataset deepseek \
       --epochs 1 \
+      --batch_size 1 \
+      --grad_accum 8 \
+      --max_length 2048 \
+      --max_samples 200 \
+      --fp16 \
       --output_dir ckpts/sft-0.5B-colab
     ;;
   *)

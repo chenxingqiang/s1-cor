@@ -81,11 +81,13 @@ bash train/colab_minimal.sh verify    # smoke tests
 bash train/colab_minimal.sh sft       # Qwen2.5-0.5B, 1 epoch, local deepseek data
 ```
 
-**pip / fsspec**: Colab preinstalls `gcsfs` which needs `fsspec==2025.3.0`. `datasets==3.1.0` may pull `fsspec==2024.9.0` and trigger a resolver warning. It is usually harmless for training; to fix, install training deps then pin fsspec last:
+**pip / fsspec**: Colab may warn about `gcsfs` vs `fsspec` versions. Ignore it; do **not** force `fsspec==2025.3.0` (conflicts with `datasets==3.1.0`).
+
+**OOM on T4**: use low-memory flags on `sft_small.py`:
 
 ```bash
-pip install transformers==4.46.1 datasets==3.1.0 accelerate==1.0.1 "trl>=0.14.0"
-pip install "fsspec==2025.3.0"
+python train/sft_small.py --model_size 0.5B --dataset deepseek --epochs 1 \
+  --batch_size 1 --grad_accum 8 --max_length 2048 --max_samples 200 --fp16
 ```
 
 Do **not** install `vllm` / `unsloth` on Colab for this smoke path.

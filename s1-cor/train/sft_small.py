@@ -119,6 +119,35 @@ def parse_args():
         help="Number of training epochs"
     )
     parser.add_argument(
+        "--batch_size",
+        type=int,
+        default=None,
+        help="Override per-device batch size (Colab T4: use 1)",
+    )
+    parser.add_argument(
+        "--grad_accum",
+        type=int,
+        default=None,
+        help="Override gradient accumulation steps",
+    )
+    parser.add_argument(
+        "--max_length",
+        type=int,
+        default=None,
+        help="Override max sequence length (Colab T4: use 1024-2048)",
+    )
+    parser.add_argument(
+        "--max_samples",
+        type=int,
+        default=None,
+        help="Train on first N samples only (useful for Colab smoke tests)",
+    )
+    parser.add_argument(
+        "--fp16",
+        action="store_true",
+        help="Use fp16 on CUDA (recommended for Colab T4; T4 lacks fast bf16)",
+    )
+    parser.add_argument(
         "--use_wandb",
         action="store_true",
         help="Use Weights & Biases logging"
@@ -143,7 +172,13 @@ def parse_args():
     return parser.parse_args()
 
 
-def prepare_dataset(tokenizer, dataset_name: str, max_length: int, hf_dataset: str = None):
+def prepare_dataset(
+    tokenizer,
+    dataset_name: str,
+    max_length: int,
+    hf_dataset: str = None,
+    max_samples: Optional[int] = None,
+):
     """Load and prepare the CoR dataset for SFT."""
     
     if dataset_name == "hf":
@@ -158,6 +193,10 @@ def prepare_dataset(tokenizer, dataset_name: str, max_length: int, hf_dataset: s
         dataset_path = "local_data/s1K_cor_full"
         logger.info(f"Loading dataset from {dataset_path}")
         dataset = load_cor_dataset_from_disk(dataset_path)
+
+    if max_samples is not None:
+        dataset = dataset.select(range(min(max_samples, len(dataset))))
+        logger.info(f"Using subset of {len(dataset)} samples")
     
     def tokenize_function(examples):
         """Tokenize the text_cor field which contains the full training text."""
@@ -195,7 +234,13 @@ def main():
     
     # Configuration
     model_name = QWEN_MODELS[args.model_size]
-    config = MODEL_CONFIGS[args.model_size]
+    config = dict(MODEL_CONFIGS[args.model_size])
+    if args.batch_size is not None:
+        config["batch_size"] = args.batch_size
+    if args.grad_accum is not None:
+        config["grad_accum"] = args.grad_accum
+    if args.max_length is not None:
+        config["max_length"] = args.max_length
     output_dir = args.output_dir or f"ckpts/sft-{args.model_size}"
     
     logger.info(f"=" * 50)
@@ -219,7 +264,9 @@ def main():
     # Determine device
     if torch.cuda.is_available():
         device = "cuda"
-        dtype = torch.bfloat16
+        # T4 (capability 7.x) has no fast bf16; prefer fp16 unless user forces otherwise.
+        cuda_bf16 = torch.cuda.get_device_capability(0)[0] >= 8 and not args.fp16
+        dtype = torch.bfloat16 if cuda_bf16 else torch.float16
         device_map = "auto"
     elif torch.backends.mps.is_available():
         device = "mps"
@@ -250,8 +297,12 @@ def main():
         args.dataset,
         config["max_length"],
         hf_dataset=args.hf_dataset,
+        max_samples=args.max_samples,
     )
     
+    use_bf16 = device == "cuda" and dtype == torch.bfloat16
+    use_fp16 = device == "cuda" and dtype == torch.float16
+
     # Training arguments
     training_args = TrainingArguments(
         output_dir=output_dir,
@@ -264,8 +315,8 @@ def main():
         logging_steps=10,
         save_strategy="epoch",
         save_total_limit=2,
-        bf16=(device == "cuda"),
-        fp16=(device == "mps"),
+        bf16=use_bf16,
+        fp16=(device == "mps") or use_fp16,
         gradient_checkpointing=(device != "mps"),  # MPS has issues with gradient checkpointing
         report_to="wandb" if args.use_wandb else "none",
         run_name=f"cor-sft-{args.model_size}-{args.dataset}",
