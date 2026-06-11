@@ -27,6 +27,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "train"))
 
 from data_utils import load_cor_dataset_from_disk
 from rewards import RewardCalculator, RewardConfig
+from reflection_parsing import extract_chain_sequence_from_sample
 from validate_cor_logic import extract_thinking_from_text
 
 
@@ -82,11 +83,19 @@ def mean_reward_for_config(
     for row in rows:
         thinking = _thinking_from_row(row)
         ground_truth = row.get("attempt", "") or row.get("solution", "")
-        out = calc.calculate_total_reward(
-            thinking_chain=thinking,
-            answer=ground_truth,
-            ground_truth=ground_truth,
-        )
+        chains = extract_chain_sequence_from_sample(row)
+        if len(chains) > 1:
+            out = calc.calculate_reflection_reward(
+                chain_sequence=chains,
+                final_answer=ground_truth,
+                ground_truth=ground_truth,
+            )
+        else:
+            out = calc.calculate_total_reward(
+                thinking_chain=thinking,
+                answer=ground_truth,
+                ground_truth=ground_truth,
+            )
         totals.append(out.total_reward)
         externals.append(out.external_reward)
         intrinsics.append(out.intrinsic_reward)

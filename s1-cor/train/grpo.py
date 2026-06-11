@@ -30,6 +30,7 @@ import trl
 from trl import GRPOTrainer, GRPOConfig
 
 from data_utils import DataConfig, prepare_grpo_dataset
+from reflection_parsing import extract_chain_sequence_from_text, extract_reflection_rounds
 from rewards import RewardCalculator, RewardConfig
 from rewards.training_logger import CoRTrainingLogger, log_cor_reward
 
@@ -147,7 +148,7 @@ def create_reward_fn(config: CoRTrainingConfig, enable_logging: bool = True):
             gt = ground_truths[i] if i < len(ground_truths) else None
             
             # Check if completion has multiple reflection rounds
-            chain_sequence = extract_reflection_rounds(completion)
+            chain_sequence = extract_chain_sequence_from_text(completion)
             
             if len(chain_sequence) > 1 and config.enable_reflection:
                 # Multi-round reflection: use extended reward
@@ -263,55 +264,6 @@ def create_reward_fn(config: CoRTrainingConfig, enable_logging: bool = True):
         return rewards
     
     return reward_fn
-
-
-def extract_reflection_rounds(completion: str) -> List[str]:
-    """Extract individual reflection rounds from a completion.
-    
-    Parses format:
-    [Round 1]
-    ...thinking...
-    [Self-Rating: ...]
-    
-    [Reflection]
-    ...
-    
-    [Round 2]
-    ...thinking...
-    
-    Returns list of thinking chains [c_0, c_1, ..., c_K]
-    """
-    # Check for round markers
-    round_pattern = r'\[Round (\d+)\]'
-    rounds = list(re.finditer(round_pattern, completion))
-    
-    if len(rounds) < 2:
-        # No multiple rounds, return entire completion as single chain
-        return [completion]
-    
-    chain_sequence = []
-    
-    for i, match in enumerate(rounds):
-        start = match.end()
-        
-        # End is either next round or end of string
-        if i + 1 < len(rounds):
-            end = rounds[i + 1].start()
-        else:
-            end = len(completion)
-        
-        # Extract this round's content
-        round_content = completion[start:end].strip()
-        
-        # Remove reflection section if present (belongs to previous round's analysis)
-        reflection_match = re.search(r'\[Reflection\].*$', round_content, re.DOTALL)
-        if reflection_match:
-            round_content = round_content[:reflection_match.start()].strip()
-        
-        if round_content:
-            chain_sequence.append(round_content)
-    
-    return chain_sequence if chain_sequence else [completion]
 
 
 def parse_qwen_completion(completion: str) -> tuple:
