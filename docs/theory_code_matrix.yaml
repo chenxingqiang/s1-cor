@@ -96,6 +96,14 @@ components:
     code: "s1-cor/eval/commands.sh + lm-evaluation-harness"
     tier: deferred
     notes: "Requires CUDA, vLLM, checkpoints (ckpts/ not bundled)"
+    verify: "cd s1-cor && python scripts/check_eval_readiness.py --json"
+
+  - id: eval_readiness_gate
+    theory: "AGENTS.md merge gate for paper numbers"
+    code: "s1-cor/scripts/check_eval_readiness.py"
+    tier: implemented
+    notes: "CPU-safe prerequisite report; exit 0 only when GPU eval can run"
+    verify: "pytest train/test_eval_scripts.py::test_check_eval_readiness_json"
 
 ablations_documented:
   - name: lambda_intrinsic
@@ -111,7 +119,9 @@ ablations_documented:
     status: script_cpu
     run: "cd s1-cor && python scripts/run_ablation_sweep.py --json"
   - name: reflection_rounds_K
-    sweep: [1, 2, 3]
-    status: paper_only
+    sweep: [1, 2, 3, 4]
+    status: script_cpu
+    run: "cd s1-cor && python scripts/run_reflection_k_ablation.py --json"
   - name: sft_only_vs_cor_grpo
-    status: design_table_only
+    status: script_cpu
+    run: "cd s1-cor && python scripts/run_reflection_k_ablation.py --json (design_md_stage_presets)"
