@@ -21,8 +21,9 @@ print = functools.partial(print, flush=True)
 # Add parent directory to path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from datasets import load_from_disk, load_dataset
+from datasets import load_dataset
 
+from data_utils import load_cor_dataset_from_disk
 from rewards import RewardCalculator, RewardConfig
 from rewards.self_rating import SelfRatingExtractor
 from rewards.intrinsic import IntrinsicRewardCalculator
@@ -67,7 +68,7 @@ def load_samples(args):
     else:
         data_path = f"local_data/s1K_cor_{args.dataset}"
         print(f"\n📥 Loading dataset from: {data_path}")
-        dataset = load_from_disk(data_path)
+        dataset = load_cor_dataset_from_disk(data_path)
     
     return dataset.select(range(min(args.samples, len(dataset))))
 

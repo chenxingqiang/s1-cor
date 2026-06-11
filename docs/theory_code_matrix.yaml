@@ -1,0 +1,103 @@
+# CoR Theory ↔ Code Contract Matrix
+# Used by AGENTS.md infinite optimization loop (感知 / 验证 / 进化).
+# Tiers: implemented | partial | heuristic | deferred | unsupported
+
+version: 1
+paper_claims:
+  sample_efficiency: "1K samples → competitive with o1-preview (README Results table)"
+  benchmarks: [AIME24, MATH500, GPQA]
+  core_formula: "R = R_ext + λ·R_int + μ·R_improve + ν·R_converge"
+
+components:
+  - id: total_reward_formula
+    theory: "theory.md §1, design.md §2.1"
+    code: "s1-cor/train/rewards/calculator.py:calculate_reflection_reward"
+    tier: implemented
+    verify: "pytest train/rewards/test_rewards.py::TestReflectionRewards"
+
+  - id: five_dim_intrinsic
+    theory: "theory.md §2, target.md §3.1"
+    code: "s1-cor/train/rewards/intrinsic.py:IntrinsicRewardCalculator"
+    tier: heuristic
+    notes: "Rule-based proxies; not learned Q_φ or LLM-as-judge"
+    verify: "pytest train/rewards/test_rewards.py::TestIntrinsicRewards"
+
+  - id: self_rating_calibration
+    theory: "theory.md §3, design.md §2.3"
+    code: "s1-cor/train/rewards/self_rating.py:SelfRatingEvaluator.compute_calibration"
+    tier: implemented
+    verify: "pytest train/rewards/test_rewards.py::TestSelfRatingEvaluator"
+
+  - id: improvement_reward
+    theory: "theory.md §9-10, design.md §2.4"
+    code: "s1-cor/train/rewards/intrinsic.py:ImprovementRewardCalculator"
+    tier: implemented
+    verify: "pytest train/rewards/test_rewards.py::TestReflectionRewards"
+
+  - id: convergence_reward
+    theory: "target.md §2.2 exp(-α‖Δc‖); design.md §2.5 -|c_{k+1}-c_k|"
+    code: "s1-cor/train/rewards/intrinsic.py:ConvergenceRewardCalculator"
+    tier: partial
+    notes: "Uses dimension-score L1 divergence, not token/edit distance or exp form"
+    verify: "pytest train/rewards/test_rewards.py::TestReflectionRewards"
+
+  - id: token_level_reward_chain
+    theory: "target.md §1-2 CoR(τ)=Σ γ^t r_int(s_t,a_t)"
+    code: null
+    tier: deferred
+    notes: "Training uses chain-level scalar R_int, not per-token shaping"
+
+  - id: dual_coupling_phi
+    theory: "theory.md §5-6 φ_{t+1} gradient on calibration"
+    code: null
+    tier: deferred
+    notes: "Only θ updated via GRPO; no separate calibration head φ"
+
+  - id: grpo_integration
+    theory: "theory.md §13-14, design.md §6.2"
+    code: "s1-cor/train/grpo.py:create_reward_fn"
+    tier: implemented
+    verify: "pytest train/test_grpo.py"
+
+  - id: multi_round_reflection_data
+    theory: "design.md §7.2, theory.md §14"
+    code: "s1-cor/train/grpo.py (parse rounds from completion)"
+    tier: partial
+    notes: "Parser + rewards wired; dataset mostly single-round unless cot has rounds"
+
+  - id: external_reward
+    theory: "R_ext = 1[y_answer = y_gt]"
+    code: "s1-cor/train/rewards/calculator.py:calculate_external_reward"
+    tier: heuristic
+    notes: "String/normalized match; eval uses lm-eval + OpenAI for MATH/GPQA"
+
+  - id: sft_self_rating_format
+    theory: "design.md §6.1"
+    code: "s1-cor/train/sft_small.py"
+    tier: implemented
+    verify: "colab_minimal.sh verify; --colab smoke on GPU"
+
+  - id: dataset_local_load
+    theory: "s1K-cor 1K reasoning traces"
+    code: "s1-cor/train/data_utils.py:load_cor_dataset_from_disk"
+    tier: implemented
+    verify: "pytest train/test_data_utils.py; validate_cor_logic --dataset deepseek"
+
+  - id: benchmark_reproduction
+    theory: "design.md §9, README Results"
+    code: "s1-cor/eval/commands.sh + lm-evaluation-harness"
+    tier: deferred
+    notes: "Requires CUDA, vLLM, checkpoints (ckpts/ not bundled)"
+
+ablations_documented:
+  - name: lambda_intrinsic
+    sweep: [0.0, 0.5, 1.0, 2.0]
+    status: paper_only
+  - name: improvement_weight_mu
+    sweep: [0.0, 0.25, 0.5, 1.0]
+    status: paper_only
+  - name: reflection_rounds_K
+    sweep: [1, 2, 3]
+    status: paper_only
+  - name: sft_only_vs_cor_grpo
+    status: design_table_only

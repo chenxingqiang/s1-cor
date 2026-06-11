@@ -13,6 +13,8 @@ from .intrinsic import (
     ClarityReward,
     FormatReward,
     IntrinsicRewardCalculator,
+    ImprovementRewardCalculator,
+    ConvergenceRewardCalculator,
 )
 from .calculator import RewardCalculator, RewardConfig, parse_completion
 
@@ -291,6 +293,65 @@ class TestRewardCalculator:
         assert output.external_reward == 1.0
         assert output.intrinsic_reward > 0
         assert output.total_reward > 1.0  # ext + lambda * int
+
+
+class TestReflectionRewards:
+    """Tests for multi-round reflection reward components."""
+
+    def setup_method(self):
+        self.improvement = ImprovementRewardCalculator()
+        self.convergence = ConvergenceRewardCalculator()
+        self.calculator = RewardCalculator(
+            RewardConfig(
+                lambda_intrinsic=1.0,
+                improvement_weight=0.5,
+                convergence_weight=0.1,
+            )
+        )
+
+    def test_improvement_increases_with_better_chain(self):
+        """Later chain with more structure should score higher."""
+        weak = "maybe x = 1"
+        strong = (
+            "Step 1: Analyze.\n"
+            "Therefore, x = 10.\n"
+            "[Self-Rating: Consistency=8/10, Completeness=8/10]"
+        )
+        delta = self.improvement.compute_improvement(weak, strong)
+        assert delta > 0
+
+    def test_cumulative_improvement_requires_multiple_rounds(self):
+        """Single-chain sequences should yield zero improvement."""
+        chain = "Step 1: Think.\nTherefore, answer = 1."
+        assert self.improvement.compute_cumulative_improvement([chain]) == 0.0
+
+    def test_convergence_reward_is_high_for_similar_chains(self):
+        """Similar consecutive chains should converge."""
+        chain_a = "Step 1: Therefore x = 2."
+        chain_b = "Step 1: Therefore x = 2."
+        reward = self.convergence.compute_convergence_reward(chain_a, chain_b)
+        assert reward == 1.0
+
+    def test_reflection_reward_includes_improvement_and_convergence(self):
+        """Full reflection reward should expose non-zero reflection terms."""
+        chains = [
+            "Step 1: guess.\n",
+            (
+                "Step 1: Analyze carefully.\n"
+                "Therefore, y = 10.\n"
+                "[Self-Rating: Consistency=8/10, Accuracy=8/10]"
+            ),
+        ]
+        output = self.calculator.calculate_reflection_reward(
+            chain_sequence=chains,
+            final_answer="10",
+            ground_truth="10",
+        )
+        assert output.external_reward == 1.0
+        assert output.reflection_rounds == 2
+        assert output.improvement_reward != 0.0
+        assert output.convergence_reward >= 0.0
+        assert output.total_reward > output.external_reward
 
 
 class TestParseCompletion:
