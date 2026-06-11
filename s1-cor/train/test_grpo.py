@@ -2,7 +2,8 @@
 
 import pytest
 
-from grpo import CoRTrainingConfig, create_reward_fn, extract_reflection_rounds, prepare_dataset
+from grpo import CoRTrainingConfig, create_reward_fn, prepare_dataset
+from reflection_parsing import extract_reflection_rounds
 
 
 class TestGrpoRewardFn:
@@ -21,6 +22,18 @@ class TestGrpoRewardFn:
         )
         assert len(rewards) == 2
         assert all(r > 0 for r in rewards)
+
+    def test_self_rating_checkpoints_trigger_reflection_reward(self):
+        completion = (
+            "Step 1: weak guess.\n"
+            "[Self-Rating: Consistency=3/10, Accuracy=2/10]\n"
+            "Step 2: improved work.\n"
+            "[Self-Rating: Consistency=8/10, Accuracy=8/10]\n"
+            "Therefore, the answer is 42"
+        )
+        rewards = self.reward_fn([completion], ground_truths=["42"])
+        assert len(rewards) == 1
+        assert rewards[0] > 0
 
     def test_multi_round_does_not_double_count_rewards(self):
         completion = (

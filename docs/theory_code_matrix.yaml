@@ -68,9 +68,10 @@ components:
 
   - id: multi_round_reflection_data
     theory: "design.md §7.2, theory.md §14"
-    code: "s1-cor/train/grpo.py (parse rounds from completion)"
-    tier: partial
-    notes: "Parser + rewards wired; dataset mostly single-round unless cot has rounds"
+    code: "s1-cor/train/reflection_parsing.py"
+    tier: implemented
+    notes: "[Round N] completions; thinking_trajectories; s1K self-rating checkpoint splits"
+    verify: "pytest train/test_reflection_parsing.py; validate_cor_logic --dataset deepseek"
 
   - id: external_reward
     theory: "R_ext = 1[y_answer = y_gt]"

@@ -244,7 +244,8 @@ python train/validate_cor_logic.py --dataset deepseek --samples 5
 
 - **基线（main + fix 分支）**：四分量奖励公式、`RewardCalculator`、GRPO `reward_fn`、33 pytest；`load_cor_dataset_from_disk` 修复 local_data；Colab `--colab` 防 OOM。
 - **Loop R0（2026-06-08，闭环设计）**：建立 `docs/theory_code_matrix.yaml` 与本文「无限优化闭环」；明确 deferred：token-level CoR、φ 双耦合、benchmark 全量复现。
-- **Loop R1（2026-06-11，`R_converge` + ablation）**：`ConvergenceRewardCalculator` 对齐 `target.md` `exp(-α·‖Δc‖)`；`RewardConfig.convergence_alpha`；新增 `s1-cor/scripts/run_ablation_sweep.py`（CPU λ/μ/α 扫参）。验证：pytest **36 passed**（含 ablation smoke）。下一轮建议：`reflection_rounds_K` 多轮数据解析覆盖，或 GPU `eval/commands.sh` 一行复现。
+- **Loop R1（2026-06-11，`R_converge` + ablation）**：`ConvergenceRewardCalculator` 对齐 `target.md` `exp(-α·‖Δc‖)`；`RewardConfig.convergence_alpha`；新增 `s1-cor/scripts/run_ablation_sweep.py`（CPU λ/μ/α 扫参）。验证：pytest **36 passed**。
+- **Loop R2（2026-06-11，多轮反思解析）**：`reflection_parsing.py` 从 `[Round N]`、`thinking_trajectories`、嵌入 `[Self-Rating]` 快照构建 `chain_sequence`；`validate_cor_logic` / GRPO / ablation 走 `calculate_reflection_reward`。验证：`test_reflection_parsing` + 全量 pytest。下一轮：GPU `eval/commands.sh` 或 `reflection_rounds_K` 训练消融。
 
 ---
 

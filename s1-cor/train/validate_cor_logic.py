@@ -24,6 +24,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from datasets import load_dataset
 
 from data_utils import load_cor_dataset_from_disk
+from reflection_parsing import extract_chain_sequence_from_sample
 from rewards import RewardCalculator, RewardConfig
 from rewards.self_rating import SelfRatingExtractor
 from rewards.intrinsic import IntrinsicRewardCalculator
@@ -191,12 +192,23 @@ def validate_sample(
     ground_truth = sample.get("attempt", "") or sample.get("solution", "")
     answer = ground_truth  # For validation, assume correct
     
-    output = calculator.calculate_total_reward(
-        thinking_chain=thinking,
-        answer=answer,
-        ground_truth=ground_truth
-    )
-    
+    chain_sequence = extract_chain_sequence_from_sample(sample)
+    multi_round = len(chain_sequence) > 1
+
+    if multi_round:
+        print(f"\n   🔁 Multi-round chain detected: {len(chain_sequence)} snapshots")
+        output = calculator.calculate_reflection_reward(
+            chain_sequence=chain_sequence,
+            final_answer=answer,
+            ground_truth=ground_truth,
+        )
+    else:
+        output = calculator.calculate_total_reward(
+            thinking_chain=thinking,
+            answer=answer,
+            ground_truth=ground_truth,
+        )
+
     print(f"\n   📈 REWARD BREAKDOWN:")
     print(f"      R_ext (external):     {output.external_reward:.4f}")
     print(f"      R_int (intrinsic):    {output.intrinsic_reward:.4f}")
@@ -204,6 +216,8 @@ def validate_sample(
         print(f"      R_improve (reflect):  {output.improvement_reward:.4f}")
     if output.convergence_reward != 0:
         print(f"      R_converge (stable):  {output.convergence_reward:.4f}")
+    if multi_round:
+        print(f"      Reflection rounds:    {output.reflection_rounds}")
     print(f"      ─────────────────────────────")
     print(f"      R_total:              {output.total_reward:.4f}")
     
@@ -223,8 +237,12 @@ def validate_sample(
     return {
         "has_self_rating": len(self_ratings) > 0,
         "num_dimensions": len(self_ratings),
+        "multi_round": multi_round,
+        "reflection_rounds": len(chain_sequence),
         "r_external": output.external_reward,
         "r_intrinsic": output.intrinsic_reward,
+        "r_improve": output.improvement_reward,
+        "r_converge": output.convergence_reward,
         "r_total": output.total_reward,
         "calibration": avg_cal if self_ratings and count > 0 else 0.0,
     }
@@ -283,9 +301,15 @@ def run_validation(args):
     print(f"      Rate: {self_rating_rate*100:.1f}%")
     print(f"      Avg dimensions per sample: {sum(r['num_dimensions'] for r in results)/n:.1f}")
     
+    multi_round_n = sum(1 for r in results if r.get("multi_round"))
+    avg_r_improve = sum(r.get("r_improve", 0) for r in results) / n
+
     print(f"\n   Reward Statistics:")
     print(f"      Avg R_total: {avg_r_total:.4f}")
     print(f"      Avg R_intrinsic: {avg_r_int:.4f}")
+    print(f"      Multi-round samples: {multi_round_n}/{n}")
+    if multi_round_n:
+        print(f"      Avg R_improve (multi-round path): {avg_r_improve:.4f}")
     
     print(f"\n   Calibration Quality:")
     print(f"      Avg calibration: {avg_calibration:.4f}")
