@@ -232,7 +232,7 @@ python train/validate_cor_logic.py --dataset deepseek --samples 5
 
 | 层 | 工具 / 路径 |
 |----|-------------|
-| 感知 | `docs/theory_code_matrix.yaml`, `theory.md`, `design.md`, `validate_cor_logic.py` |
+| 感知 | `docs/theory_code_matrix.yaml`, `theory.md`, `design.md`, `validate_cor_logic.py`, `scripts/run_ablation_sweep.py` |
 | 策略 | `target.md`, README Results / Theory-Code |
 | 落地 | `s1-cor/train/rewards/`, `grpo.py`, `data_utils.py`, `sft_small.py` |
 | 验证 | `pytest train/`, `validate_cor_logic.py`, `colab_minimal.sh`, `eval/commands.sh` |
@@ -243,7 +243,8 @@ python train/validate_cor_logic.py --dataset deepseek --samples 5
 > 每合并一轮 PR，追加 3～5 行：日期、瓶颈、验证命令、下一轮建议。勿删历史。
 
 - **基线（main + fix 分支）**：四分量奖励公式、`RewardCalculator`、GRPO `reward_fn`、33 pytest；`load_cor_dataset_from_disk` 修复 local_data；Colab `--colab` 防 OOM。
-- **Loop R0（2026-06-08，闭环设计）**：建立 `docs/theory_code_matrix.yaml` 与本文「无限优化闭环」；明确 deferred：token-level CoR、φ 双耦合、benchmark 全量复现。下一轮建议：合并 `cursor/fix-grpo-dataset-b3de`，闭合 `convergence_reward` tier 或补充 ablation 脚本骨架。
+- **Loop R0（2026-06-08，闭环设计）**：建立 `docs/theory_code_matrix.yaml` 与本文「无限优化闭环」；明确 deferred：token-level CoR、φ 双耦合、benchmark 全量复现。
+- **Loop R1（2026-06-11，`R_converge` + ablation）**：`ConvergenceRewardCalculator` 对齐 `target.md` `exp(-α·‖Δc‖)`；`RewardConfig.convergence_alpha`；新增 `s1-cor/scripts/run_ablation_sweep.py`（CPU λ/μ/α 扫参）。验证：pytest **36 passed**（含 ablation smoke）。下一轮建议：`reflection_rounds_K` 多轮数据解析覆盖，或 GPU `eval/commands.sh` 一行复现。
 
 ---
 

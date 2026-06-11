@@ -12,6 +12,7 @@ Dimensions:
 - Format: Structural correctness
 """
 
+import math
 import re
 from typing import Dict, List, Optional, Tuple
 from dataclasses import dataclass
@@ -599,42 +600,39 @@ class ImprovementRewardCalculator:
 
 class ConvergenceRewardCalculator:
     """Calculate convergence reward to encourage stability.
-    
-    R_converge = -|c_{k+1} - c_k|
-    
-    Encourages the model to converge rather than oscillate.
+
+    Primary form (target.md §2.2):
+        R_converge = exp(-α · ‖c_{k+1} - c_k‖)
+
+    Chain distance ‖·‖ is proxied by L1 divergence of intrinsic dimension
+    scores (each in [0, 1]), normalized by the number of dimensions so the
+    exponent lies in a stable range for training.
     """
-    
-    def __init__(self):
+
+    def __init__(self, alpha: float = 1.0):
+        self.alpha = alpha
         self.intrinsic_calc = IntrinsicRewardCalculator()
-    
+
     def compute_divergence(self, chain_old: str, chain_new: str, **kwargs) -> float:
-        """Compute divergence between two chains based on quality scores."""
+        """Normalized L1 distance between intrinsic score vectors in [0, 1]."""
         scores_old = self.intrinsic_calc.compute_all_dimensions(chain_old, **kwargs)
         scores_new = self.intrinsic_calc.compute_all_dimensions(chain_new, **kwargs)
-        
-        # L1 distance between score vectors
-        divergence = sum(
-            abs(scores_new.get(d, 0) - scores_old.get(d, 0))
-            for d in set(scores_old.keys()) | set(scores_new.keys())
-        )
-        
-        return divergence
-    
+        dims = set(scores_old.keys()) | set(scores_new.keys())
+        if not dims:
+            return 0.0
+
+        raw_l1 = sum(abs(scores_new.get(d, 0) - scores_old.get(d, 0)) for d in dims)
+        return raw_l1 / len(dims)
+
     def compute_convergence_reward(
-        self, 
-        chain_old: str, 
+        self,
+        chain_old: str,
         chain_new: str,
         **kwargs
     ) -> float:
-        """Compute convergence reward (negative divergence, normalized).
-        
-        Returns value in [0, 1] where 1 = perfect convergence.
-        """
+        """exp(-α · ‖Δc‖) with ‖Δc‖ the normalized dimension L1 distance."""
         divergence = self.compute_divergence(chain_old, chain_new, **kwargs)
-        
-        # Normalize: divergence of 0 -> reward 1, divergence >= 1 -> reward 0
-        return max(0.0, 1.0 - divergence)
+        return math.exp(-self.alpha * divergence)
     
     def has_converged(
         self, 
