@@ -54,7 +54,8 @@ class RewardConfig:
     # NEW: Self-reflection weights (μ, ν from theory.md)
     improvement_weight: float = 0.5  # μ: weight for R_improve
     convergence_weight: float = 0.1  # ν: weight for R_converge
-    
+    convergence_alpha: float = 1.0  # α in R_converge = exp(-α·‖Δc‖)
+
     # Reflection parameters
     max_reflection_rounds: int = 3
     convergence_threshold: float = 0.1
@@ -103,7 +104,9 @@ class RewardCalculator:
         
         # NEW: Reflection reward calculators
         self.improvement_calculator = ImprovementRewardCalculator()
-        self.convergence_calculator = ConvergenceRewardCalculator()
+        self.convergence_calculator = ConvergenceRewardCalculator(
+            alpha=self.config.convergence_alpha
+        )
         self.reflection_reward = ReflectionReward()
         self.self_rating_extractor = SelfRatingExtractor()
         self.self_rating_evaluator = SelfRatingEvaluator(

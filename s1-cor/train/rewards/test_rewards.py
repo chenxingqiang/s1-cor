@@ -326,11 +326,29 @@ class TestReflectionRewards:
         assert self.improvement.compute_cumulative_improvement([chain]) == 0.0
 
     def test_convergence_reward_is_high_for_similar_chains(self):
-        """Similar consecutive chains should converge."""
+        """Identical chains: ‖Δc‖=0 → exp(0)=1."""
         chain_a = "Step 1: Therefore x = 2."
         chain_b = "Step 1: Therefore x = 2."
         reward = self.convergence.compute_convergence_reward(chain_a, chain_b)
         assert reward == 1.0
+
+    def test_convergence_reward_exp_decay(self):
+        """Divergent chains yield exp(-α·‖Δc‖) < 1."""
+        weak = "guess"
+        strong = (
+            "Step 1: Analyze.\nTherefore x = 2.\n"
+            "[Self-Rating: Consistency=9/10, Completeness=9/10, Accuracy=9/10]"
+        )
+        reward = self.convergence.compute_convergence_reward(weak, strong)
+        assert 0.0 < reward < 1.0
+
+    def test_convergence_alpha_scales_decay(self):
+        """Larger α penalizes divergence more strongly."""
+        a = "Step 1: x = 1."
+        b = "Step 9: completely different reasoning."
+        low_alpha = ConvergenceRewardCalculator(alpha=0.5)
+        high_alpha = ConvergenceRewardCalculator(alpha=2.0)
+        assert high_alpha.compute_convergence_reward(a, b) < low_alpha.compute_convergence_reward(a, b)
 
     def test_reflection_reward_includes_improvement_and_convergence(self):
         """Full reflection reward should expose non-zero reflection terms."""

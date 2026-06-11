@@ -73,6 +73,7 @@ class CoRTrainingConfig:
     # NEW: Self-reflection configuration (theory.md Section 14-15)
     improvement_weight: float = field(default=0.5)  # μ: R_improve weight
     convergence_weight: float = field(default=0.1)  # ν: R_converge weight
+    convergence_alpha: float = field(default=1.0)   # α in exp(-α·‖Δc‖)
     max_reflection_rounds: int = field(default=3)   # K: max iterations
     enable_reflection: bool = field(default=True)   # Enable multi-round reflection
     
@@ -116,6 +117,7 @@ def create_reward_fn(config: CoRTrainingConfig, enable_logging: bool = True):
         calibration_bonus=config.calibration_bonus,
         improvement_weight=config.improvement_weight,
         convergence_weight=config.convergence_weight,
+        convergence_alpha=config.convergence_alpha,
         max_reflection_rounds=config.max_reflection_rounds,
     )
     

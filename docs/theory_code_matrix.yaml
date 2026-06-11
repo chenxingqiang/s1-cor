@@ -35,11 +35,18 @@ components:
     verify: "pytest train/rewards/test_rewards.py::TestReflectionRewards"
 
   - id: convergence_reward
-    theory: "target.md §2.2 exp(-α‖Δc‖); design.md §2.5 -|c_{k+1}-c_k|"
+    theory: "target.md §2.2 exp(-α‖Δc‖)"
     code: "s1-cor/train/rewards/intrinsic.py:ConvergenceRewardCalculator"
-    tier: partial
-    notes: "Uses dimension-score L1 divergence, not token/edit distance or exp form"
+    tier: implemented
+    notes: "‖Δc‖ proxied by normalized L1 on intrinsic dim scores; α via RewardConfig.convergence_alpha"
     verify: "pytest train/rewards/test_rewards.py::TestReflectionRewards"
+
+  - id: ablation_sweep
+    theory: "design.md §9 ablation table; matrix ablations_documented"
+    code: "s1-cor/scripts/run_ablation_sweep.py"
+    tier: implemented
+    notes: "CPU reward-only λ/μ/α sweep before GPU GRPO"
+    verify: "pytest train/test_ablation_sweep.py"
 
   - id: token_level_reward_chain
     theory: "target.md §1-2 CoR(τ)=Σ γ^t r_int(s_t,a_t)"
@@ -92,10 +99,16 @@ components:
 ablations_documented:
   - name: lambda_intrinsic
     sweep: [0.0, 0.5, 1.0, 2.0]
-    status: paper_only
+    status: script_cpu
+    run: "cd s1-cor && python scripts/run_ablation_sweep.py --json"
   - name: improvement_weight_mu
     sweep: [0.0, 0.25, 0.5, 1.0]
-    status: paper_only
+    status: script_cpu
+    run: "cd s1-cor && python scripts/run_ablation_sweep.py --json"
+  - name: convergence_alpha
+    sweep: [0.5, 1.0, 2.0]
+    status: script_cpu
+    run: "cd s1-cor && python scripts/run_ablation_sweep.py --json"
   - name: reflection_rounds_K
     sweep: [1, 2, 3]
     status: paper_only
