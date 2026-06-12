@@ -243,7 +243,7 @@ make loop-verify      # 合并闸门等价
 | 感知 | `docs/LOOPS.md`, `make loop-perceive`, `theory_code_matrix.yaml`, ablation / readiness 脚本 |
 | 策略 | `target.md`, README Results / Theory-Code |
 | 落地 | `train/rewards/`, `reflection_parsing.py`, `grpo.py`, `data_utils.py` |
-| 验证 | `make loop-verify`, `pytest train/`, `validate_cor_logic.py`, `eval/commands.sh`（GPU） |
+| 验证 | `make loop-verify`, `make loop-product-verify`, `pytest train/`, `validate_cor_logic.py`, `eval/commands.sh`（GPU） |
 | 进化 | **`AGENTS.md`**, `docs/LOOPS.md`, `theory_code_matrix.yaml` |
 | 产品循环 | `reflection_parsing` → `R_improve`/`R_converge`；`run_reflection_k_ablation.py`（K 与阶段） |
 
@@ -260,6 +260,7 @@ make loop-verify      # 合并闸门等价
 - **Loop R5（2026-06-11，评测复现链）**：`docs/EVAL_REPRODUCTION.md`；`compare_eval_to_paper.py`；`run_eval_smoke.sh` / `make loop-eval-smoke`；README 双层 Loop 导读。验证：`pytest train/test_compare_eval_to_paper.py` + `make loop-verify`。下一轮：GPU 训练 ckpt 后 `compare_eval_to_paper` 全 pass。
 - **Loop R6（2026-06-11，R_ext 对齐 + φ 校准代理）**：`train/answer_grading.py`（boxed/sympy，对齐 lm-eval metamathqa）；`RewardConfig.use_math_grader`；`run_r_ext_alignment_report.py` / `run_calibration_report.py`；`make loop-r-ext-align` / `loop-calibration`。验证：pytest **50+ passed** + `make loop-verify`。下一轮：GPU GRPO 开 `use_math_grader` + ckpt 后 `compare_eval_to_paper`。
 - **Loop R7（2026-06-11，GRPO math grader 接线）**：`CoRTrainingConfig.use_math_grader`；`USE_MATH_GRADER=1` in `grpo.sh` / `run_cor_pipeline.sh`；`run_grpo_reward_smoke.py` / `make loop-grpo-smoke`；`docs/GPU_TRAINING.md`。验证：pytest + `make loop-verify`。下一轮：GPU 主机跑 pipeline → `compare_eval_to_paper`。
+- **Loop R8（2026-06-11，产品循环验证层）**：`loop_product_verify.py` / `make loop-product-verify`；`loop_perceive` 聚合 `product_loop_snapshots`；`LOOPS.md` R0–R8 索引。验证：`make loop-product-verify` + `make loop-verify`。下一轮：GPU pipeline 或 token-level CoR 诚实降级。
 
 ---
 

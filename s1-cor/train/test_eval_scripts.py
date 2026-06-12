@@ -67,4 +67,22 @@ def test_loop_perceive_json():
     assert data["layer"] == "perceive"
     assert "matrix_tiers" in data
     assert "product_loops" in data
+    assert "product_loop_snapshots" in data
     assert data["pytest_train"]["skipped"] is True
+
+
+def test_loop_product_verify_json():
+    script = ROOT / "scripts" / "loop_product_verify.py"
+    proc = subprocess.run(
+        [sys.executable, str(script), "--json"],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        timeout=120,
+    )
+    assert proc.returncode == 0, proc.stderr
+    data = json.loads(proc.stdout)
+    assert data["layer"] == "verify"
+    assert data["loop"] == "product"
+    assert data["ok"] is True
+    assert "grpo_reward_smoke" in data["checks"]

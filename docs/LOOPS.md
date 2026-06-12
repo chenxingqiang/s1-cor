@@ -10,13 +10,15 @@ CoR 项目里 **Loop** 有两层含义，共用同一套「感知 → 行动 →
 
 | 层 | 动作 | 本仓库入口 |
 |----|------|------------|
-| 1 感知 | 测试、契约、readiness | `python scripts/loop_perceive.py --json` |
+| 1 感知 | 契约、readiness、**产品循环快照** | `make loop-perceive` |
 | 2 策略 | 选 1 个瓶颈 + 四轮自问 | `AGENTS.md` 闸门、`docs/theory_code_matrix.yaml` |
 | 3 落地 | 最小 patch | `train/`、`scripts/` |
-| 4 验证 | 证据链 exit 0 | `python scripts/loop_verify.py` |
+| 4 验证 | pytest + validate（合并闸门） | `make loop-verify` |
 | 5 进化 | 写回文档与 matrix | `AGENTS.md` 当前轮次笔记 |
 
-**禁止**：`loop_run_all.py` 一类一键编排器。各层是**独立脚本**，由人或 Agent **手工串联**（见 `Makefile` 的 `loop-perceive` / `loop-verify`，不是 `loop-all`）。
+`loop_perceive` 默认 `--skip-pytest`（pytest 由 `loop_verify` 负责）；`product_loop_snapshots` 聚合 GRPO / R_ext / 校准代理指标。
+
+**禁止**：`loop_run_all.py` 一类一键编排器。各层是**独立脚本**，由人或 Agent **手工串联**。
 
 ## 2. 产品循环（Product Loops）— CoR 如何训练与变聪明
 
@@ -29,19 +31,28 @@ CoR 项目里 **Loop** 有两层含义，共用同一套「感知 → 行动 →
 | **GRPO 环** | 策略 θ 随组相对优势更新 | `grpo.py` + TRL |
 | **双耦合** | CoR 信号 ↔ 策略（φ 头 deferred） | `theory.md` §5–6 |
 
-反思深度 **K** 与 design.md 三阶段（SFT → +CoR → +Reflection）的 CPU 代理：
+**产品循环验证层**（Layer 4，与 meta `loop_verify` 并列，不替代）：
 
 ```bash
 cd s1-cor
-python scripts/run_reflection_k_ablation.py --json
+make loop-product-verify   # grpo smoke + R_ext align + calibration proxy
 ```
 
-GPU 论文数字闭环（详见 [EVAL_REPRODUCTION.md](EVAL_REPRODUCTION.md)）：
+反思深度 **K** 与 design.md 三阶段（SFT → +CoR → +Reflection）的 CPU 代理：
 
 ```bash
+python scripts/run_reflection_k_ablation.py --json
+make loop-ablation
+```
+
+GPU 论文数字闭环（详见 [EVAL_REPRODUCTION.md](EVAL_REPRODUCTION.md)、[GPU_TRAINING.md](GPU_TRAINING.md)）：
+
+```bash
+export USE_MATH_GRADER=1
+bash train/run_cor_pipeline.sh
 python scripts/check_eval_readiness.py   # 闸门 → exit 0
 cd eval/lm-evaluation-harness && bash ../commands.sh
-python scripts/compare_eval_to_paper.py --results-dir <output>  # 对比 README 表
+python scripts/compare_eval_to_paper.py --results-dir <output>
 ```
 
 CPU：`make loop-eval-smoke`（dummy lm_eval，非论文分数）。
@@ -59,7 +70,9 @@ flowchart TB
     R[chain_sequence] --> I[R_improve / R_converge]
     I --> G[GRPO update]
     G --> R
+    PV[loop_product_verify] -.-> I
   end
+  P -.->|product_loop_snapshots| PV
   E -.->|契约 tier| R
   V -.->|pytest + validate| I
 ```
@@ -72,12 +85,28 @@ flowchart TB
 
 ```bash
 cd s1-cor
-make loop-perceive    # 感知 JSON
-make loop-verify      # 验证层（合并闸门）
-make loop-ablation    # λ/μ/α + K + 阶段预设
-make loop-r-ext-align # R_ext string vs math grader gap
-make loop-calibration # φ ECE proxy on self-ratings
-make loop-grpo-smoke  # GRPO reward_fn CPU preflight
+make loop-perceive        # 元感知 JSON（含 product_loop_snapshots）
+make loop-verify          # 元验证（合并闸门）
+make loop-product-verify  # 产品循环 CPU 证据
+make loop-ablation        # λ/μ/α + K + 阶段预设
+make loop-r-ext-align     # R_ext string vs math grader
+make loop-calibration     # φ ECE proxy
+make loop-grpo-smoke      # GRPO reward_fn 预检
+make loop-eval-smoke      # lm_eval dummy
 ```
+
+## 5. Loop 轮次索引（R0–R8）
+
+| 轮次 | 主题 | 关键入口 |
+|------|------|----------|
+| R0 | 契约 + AGENTS 闭环 | `theory_code_matrix.yaml` |
+| R1 | R_converge + ablation | `run_ablation_sweep.py` |
+| R2 | 多轮反思解析 | `reflection_parsing.py` |
+| R3 | eval readiness + K 消融 | `check_eval_readiness.py` |
+| R4 | 双层 Loop 文档 | `LOOPS.md`, `loop_perceive/verify` |
+| R5 | 评测复现链 | `compare_eval_to_paper.py` |
+| R6 | R_ext math + φ 代理 | `answer_grading.py`, `run_calibration_report.py` |
+| R7 | GRPO math grader 接线 | `USE_MATH_GRADER`, `GPU_TRAINING.md` |
+| R8 | 产品循环验证层 | `loop_product_verify.py` |
 
 详见 [AGENTS.md](../AGENTS.md) 无限优化闭环章节。

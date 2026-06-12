@@ -1,13 +1,16 @@
 # CoR development targets (meta loop layer hooks — not a full orchestrator).
 # See docs/LOOPS.md and AGENTS.md.
 
-.PHONY: loop-perceive loop-verify loop-ablation loop-eval-smoke test
+.PHONY: loop-perceive loop-verify loop-product-verify loop-ablation loop-eval-smoke test
 
 loop-perceive:
-	python3 scripts/loop_perceive.py --json
+	python3 scripts/loop_perceive.py --json --skip-pytest
 
 loop-verify:
 	python3 scripts/loop_verify.py
+
+loop-product-verify:
+	python3 scripts/loop_product_verify.py
 
 loop-ablation:
 	python3 scripts/run_ablation_sweep.py --samples 10

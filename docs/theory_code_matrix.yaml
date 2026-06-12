@@ -117,6 +117,7 @@ components:
     theory: "AGENTS.md Layer 1; docs/LOOPS.md meta loop"
     code: "s1-cor/scripts/loop_perceive.py"
     tier: implemented
+    notes: "Aggregates product_loop_snapshots from report scripts"
     verify: "pytest train/test_eval_scripts.py::test_loop_perceive_json"
 
   - id: meta_loop_verify
@@ -124,6 +125,13 @@ components:
     code: "s1-cor/scripts/loop_verify.py"
     tier: implemented
     verify: "make -C s1-cor loop-verify"
+
+  - id: product_loop_verify
+    theory: "docs/LOOPS.md product loop layer 4"
+    code: "s1-cor/scripts/loop_product_verify.py"
+    tier: implemented
+    notes: "GRPO smoke + R_ext alignment + calibration proxy; not a full orchestrator"
+    verify: "make -C s1-cor loop-product-verify"
 
   - id: eval_readiness_gate
     theory: "AGENTS.md merge gate for paper numbers"
