@@ -41,6 +41,11 @@ PRODUCT_CHECKS: List[Tuple[str, List[str], str]] = [
         ],
         "ablation_sweep_mini",
     ),
+    (
+        "scripts/run_intrinsic_dim_ablation.py",
+        ["--json", "--samples", "3", "--presets", "uniform,drop"],
+        "intrinsic_dim_ablation_mini",
+    ),
 ]
 
 

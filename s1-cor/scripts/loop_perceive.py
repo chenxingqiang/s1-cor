@@ -80,6 +80,11 @@ def _product_loop_snapshots(include: bool = True) -> Dict[str, Any]:
                 "1",
             ],
         ),
+        (
+            "intrinsic_dim_ablation_mini",
+            "scripts/run_intrinsic_dim_ablation.py",
+            ["--json", "--samples", "3", "--presets", "uniform,drop"],
+        ),
     ]
     out: Dict[str, Any] = {}
     for key, script, args in specs:
@@ -122,6 +127,15 @@ def _summarize_product_report(key: str, report: Dict[str, Any]) -> Dict[str, Any
         return {
             "configs": len(sweep),
             "best_mean_total": max((r.get("mean_total", 0) for r in sweep), default=0),
+        }
+    if key == "intrinsic_dim_ablation_mini":
+        presets = report.get("presets") or []
+        return {
+            "presets": len(presets),
+            "uniform_mean_intrinsic": next(
+                (p.get("mean_intrinsic") for p in presets if p.get("preset") == "uniform_w0.2"),
+                None,
+            ),
         }
     return {}
 

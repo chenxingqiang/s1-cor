@@ -18,6 +18,13 @@ TIER_ORDER = {
 
 GPU_BLOCKED_IDS = frozenset({"benchmark_reproduction"})
 
+# Tie-break among equal-tier gaps (lower = higher priority).
+FOCUS_PRIORITY_BOOST = {
+    "external_reward": -5.0,
+    "calibration_proxy_phi": -3.0,
+    "five_dim_intrinsic": -1.0,
+}
+
 
 def parse_matrix_components(matrix_path: Optional[Path] = None) -> List[Dict[str, Any]]:
     path = matrix_path or DEFAULT_MATRIX
@@ -98,6 +105,8 @@ def rank_strategy_candidates(
 
         if not pytest_ok:
             base += 100.0
+
+        base += FOCUS_PRIORITY_BOOST.get(cid, 0.0)
 
         return base
 

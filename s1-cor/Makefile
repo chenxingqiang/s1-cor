@@ -31,5 +31,8 @@ loop-calibration:
 loop-grpo-smoke:
 	python3 scripts/run_grpo_reward_smoke.py --json --samples 5
 
+loop-intrinsic-ablation:
+	python3 scripts/run_intrinsic_dim_ablation.py --json --samples 10 --presets uniform,drop
+
 test:
 	python3 -m pytest train/ -q
