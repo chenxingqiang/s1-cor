@@ -53,6 +53,19 @@ python train/sft_small.py --model_size 0.5B --dataset hf
 bash train/grpo.sh
 ```
 
+### Development loops（元循环 + 产品循环）
+
+本仓库用 **双层 Loop** 持续改进代码与训练（见 [docs/LOOPS.md](docs/LOOPS.md)）：
+
+```bash
+cd s1-cor
+make loop-perceive    # 感知：契约 tiers、eval readiness、backlog
+make loop-verify      # 验证：pytest + CoR logic
+make loop-ablation    # CPU：λ/μ/α 与反思深度 K
+```
+
+论文 benchmark（AIME / MATH / GPQA）复现路径：[docs/EVAL_REPRODUCTION.md](docs/EVAL_REPRODUCTION.md)。
+
 ---
 
 ## Results

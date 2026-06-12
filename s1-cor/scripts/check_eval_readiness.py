@@ -102,6 +102,8 @@ def build_report() -> Dict[str, Any]:
         "checkpoints": ckpts,
         "paper_targets_design_md": PAPER_TARGETS,
         "eval_entrypoint": "cd s1-cor/eval/lm-evaluation-harness && bash ../commands.sh",
+        "repro_doc": "docs/EVAL_REPRODUCTION.md",
+        "compare_script": "python scripts/compare_eval_to_paper.py --results-dir <lm_eval_output>",
         "notes": [
             "CPU VMs can run this script only; full reproduction needs GPU + ckpt + vLLM.",
             "Compare lm_eval JSON to paper_targets after training CoR-GRPO on 1K s1K-cor.",

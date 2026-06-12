@@ -256,7 +256,8 @@ make loop-verify      # 合并闸门等价
 - **Loop R1（2026-06-11，`R_converge` + ablation）**：`ConvergenceRewardCalculator` 对齐 `target.md` `exp(-α·‖Δc‖)`；`RewardConfig.convergence_alpha`；新增 `s1-cor/scripts/run_ablation_sweep.py`（CPU λ/μ/α 扫参）。验证：pytest **36 passed**。
 - **Loop R2（2026-06-11，多轮反思解析）**：`reflection_parsing.py` 从 `[Round N]`、`thinking_trajectories`、嵌入 `[Self-Rating]` 快照构建 `chain_sequence`；`validate_cor_logic` / GRPO / ablation 走 `calculate_reflection_reward`。验证：`test_reflection_parsing` + 全量 pytest。
 - **Loop R3（2026-06-11，评测闸门 + K 消融）**：`check_eval_readiness.py`；`run_reflection_k_ablation.py`（K + 阶段预设）。验证：pytest **43 passed**。
-- **Loop R4（2026-06-11，双层 Loop 落地）**：`docs/LOOPS.md`（元循环 vs 产品循环）；`loop_perceive.py` / `loop_verify.py` + `s1-cor/Makefile`；修复 K 消融阶段 `mean_total` 显示。验证：`make loop-verify`。下一轮：GPU ckpt + `eval/commands.sh`。
+- **Loop R4（2026-06-11，双层 Loop 落地）**：`docs/LOOPS.md`；`loop_perceive` / `loop_verify` + Makefile。验证：`make loop-verify`。
+- **Loop R5（2026-06-11，评测复现链）**：`docs/EVAL_REPRODUCTION.md`；`compare_eval_to_paper.py`；`run_eval_smoke.sh` / `make loop-eval-smoke`；README 双层 Loop 导读。验证：`pytest train/test_compare_eval_to_paper.py` + `make loop-verify`。下一轮：GPU 训练 ckpt 后 `compare_eval_to_paper` 全 pass。
 
 ---
 

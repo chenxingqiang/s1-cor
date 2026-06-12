@@ -36,13 +36,15 @@ cd s1-cor
 python scripts/run_reflection_k_ablation.py --json
 ```
 
-GPU 论文数字闭环：
+GPU 论文数字闭环（详见 [EVAL_REPRODUCTION.md](EVAL_REPRODUCTION.md)）：
 
 ```bash
-python scripts/check_eval_readiness.py   # 闸门
-# exit 0 后
+python scripts/check_eval_readiness.py   # 闸门 → exit 0
 cd eval/lm-evaluation-harness && bash ../commands.sh
+python scripts/compare_eval_to_paper.py --results-dir <output>  # 对比 README 表
 ```
+
+CPU：`make loop-eval-smoke`（dummy lm_eval，非论文分数）。
 
 ## 3. 两层如何对齐
 
