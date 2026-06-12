@@ -46,7 +46,73 @@ def _matrix_tier_counts() -> Dict[str, int]:
     return counts
 
 
-def build_snapshot(pytest_quick: bool = True, run_pytest: bool = True) -> Dict[str, Any]:
+def _parse_json_stdout(stdout: str) -> Dict[str, Any]:
+    stdout = stdout.strip()
+    if not stdout:
+        return {}
+    try:
+        return json.loads(stdout)
+    except json.JSONDecodeError:
+        start = stdout.find("{")
+        if start < 0:
+            return {}
+        return json.loads(stdout[start:])
+
+
+def _product_loop_snapshots(include: bool = True) -> Dict[str, Any]:
+    """Layer-1 summaries from product-loop report scripts (small sample counts)."""
+    if not include:
+        return {"skipped": True}
+
+    specs = [
+        ("grpo_reward_smoke", "scripts/run_grpo_reward_smoke.py", ["--json", "--samples", "3"]),
+        ("r_ext_alignment", "scripts/run_r_ext_alignment_report.py", ["--json", "--samples", "5"]),
+        ("calibration_proxy", "scripts/run_calibration_report.py", ["--json", "--samples", "5"]),
+    ]
+    out: Dict[str, Any] = {}
+    for key, script, args in specs:
+        proc = subprocess.run(
+            [sys.executable, script, *args],
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+        )
+        if proc.returncode != 0:
+            out[key] = {"ok": False, "exit_code": proc.returncode}
+            continue
+        report = _parse_json_stdout(proc.stdout)
+        out[key] = {
+            "ok": True,
+            "report": report.get("report", key),
+            "summary": _summarize_product_report(key, report),
+        }
+    return out
+
+
+def _summarize_product_report(key: str, report: Dict[str, Any]) -> Dict[str, Any]:
+    if key == "grpo_reward_smoke":
+        return {
+            "mean_reward_delta": report.get("mean_reward_delta_math_minus_string"),
+            "disagreements": report.get("reward_disagreement_count"),
+        }
+    if key == "r_ext_alignment":
+        return {
+            "agreement_rate": report.get("agreement_rate"),
+            "disagreement_count": report.get("disagreement_count"),
+        }
+    if key == "calibration_proxy":
+        return {
+            "ece_proxy": report.get("ece_proxy"),
+            "rated_samples": report.get("samples_with_self_rating"),
+        }
+    return {}
+
+
+def build_snapshot(
+    pytest_quick: bool = True,
+    run_pytest: bool = True,
+    include_product: bool = True,
+) -> Dict[str, Any]:
     tiers = _matrix_tier_counts()
     backlog: List[str] = []
 
@@ -84,6 +150,11 @@ def build_snapshot(pytest_quick: bool = True, run_pytest: bool = True) -> Dict[s
     except json.JSONDecodeError:
         backlog.append("check_eval_readiness JSON parse failed")
 
+    product_snapshots = _product_loop_snapshots(include=include_product)
+    for key, snap in product_snapshots.items():
+        if isinstance(snap, dict) and snap.get("ok") is False:
+            backlog.append(f"product loop snapshot failed: {key}")
+
     return {
         "layer": "perceive",
         "meta_loop": "AGENTS.md five-layer; see docs/LOOPS.md",
@@ -91,7 +162,9 @@ def build_snapshot(pytest_quick: bool = True, run_pytest: bool = True) -> Dict[s
             "reflection_parsing": "train/reflection_parsing.py",
             "reward_formula": "train/rewards/calculator.py",
             "grpo": "train/grpo.py",
+            "verify_entry": "make loop-product-verify",
         },
+        "product_loop_snapshots": product_snapshots,
         "matrix_tiers": tiers,
         "pytest_train": {
             "exit_code": pytest_result["exit_code"],
@@ -112,9 +185,17 @@ def main() -> int:
         action="store_true",
         help="Matrix + readiness only (faster; use loop_verify for pytest)",
     )
+    parser.add_argument(
+        "--skip-product",
+        action="store_true",
+        help="Skip product-loop report snapshots (faster perceive)",
+    )
     args = parser.parse_args()
 
-    snap = build_snapshot(run_pytest=not args.skip_pytest)
+    snap = build_snapshot(
+        run_pytest=not args.skip_pytest,
+        include_product=not args.skip_product,
+    )
 
     if args.json:
         print(json.dumps(snap, indent=2))
