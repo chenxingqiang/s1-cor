@@ -6,7 +6,16 @@
 
 **顶会验证导向**：闭环优先闭合 **理论—代码—实验** 三角中的缺口（可证伪主张、可复现数字、可审计实现），而非孤立调参或文档堆砌。
 
-**不要**为此闭环新增独立编排脚本（例如一键跑完全部阶段的 orchestrator），除非用户明确要求。闭环由 Agent 按层执行现有脚本与测试，并把经验沉淀进文档。
+**双层 Loop**（详见 [docs/LOOPS.md](docs/LOOPS.md)）：
+
+| 循环 | 作用对象 | 典型入口 |
+|------|----------|----------|
+| **元循环 Meta** | 仓库工程与契约 | `make loop-perceive` / `make loop-verify`（`s1-cor/`） |
+| **产品循环 Product** | CoR 训练与奖励 | `reflection_parsing.py` → `R_improve`；`grpo.py`；`run_reflection_k_ablation.py` |
+
+元循环的「感知 / 验证」与产品循环的「反思轮次 K」共用 **先证据后改动** 的节奏，但**不要混为同一个脚本**。
+
+**不要**为此闭环新增独立编排脚本（例如一键跑完全部阶段的 `loop_run_all.py`），除非用户明确要求。各层用 `scripts/loop_perceive.py`、`scripts/loop_verify.py` 等**单职责入口**，由 Agent 或人手工串联。
 
 ### 核心原则
 
@@ -203,9 +212,8 @@ python train/validate_cor_logic.py --dataset deepseek --samples 5
 ```bash
 source /workspace/.venv/bin/activate
 cd s1-cor
-python -m pytest train/rewards/test_rewards.py train/test_grpo.py train/test_data_utils.py -q
-python train/validate_cor_logic.py --dataset deepseek --samples 5
-# 人工对照 docs/theory_code_matrix.yaml 中 partial/deferred/heuristic
+make loop-perceive    # JSON：matrix tiers + pytest + eval readiness + backlog_hints
+make loop-verify      # 合并闸门等价
 ```
 
 **候选优先级**：失败测试 → 训练路径错误 → matrix deferred 阻塞叙述 → 数据/Colab → benchmark 复现 → ablation 脚本。
@@ -216,10 +224,10 @@ python train/validate_cor_logic.py --dataset deepseek --samples 5
 
 ```
 [ ] 0. 闸门：四轮自问 + matrix 对照
-[ ] 1. 感知：pytest + validate_cor_logic + matrix gap 列表
+[ ] 1. 感知：`make loop-perceive` 或等价 + matrix gap
 [ ] 2. 策略：单一主攻，顶会价值说明
 [ ] 3. 落地：最小 patch，无 orchestrator
-[ ] 4. 验证：CPU 最小集（+ GPU 若触及训练/评测）
+[ ] 4. 验证：`make loop-verify`（+ GPU eval 若触及 benchmark）
 [ ] 5. 开 PR：push，base=main
 [ ] 6. 自动合并：本地全绿 → gh pr merge
 [ ] 7. 同步 main：checkout + pull
@@ -232,11 +240,12 @@ python train/validate_cor_logic.py --dataset deepseek --samples 5
 
 | 层 | 工具 / 路径 |
 |----|-------------|
-| 感知 | `docs/theory_code_matrix.yaml`, `validate_cor_logic.py`, `scripts/run_ablation_sweep.py`, `scripts/check_eval_readiness.py`, `scripts/run_reflection_k_ablation.py` |
+| 感知 | `docs/LOOPS.md`, `make loop-perceive`, `theory_code_matrix.yaml`, ablation / readiness 脚本 |
 | 策略 | `target.md`, README Results / Theory-Code |
-| 落地 | `s1-cor/train/rewards/`, `grpo.py`, `data_utils.py`, `sft_small.py` |
-| 验证 | `pytest train/`, `validate_cor_logic.py`, `colab_minimal.sh`, `eval/commands.sh` |
-| 进化 | **`AGENTS.md`**, `docs/theory_code_matrix.yaml`, 集成测试 |
+| 落地 | `train/rewards/`, `reflection_parsing.py`, `grpo.py`, `data_utils.py` |
+| 验证 | `make loop-verify`, `pytest train/`, `validate_cor_logic.py`, `eval/commands.sh`（GPU） |
+| 进化 | **`AGENTS.md`**, `docs/LOOPS.md`, `theory_code_matrix.yaml` |
+| 产品循环 | `reflection_parsing` → `R_improve`/`R_converge`；`run_reflection_k_ablation.py`（K 与阶段） |
 
 ### 当前轮次笔记（由 Agent 持续追加）
 
@@ -246,7 +255,8 @@ python train/validate_cor_logic.py --dataset deepseek --samples 5
 - **Loop R0（2026-06-08，闭环设计）**：建立 `docs/theory_code_matrix.yaml` 与本文「无限优化闭环」；明确 deferred：token-level CoR、φ 双耦合、benchmark 全量复现。
 - **Loop R1（2026-06-11，`R_converge` + ablation）**：`ConvergenceRewardCalculator` 对齐 `target.md` `exp(-α·‖Δc‖)`；`RewardConfig.convergence_alpha`；新增 `s1-cor/scripts/run_ablation_sweep.py`（CPU λ/μ/α 扫参）。验证：pytest **36 passed**。
 - **Loop R2（2026-06-11，多轮反思解析）**：`reflection_parsing.py` 从 `[Round N]`、`thinking_trajectories`、嵌入 `[Self-Rating]` 快照构建 `chain_sequence`；`validate_cor_logic` / GRPO / ablation 走 `calculate_reflection_reward`。验证：`test_reflection_parsing` + 全量 pytest。
-- **Loop R3（2026-06-11，评测闸门 + K 消融）**：`check_eval_readiness.py`（CUDA/vLLM/ckpt/OpenAI 闸门）；`run_reflection_k_ablation.py`（K 截断 + design.md 三阶段 reward 代理）。验证：pytest **43 passed**。下一轮：GPU 训练 ckpt 后 `check_eval_readiness` exit 0 → `eval/commands.sh`。
+- **Loop R3（2026-06-11，评测闸门 + K 消融）**：`check_eval_readiness.py`；`run_reflection_k_ablation.py`（K + 阶段预设）。验证：pytest **43 passed**。
+- **Loop R4（2026-06-11，双层 Loop 落地）**：`docs/LOOPS.md`（元循环 vs 产品循环）；`loop_perceive.py` / `loop_verify.py` + `s1-cor/Makefile`；修复 K 消融阶段 `mean_total` 显示。验证：`make loop-verify`。下一轮：GPU ckpt + `eval/commands.sh`。
 
 ---
 
@@ -254,7 +264,7 @@ python train/validate_cor_logic.py --dataset deepseek --samples 5
 
 ### Product overview
 
-This repository is an **ML research codebase** for **Chain of Reward (CoR)** / **s1** reasoning-model training. It is not a web app. Workflows are Python scripts and shell launchers. See [CoR 无限优化闭环](#cor-无限优化闭环infinite-optimization-loop) for the continuous improvement protocol.
+This repository is an **ML research codebase** for **Chain of Reward (CoR)** / **s1** reasoning-model training. It is not a web app. Workflows are Python scripts and shell launchers. See [CoR 无限优化闭环](#cor-无限优化闭环infinite-optimization-loop) and [docs/LOOPS.md](docs/LOOPS.md) (meta + product loops). Quick: `cd s1-cor && make loop-perceive && make loop-verify`.
 
 ### Environment
 

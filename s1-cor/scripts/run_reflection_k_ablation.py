@@ -128,7 +128,13 @@ def run_stage_presets(rows: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
                     _reward_for_chains(calc, [thinking], gt)
                 )
         stats = _mean_stats(per_sample)
-        out.append({"stage": name, "n_samples": len(per_sample), **stats})
+        out.append(
+            {
+                "stage": name,
+                "n_samples": len(per_sample),
+                **{f"mean_{k}": v for k, v in stats.items()},
+            }
+        )
 
     return out
 

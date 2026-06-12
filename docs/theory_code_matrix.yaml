@@ -98,6 +98,18 @@ components:
     notes: "Requires CUDA, vLLM, checkpoints (ckpts/ not bundled)"
     verify: "cd s1-cor && python scripts/check_eval_readiness.py --json"
 
+  - id: meta_loop_perceive
+    theory: "AGENTS.md Layer 1; docs/LOOPS.md meta loop"
+    code: "s1-cor/scripts/loop_perceive.py"
+    tier: implemented
+    verify: "pytest train/test_eval_scripts.py::test_loop_perceive_json"
+
+  - id: meta_loop_verify
+    theory: "AGENTS.md Layer 4 merge gate"
+    code: "s1-cor/scripts/loop_verify.py"
+    tier: implemented
+    verify: "make -C s1-cor loop-verify"
+
   - id: eval_readiness_gate
     theory: "AGENTS.md merge gate for paper numbers"
     code: "s1-cor/scripts/check_eval_readiness.py"
