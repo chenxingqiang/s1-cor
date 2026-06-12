@@ -1,0 +1,13 @@
+{
+  "results": {
+    "aime24_nofigures": {
+      "acc,none": 0.567
+    },
+    "openai_math": {
+      "exact_match,flexible-extract": 0.93
+    },
+    "gpqa_diamond_openai": {
+      "acc_norm,none": 0.596
+    }
+  }
+}

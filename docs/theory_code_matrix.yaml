@@ -93,10 +93,16 @@ components:
 
   - id: benchmark_reproduction
     theory: "design.md §9, README Results"
-    code: "s1-cor/eval/commands.sh + lm-evaluation-harness"
-    tier: deferred
-    notes: "Requires CUDA, vLLM, checkpoints (ckpts/ not bundled)"
-    verify: "cd s1-cor && python scripts/check_eval_readiness.py --json"
+    code: "s1-cor/eval/commands.sh + docs/EVAL_REPRODUCTION.md"
+    tier: partial
+    notes: "GPU path documented; compare_eval_to_paper.py parses lm_eval JSON; ckpts not bundled"
+    verify: "pytest train/test_compare_eval_to_paper.py; check_eval_readiness.py; make loop-eval-smoke"
+
+  - id: compare_eval_to_paper
+    theory: "README Results table vs lm_eval output"
+    code: "s1-cor/scripts/compare_eval_to_paper.py"
+    tier: implemented
+    verify: "pytest train/test_compare_eval_to_paper.py"
 
   - id: meta_loop_perceive
     theory: "AGENTS.md Layer 1; docs/LOOPS.md meta loop"
