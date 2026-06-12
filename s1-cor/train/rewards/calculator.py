@@ -56,6 +56,9 @@ class RewardConfig:
     convergence_weight: float = 0.1  # ν: weight for R_converge
     convergence_alpha: float = 1.0  # α in R_converge = exp(-α·‖Δc‖)
 
+    # Use lm-eval-aligned math grading for R_ext (boxed + sympy); default string match
+    use_math_grader: bool = False
+
     # Reflection parameters
     max_reflection_rounds: int = 3
     convergence_threshold: float = 0.1
@@ -112,6 +115,14 @@ class RewardCalculator:
         self.self_rating_evaluator = SelfRatingEvaluator(
             calibration_bonus=self.config.calibration_bonus
         )
+
+    def _default_grader_fn(self, grader_fn: Optional[callable] = None) -> Optional[callable]:
+        if grader_fn is not None:
+            return grader_fn
+        if self.config.use_math_grader:
+            from answer_grading import make_math_grader_fn
+            return make_math_grader_fn()
+        return None
     
     def calculate_external_reward(
         self,
@@ -133,6 +144,7 @@ class RewardCalculator:
         Returns:
             1.0 if correct, 0.0 if incorrect.
         """
+        grader_fn = self._default_grader_fn(grader_fn)
         if grader_fn is not None:
             return float(grader_fn(answer, ground_truth))
         

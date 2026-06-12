@@ -75,6 +75,8 @@ cd s1-cor
 make loop-perceive    # 感知 JSON
 make loop-verify      # 验证层（合并闸门）
 make loop-ablation    # λ/μ/α + K + 阶段预设
+make loop-r-ext-align # R_ext string vs math grader gap
+make loop-calibration # φ ECE proxy on self-ratings
 ```
 
 详见 [AGENTS.md](../AGENTS.md) 无限优化闭环章节。

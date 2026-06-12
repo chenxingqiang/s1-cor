@@ -56,9 +56,9 @@ components:
 
   - id: dual_coupling_phi
     theory: "theory.md §5-6 φ_{t+1} gradient on calibration"
-    code: null
+    code: "s1-cor/scripts/run_calibration_report.py (proxy only)"
     tier: deferred
-    notes: "Only θ updated via GRPO; no separate calibration head φ"
+    notes: "Only θ updated via GRPO; ECE proxy in calibration_proxy_phi matrix entry"
 
   - id: grpo_integration
     theory: "theory.md §13-14, design.md §6.2"
@@ -75,9 +75,17 @@ components:
 
   - id: external_reward
     theory: "R_ext = 1[y_answer = y_gt]"
-    code: "s1-cor/train/rewards/calculator.py:calculate_external_reward"
-    tier: heuristic
-    notes: "String/normalized match; eval uses lm-eval + OpenAI for MATH/GPQA"
+    code: "s1-cor/train/rewards/calculator.py + train/answer_grading.py"
+    tier: partial
+    notes: "Default string match; RewardConfig.use_math_grader for lm-eval-aligned boxed/sympy path; OpenAI judge still eval-only"
+    verify: "pytest train/test_answer_grading.py train/test_r_ext_alignment.py; scripts/run_r_ext_alignment_report.py --json"
+
+  - id: calibration_proxy_phi
+    theory: "theory.md §5-6 φ calibration (θ-only GRPO; φ deferred)"
+    code: "s1-cor/scripts/run_calibration_report.py"
+    tier: partial
+    notes: "ECE-style proxy on self-ratings vs heuristic actual quality; not learned φ head"
+    verify: "pytest train/test_calibration_report.py; scripts/run_calibration_report.py --json"
 
   - id: sft_self_rating_format
     theory: "design.md §6.1"

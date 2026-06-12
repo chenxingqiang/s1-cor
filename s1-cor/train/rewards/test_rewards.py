@@ -255,6 +255,12 @@ class TestRewardCalculator:
             "42"
         )
         assert reward == 1.0
+
+    def test_math_grader_option(self):
+        """RewardConfig.use_math_grader routes to answer_grading."""
+        calc = RewardCalculator(RewardConfig(use_math_grader=True))
+        reward = calc.calculate_external_reward("Answer: 42", "42")
+        assert reward == 1.0
     
     def test_intrinsic_reward(self):
         """Test intrinsic reward calculation."""

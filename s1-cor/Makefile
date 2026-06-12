@@ -16,5 +16,11 @@ loop-ablation:
 loop-eval-smoke:
 	bash scripts/run_eval_smoke.sh
 
+loop-r-ext-align:
+	python3 scripts/run_r_ext_alignment_report.py --json --samples 10
+
+loop-calibration:
+	python3 scripts/run_calibration_report.py --json --samples 10
+
 test:
 	python3 -m pytest train/ -q
