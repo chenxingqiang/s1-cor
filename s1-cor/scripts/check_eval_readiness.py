@@ -79,6 +79,7 @@ def build_report() -> Dict[str, Any]:
         "commands_sh_present": COMMANDS.is_file(),
         "openai_api_key_set": bool(os.environ.get("OPENAI_API_KEY")),
         "any_default_checkpoint": any_ckpt,
+        "sympy_available": _package_available("sympy"),
     }
 
     blockers: List[str] = []
@@ -107,6 +108,7 @@ def build_report() -> Dict[str, Any]:
         "notes": [
             "CPU VMs can run this script only; full reproduction needs GPU + ckpt + vLLM.",
             "Compare lm_eval JSON to paper_targets after training CoR-GRPO on 1K s1K-cor.",
+            "GRPO training: USE_MATH_GRADER=1 enables eval-aligned R_ext (requires sympy).",
         ],
     }
 

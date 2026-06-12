@@ -18,9 +18,12 @@ flowchart LR
 ```bash
 cd s1-cor
 export WANDB_DISABLED=true
+export USE_MATH_GRADER=1   # 推荐：训练 R_ext 与 lm-eval 数学判题对齐
 bash train/run_cor_pipeline.sh
-# 或分步: SFT → grpo.sh → 记下 ckpts/cor-grpo-<uid>
+# 或分步: SFT → USE_MATH_GRADER=1 bash train/grpo.sh → 记下 ckpts/cor-grpo-<uid>
 ```
+
+详见 [GPU_TRAINING.md](GPU_TRAINING.md)。
 
 Colab / 小 GPU 烟雾：`python train/sft_small.py --colab`（不产出 32B 论文数字）。
 

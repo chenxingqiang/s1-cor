@@ -36,6 +36,7 @@ self_rating_weight=0.2    # w_self: self-rating quality weight
 improvement_weight=0.5    # μ: improvement reward weight (NEW)
 convergence_weight=0.1    # ν: convergence reward weight (NEW)
 max_reflection_rounds=3   # K: max reflection iterations (NEW)
+use_math_grader="${USE_MATH_GRADER:-0}"  # 1 = eval-aligned R_ext (Loop R7)
 
 # Hardware
 gpu_count=$(nvidia-smi -L | wc -l)
@@ -48,11 +49,17 @@ echo "Base model: ${base_model}"
 echo "Reference model: ${ref_model_path}"
 echo "Output: ${output_dir}"
 echo "GPUs: ${gpu_count}"
+echo "use_math_grader: ${use_math_grader}"
 echo ""
 echo "Note: Run SFT first to create reference model:"
 echo "  python train/sft_small.py --model_size 32B --push_to_hub"
 echo "  or: bash train/run_cor_pipeline.sh --skip-grpo"
 echo ""
+
+math_grader_flag=""
+if [ "${use_math_grader}" = "1" ] || [ "${use_math_grader}" = "true" ]; then
+    math_grader_flag="--use_math_grader=True"
+fi
 
 torchrun --nproc-per-node ${gpu_count} --master_port 12346 \
     train/grpo.py \
@@ -67,6 +74,7 @@ torchrun --nproc-per-node ${gpu_count} --master_port 12346 \
     --convergence_weight=${convergence_weight} \
     --max_reflection_rounds=${max_reflection_rounds} \
     --enable_reflection=True \
+    ${math_grader_flag} \
     --per_device_train_batch_size=${micro_batch_size} \
     --gradient_accumulation_steps=${gradient_accumulation_steps} \
     --num_train_epochs=${epochs} \

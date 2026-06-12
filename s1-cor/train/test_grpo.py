@@ -76,6 +76,14 @@ class TestGrpoRewardFn:
         assert "reference_answer" in dataset.column_names
         assert dataset[0]["reference_answer"]
 
+    def test_math_grader_config_wires_to_reward_fn(self):
+        config = CoRTrainingConfig(use_math_grader=True, enable_reflection=False)
+        reward_fn = create_reward_fn(config, enable_logging=False)
+        completion = "Step 1: work.\nAnswer: 42"
+        rewards = reward_fn([completion], ground_truths=["42"])
+        assert len(rewards) == 1
+        assert rewards[0] >= 1.0
+
 
 if __name__ == "__main__":
     pytest.main([__file__, "-v"])

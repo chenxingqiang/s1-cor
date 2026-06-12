@@ -24,7 +24,6 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "train"))
 from answer_grading import extract_answer_from_completion
 from data_utils import load_cor_dataset_from_disk
 from rewards import RewardCalculator, RewardConfig
-from reflection_parsing import extract_chain_sequence_from_sample
 
 
 def parse_args() -> argparse.Namespace:
@@ -36,14 +35,11 @@ def parse_args() -> argparse.Namespace:
 
 
 def _completion_from_sample(sample: Dict[str, Any]) -> str:
-    chains = extract_chain_sequence_from_sample(sample)
-    if chains:
-        return chains[-1]
     return sample.get("attempt") or sample.get("solution") or ""
 
 
 def _ground_truth(sample: Dict[str, Any]) -> str:
-    return sample.get("attempt") or sample.get("solution") or ""
+    return sample.get("solution") or sample.get("attempt") or ""
 
 
 def run_report(dataset: str, n_samples: int) -> Dict[str, Any]:
@@ -100,9 +96,8 @@ def run_report(dataset: str, n_samples: int) -> Dict[str, Any]:
         "disagreement_count": len(disagreements),
         "disagreements_sample": disagreements[:5],
         "notes": [
-            "Self-graded on attempt/solution as prediction (sanity on extraction pipeline).",
-            "Real train/eval gap is larger when model completions differ from reference.",
-            "Enable RewardConfig.use_math_grader=True for eval-aligned R_ext during GRPO.",
+            "Pred=attempt, GT=solution (formatting gap between model output and reference).",
+            "Enable RewardConfig.use_math_grader=True or USE_MATH_GRADER=1 for GRPO.",
             "MATH/GPQA OpenAI judge in eval/commands.sh remains a separate gap.",
         ],
     }

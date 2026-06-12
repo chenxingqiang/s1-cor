@@ -34,6 +34,7 @@ INPUT_DATA="simplescaling/s1K_tokenized"
 RATED_DATA="local_data/s1K_rated"
 SFT_OUTPUT="ckpts/cor-sft-${uid}"
 GRPO_OUTPUT="ckpts/cor-grpo-${uid}"
+USE_MATH_GRADER="${USE_MATH_GRADER:-0}"
 
 echo "=============================================="
 echo "Chain of Reward (CoR) Training Pipeline"
@@ -102,6 +103,12 @@ if [ "$EVAL_ONLY" = false ]; then
     echo "----------------------------------------------"
     
     gpu_count=$(nvidia-smi -L | wc -l)
+
+    math_grader_flag=""
+    if [ "${USE_MATH_GRADER}" = "1" ] || [ "${USE_MATH_GRADER}" = "true" ]; then
+        math_grader_flag="--use_math_grader=True"
+        echo "R_ext: eval-aligned math grader enabled"
+    fi
     
     torchrun --nproc-per-node ${gpu_count} --master_port 12346 \
         train/grpo.py \
@@ -116,6 +123,7 @@ if [ "$EVAL_ONLY" = false ]; then
         --convergence_weight=0.1 \
         --max_reflection_rounds=3 \
         --enable_reflection=True \
+        ${math_grader_flag} \
         --per_device_train_batch_size=1 \
         --gradient_accumulation_steps=4 \
         --num_train_epochs=2 \

@@ -64,7 +64,8 @@ components:
     theory: "theory.md §13-14, design.md §6.2"
     code: "s1-cor/train/grpo.py:create_reward_fn"
     tier: implemented
-    verify: "pytest train/test_grpo.py"
+    notes: "USE_MATH_GRADER=1 / --use_math_grader wires eval-aligned R_ext"
+    verify: "pytest train/test_grpo.py; scripts/run_grpo_reward_smoke.py --json"
 
   - id: multi_round_reflection_data
     theory: "design.md §7.2, theory.md §14"

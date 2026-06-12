@@ -77,7 +77,8 @@ class CoRTrainingConfig:
     convergence_alpha: float = field(default=1.0)   # α in exp(-α·‖Δc‖)
     max_reflection_rounds: int = field(default=3)   # K: max iterations
     enable_reflection: bool = field(default=True)   # Enable multi-round reflection
-    
+    use_math_grader: bool = field(default=False)    # Eval-aligned R_ext (answer_grading.py)
+
     # W&B
     wandb_project: Optional[str] = field(default="cor-grpo")
     wandb_entity: Optional[str] = field(default=None)
@@ -120,6 +121,7 @@ def create_reward_fn(config: CoRTrainingConfig, enable_logging: bool = True):
         convergence_weight=config.convergence_weight,
         convergence_alpha=config.convergence_alpha,
         max_reflection_rounds=config.max_reflection_rounds,
+        use_math_grader=config.use_math_grader,
     )
     
     calculator = RewardCalculator(reward_config)
@@ -364,6 +366,8 @@ def train():
     
     # Create reward function
     logging.info("Creating reward function...")
+    if config.use_math_grader:
+        logging.info("R_ext: eval-aligned math grader enabled (answer_grading.py)")
     reward_fn = create_reward_fn(config)
     
     # Configure GRPO

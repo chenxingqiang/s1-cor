@@ -259,6 +259,7 @@ make loop-verify      # 合并闸门等价
 - **Loop R4（2026-06-11，双层 Loop 落地）**：`docs/LOOPS.md`；`loop_perceive` / `loop_verify` + Makefile。验证：`make loop-verify`。
 - **Loop R5（2026-06-11，评测复现链）**：`docs/EVAL_REPRODUCTION.md`；`compare_eval_to_paper.py`；`run_eval_smoke.sh` / `make loop-eval-smoke`；README 双层 Loop 导读。验证：`pytest train/test_compare_eval_to_paper.py` + `make loop-verify`。下一轮：GPU 训练 ckpt 后 `compare_eval_to_paper` 全 pass。
 - **Loop R6（2026-06-11，R_ext 对齐 + φ 校准代理）**：`train/answer_grading.py`（boxed/sympy，对齐 lm-eval metamathqa）；`RewardConfig.use_math_grader`；`run_r_ext_alignment_report.py` / `run_calibration_report.py`；`make loop-r-ext-align` / `loop-calibration`。验证：pytest **50+ passed** + `make loop-verify`。下一轮：GPU GRPO 开 `use_math_grader` + ckpt 后 `compare_eval_to_paper`。
+- **Loop R7（2026-06-11，GRPO math grader 接线）**：`CoRTrainingConfig.use_math_grader`；`USE_MATH_GRADER=1` in `grpo.sh` / `run_cor_pipeline.sh`；`run_grpo_reward_smoke.py` / `make loop-grpo-smoke`；`docs/GPU_TRAINING.md`。验证：pytest + `make loop-verify`。下一轮：GPU 主机跑 pipeline → `compare_eval_to_paper`。
 
 ---
 
