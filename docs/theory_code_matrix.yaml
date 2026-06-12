@@ -17,10 +17,10 @@ components:
 
   - id: five_dim_intrinsic
     theory: "theory.md §2, target.md §3.1"
-    code: "s1-cor/train/rewards/intrinsic.py:IntrinsicRewardCalculator"
-    tier: heuristic
-    notes: "Rule-based proxies; not learned Q_φ or LLM-as-judge"
-    verify: "pytest train/rewards/test_rewards.py::TestIntrinsicRewards"
+    code: "s1-cor/train/rewards/intrinsic.py + scripts/run_intrinsic_dim_ablation.py"
+    tier: partial
+    notes: "Rule-based proxies; CPU w_d emphasize/drop ablation documents sensitivity (not learned Q_φ)"
+    verify: "pytest train/test_intrinsic_dim_ablation.py; make -C s1-cor loop-intrinsic-ablation"
 
   - id: self_rating_calibration
     theory: "theory.md §3, design.md §2.3"
@@ -164,6 +164,10 @@ ablations_documented:
     sweep: [1, 2, 3, 4]
     status: script_cpu
     run: "cd s1-cor && python scripts/run_reflection_k_ablation.py --json"
+  - name: intrinsic_dimension_weights
+    sweep: [uniform, emphasize_<dim>, drop_<dim>]
+    status: script_cpu
+    run: "cd s1-cor && python scripts/run_intrinsic_dim_ablation.py --json"
   - name: sft_only_vs_cor_grpo
     status: script_cpu
     run: "cd s1-cor && python scripts/run_reflection_k_ablation.py --json (design_md_stage_presets)"
