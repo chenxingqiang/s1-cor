@@ -68,7 +68,26 @@ def test_loop_perceive_json():
     assert "matrix_tiers" in data
     assert "product_loops" in data
     assert "product_loop_snapshots" in data
+    assert "matrix_gaps" in data
+    assert len(data["matrix_gaps"]) >= 3
     assert data["pytest_train"]["skipped"] is True
+
+
+def test_loop_strategy_json():
+    script = ROOT / "scripts" / "loop_strategy.py"
+    proc = subprocess.run(
+        [sys.executable, str(script), "--json", "--skip-pytest"],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        timeout=30,
+    )
+    assert proc.returncode == 0, proc.stderr
+    data = json.loads(proc.stdout)
+    assert data["layer"] == "strategy"
+    assert data["recommended_focus"]["id"]
+    assert "matrix_gaps_ranked" in data
+    assert "strategy_card" in data
 
 
 def test_loop_product_verify_json():

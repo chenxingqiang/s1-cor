@@ -26,6 +26,21 @@ PRODUCT_CHECKS: List[Tuple[str, List[str], str]] = [
     ("scripts/run_grpo_reward_smoke.py", ["--json", "--samples", "3"], "grpo_reward_smoke"),
     ("scripts/run_r_ext_alignment_report.py", ["--json", "--samples", "5"], "r_ext_alignment"),
     ("scripts/run_calibration_report.py", ["--json", "--samples", "5"], "calibration_proxy"),
+    (
+        "scripts/run_ablation_sweep.py",
+        [
+            "--json",
+            "--samples",
+            "3",
+            "--lambda-values",
+            "0,1",
+            "--mu-values",
+            "0,0.5",
+            "--alpha-values",
+            "1",
+        ],
+        "ablation_sweep_mini",
+    ),
 ]
 
 

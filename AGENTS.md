@@ -225,7 +225,7 @@ make loop-verify      # 合并闸门等价
 ```
 [ ] 0. 闸门：四轮自问 + matrix 对照
 [ ] 1. 感知：`make loop-perceive` 或等价 + matrix gap
-[ ] 2. 策略：单一主攻，顶会价值说明
+[ ] 2. 策略：`make loop-strategy` + 四轮自问
 [ ] 3. 落地：最小 patch，无 orchestrator
 [ ] 4. 验证：`make loop-verify`（+ GPU eval 若触及 benchmark）
 [ ] 5. 开 PR：push，base=main
@@ -241,7 +241,7 @@ make loop-verify      # 合并闸门等价
 | 层 | 工具 / 路径 |
 |----|-------------|
 | 感知 | `docs/LOOPS.md`, `make loop-perceive`, `theory_code_matrix.yaml`, ablation / readiness 脚本 |
-| 策略 | `target.md`, README Results / Theory-Code |
+| 策略 | `make loop-strategy`, `target.md`, README Results / Theory-Code |
 | 落地 | `train/rewards/`, `reflection_parsing.py`, `grpo.py`, `data_utils.py` |
 | 验证 | `make loop-verify`, `make loop-product-verify`, `pytest train/`, `validate_cor_logic.py`, `eval/commands.sh`（GPU） |
 | 进化 | **`AGENTS.md`**, `docs/LOOPS.md`, `theory_code_matrix.yaml` |
@@ -261,6 +261,7 @@ make loop-verify      # 合并闸门等价
 - **Loop R6（2026-06-11，R_ext 对齐 + φ 校准代理）**：`train/answer_grading.py`（boxed/sympy，对齐 lm-eval metamathqa）；`RewardConfig.use_math_grader`；`run_r_ext_alignment_report.py` / `run_calibration_report.py`；`make loop-r-ext-align` / `loop-calibration`。验证：pytest **50+ passed** + `make loop-verify`。下一轮：GPU GRPO 开 `use_math_grader` + ckpt 后 `compare_eval_to_paper`。
 - **Loop R7（2026-06-11，GRPO math grader 接线）**：`CoRTrainingConfig.use_math_grader`；`USE_MATH_GRADER=1` in `grpo.sh` / `run_cor_pipeline.sh`；`run_grpo_reward_smoke.py` / `make loop-grpo-smoke`；`docs/GPU_TRAINING.md`。验证：pytest + `make loop-verify`。下一轮：GPU 主机跑 pipeline → `compare_eval_to_paper`。
 - **Loop R8（2026-06-11，产品循环验证层）**：`loop_product_verify.py` / `make loop-product-verify`；`loop_perceive` 聚合 `product_loop_snapshots`；`LOOPS.md` R0–R8 索引。验证：`make loop-product-verify` + `make loop-verify`。下一轮：GPU pipeline 或 token-level CoR 诚实降级。
+- **Loop R9（2026-06-11，元策略层）**：`loop_strategy.py` + `loop_matrix.py` / `make loop-strategy`；`matrix_gaps` in perceive；product verify 含 mini ablation。验证：**61+ passed** + `make loop-strategy`。下一轮：`five_dim_intrinsic` CPU 消融或 GPU `compare_eval_to_paper`。
 
 ---
 

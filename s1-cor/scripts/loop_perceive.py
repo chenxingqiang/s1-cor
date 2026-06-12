@@ -10,7 +10,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import re
 import subprocess
 import sys
 from pathlib import Path
@@ -19,6 +18,10 @@ from typing import Any, Dict, List
 ROOT = Path(__file__).resolve().parents[1]
 REPO = ROOT.parent
 MATRIX = REPO / "docs" / "theory_code_matrix.yaml"
+SCRIPT_DIR = Path(__file__).resolve().parent
+sys.path.insert(0, str(SCRIPT_DIR))
+
+from loop_matrix import matrix_gaps, matrix_tier_counts, parse_matrix_components  # noqa: E402
 
 
 def _run(cmd: List[str], cwd: Path | None = None) -> Dict[str, Any]:
@@ -37,13 +40,7 @@ def _run(cmd: List[str], cwd: Path | None = None) -> Dict[str, Any]:
 
 
 def _matrix_tier_counts() -> Dict[str, int]:
-    if not MATRIX.is_file():
-        return {}
-    text = MATRIX.read_text(encoding="utf-8")
-    counts: Dict[str, int] = {}
-    for tier in re.findall(r"^\s+tier:\s*(\S+)", text, re.MULTILINE):
-        counts[tier] = counts.get(tier, 0) + 1
-    return counts
+    return matrix_tier_counts(parse_matrix_components(MATRIX))
 
 
 def _parse_json_stdout(stdout: str) -> Dict[str, Any]:
@@ -68,6 +65,21 @@ def _product_loop_snapshots(include: bool = True) -> Dict[str, Any]:
         ("grpo_reward_smoke", "scripts/run_grpo_reward_smoke.py", ["--json", "--samples", "3"]),
         ("r_ext_alignment", "scripts/run_r_ext_alignment_report.py", ["--json", "--samples", "5"]),
         ("calibration_proxy", "scripts/run_calibration_report.py", ["--json", "--samples", "5"]),
+        (
+            "ablation_sweep_mini",
+            "scripts/run_ablation_sweep.py",
+            [
+                "--json",
+                "--samples",
+                "3",
+                "--lambda-values",
+                "0,1",
+                "--mu-values",
+                "0,0.5",
+                "--alpha-values",
+                "1",
+            ],
+        ),
     ]
     out: Dict[str, Any] = {}
     for key, script, args in specs:
@@ -105,6 +117,12 @@ def _summarize_product_report(key: str, report: Dict[str, Any]) -> Dict[str, Any
             "ece_proxy": report.get("ece_proxy"),
             "rated_samples": report.get("samples_with_self_rating"),
         }
+    if key == "ablation_sweep_mini":
+        sweep = report.get("sweep") or []
+        return {
+            "configs": len(sweep),
+            "best_mean_total": max((r.get("mean_total", 0) for r in sweep), default=0),
+        }
     return {}
 
 
@@ -114,6 +132,7 @@ def build_snapshot(
     include_product: bool = True,
 ) -> Dict[str, Any]:
     tiers = _matrix_tier_counts()
+    gaps = matrix_gaps(parse_matrix_components(MATRIX))
     backlog: List[str] = []
 
     if tiers.get("deferred", 0):
@@ -166,6 +185,7 @@ def build_snapshot(
         },
         "product_loop_snapshots": product_snapshots,
         "matrix_tiers": tiers,
+        "matrix_gaps": [{"id": g["id"], "tier": g.get("tier"), "verify": g.get("verify")} for g in gaps],
         "pytest_train": {
             "exit_code": pytest_result["exit_code"],
             "ok": pytest_result["exit_code"] == 0 if run_pytest else None,
@@ -173,7 +193,7 @@ def build_snapshot(
         },
         "eval_readiness": readiness_json,
         "backlog_hints": backlog,
-        "next_layer": "strategy — pick ONE item from backlog_hints; run loop_verify after implement",
+        "next_layer": "strategy — make loop-strategy; pick ONE ranked gap; loop_verify after implement",
     }
 
 

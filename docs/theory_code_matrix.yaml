@@ -113,6 +113,13 @@ components:
     tier: implemented
     verify: "pytest train/test_compare_eval_to_paper.py"
 
+  - id: meta_loop_strategy
+    theory: "AGENTS.md Layer 2; docs/LOOPS.md strategy"
+    code: "s1-cor/scripts/loop_strategy.py"
+    tier: implemented
+    notes: "Ranks matrix gaps + eval blockers; outputs strategy_card JSON"
+    verify: "make -C s1-cor loop-strategy"
+
   - id: meta_loop_perceive
     theory: "AGENTS.md Layer 1; docs/LOOPS.md meta loop"
     code: "s1-cor/scripts/loop_perceive.py"

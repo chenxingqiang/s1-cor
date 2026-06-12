@@ -11,7 +11,7 @@ CoR 项目里 **Loop** 有两层含义，共用同一套「感知 → 行动 →
 | 层 | 动作 | 本仓库入口 |
 |----|------|------------|
 | 1 感知 | 契约、readiness、**产品循环快照** | `make loop-perceive` |
-| 2 策略 | 选 1 个瓶颈 + 四轮自问 | `AGENTS.md` 闸门、`docs/theory_code_matrix.yaml` |
+| 2 策略 | 选 1 个瓶颈 + 四轮自问 | `make loop-strategy` |
 | 3 落地 | 最小 patch | `train/`、`scripts/` |
 | 4 验证 | pytest + validate（合并闸门） | `make loop-verify` |
 | 5 进化 | 写回文档与 matrix | `AGENTS.md` 当前轮次笔记 |
@@ -85,9 +85,10 @@ flowchart TB
 
 ```bash
 cd s1-cor
-make loop-perceive        # 元感知 JSON（含 product_loop_snapshots）
+make loop-perceive        # 元感知 JSON（含 product_loop_snapshots + matrix_gaps）
+make loop-strategy        # 元策略：排序后的契约缺口 + strategy_card
 make loop-verify          # 元验证（合并闸门）
-make loop-product-verify  # 产品循环 CPU 证据
+make loop-product-verify  # 产品循环 CPU 证据（含 mini ablation）
 make loop-ablation        # λ/μ/α + K + 阶段预设
 make loop-r-ext-align     # R_ext string vs math grader
 make loop-calibration     # φ ECE proxy
@@ -108,5 +109,6 @@ make loop-eval-smoke      # lm_eval dummy
 | R6 | R_ext math + φ 代理 | `answer_grading.py`, `run_calibration_report.py` |
 | R7 | GRPO math grader 接线 | `USE_MATH_GRADER`, `GPU_TRAINING.md` |
 | R8 | 产品循环验证层 | `loop_product_verify.py` |
+| R9 | 元策略层 | `loop_strategy.py`, `loop_matrix.py` |
 
 详见 [AGENTS.md](../AGENTS.md) 无限优化闭环章节。
