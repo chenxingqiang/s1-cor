@@ -84,6 +84,25 @@ class TestGrpoRewardFn:
         assert len(rewards) == 1
         assert rewards[0] >= 1.0
 
+    def test_dimension_weights_json_wires_to_reward_fn(self):
+        uniform = CoRTrainingConfig(enable_reflection=False)
+        emph = CoRTrainingConfig(
+            enable_reflection=False,
+            dimension_weights_json='{"format": 1.0}',
+        )
+        completion = (
+            "Step 1: Think.\n"
+            "\\boxed{42}\n"
+            "Therefore, the answer is 42"
+        )
+        r_uniform = create_reward_fn(uniform, enable_logging=False)(
+            [completion], ground_truths=["42"]
+        )
+        r_emph = create_reward_fn(emph, enable_logging=False)(
+            [completion], ground_truths=["42"]
+        )
+        assert r_uniform[0] != r_emph[0]
+
 
 if __name__ == "__main__":
     pytest.main([__file__, "-v"])

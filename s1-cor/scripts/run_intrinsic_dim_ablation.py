@@ -23,12 +23,13 @@ from typing import Any, Dict, List
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "train"))
 
+from intrinsic_weights import DIMENSION_NAMES, parse_dimension_weights
 from data_utils import load_cor_dataset_from_disk
 from reflection_parsing import extract_chain_sequence_from_sample
 from rewards import RewardCalculator, RewardConfig
 from validate_cor_logic import extract_thinking_from_text
 
-DIMS = ("consistency", "completeness", "accuracy", "clarity", "format")
+DIMS = DIMENSION_NAMES
 
 
 def parse_args() -> argparse.Namespace:
@@ -142,12 +143,20 @@ def run_ablation(dataset: str, n_samples: int, preset_modes: List[str]) -> Dict[
 
     uniform = next((r for r in results if r["preset"] == "uniform_w0.2"), None)
     sensitivities: Dict[str, float] = {}
+    drop_deltas: Dict[str, float] = {}
     if uniform:
         base = uniform["mean_intrinsic"]
         for dim in DIMS:
             emph = next((r for r in results if r["preset"] == f"emphasize_{dim}"), None)
             if emph:
                 sensitivities[dim] = round(emph["mean_intrinsic"] - base, 4)
+            drop = next((r for r in results if r["preset"] == f"drop_{dim}"), None)
+            if drop:
+                drop_deltas[dim] = round(drop["mean_intrinsic"] - base, 4)
+
+    most_sensitive = None
+    if sensitivities:
+        most_sensitive = max(sensitivities, key=lambda d: abs(sensitivities[d]))
 
     return {
         "layer": "verify",
@@ -156,6 +165,8 @@ def run_ablation(dataset: str, n_samples: int, preset_modes: List[str]) -> Dict[
         "samples": len(rows),
         "presets": results,
         "emphasis_delta_vs_uniform": sensitivities,
+        "drop_delta_vs_uniform": drop_deltas,
+        "most_sensitive_dimension": most_sensitive,
         "notes": [
             "Heuristic dimension scorers; not learned Q_phi.",
             "Use before GPU GRPO to sanity-check λ·R_int scale vs R_ext.",

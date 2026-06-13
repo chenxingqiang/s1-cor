@@ -36,6 +36,24 @@ make loop-grpo-smoke      # reward_fn 接线
 make loop-r-ext-align     # attempt vs solution 分歧
 ```
 
+## R_int：五维权重 $w_d$
+
+默认各维 $w_d=0.2$（`IntrinsicRewardCalculator.DEFAULT_WEIGHTS`）。GPU 可覆盖：
+
+```bash
+export DIMENSION_WEIGHTS_JSON='{"accuracy":0.4,"format":0.2,"consistency":0.1,"completeness":0.1,"clarity":0.2}'
+bash train/grpo.sh
+```
+
+CPU 预检：
+
+```bash
+make loop-intrinsic-ablation   # emphasize/drop 敏感度
+make loop-intrinsic-scale      # suggested λ_intrinsic
+```
+
+详见 [FIVE_DIM_INTRINSIC.md](FIVE_DIM_INTRINSIC.md)。
+
 ## 环境要求
 
 - CUDA + 多卡（32B 用 FSDP，见 `train/fsdp_config_qwen.json`）

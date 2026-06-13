@@ -265,6 +265,7 @@ make loop-verify      # 合并闸门等价
 - **Loop R10（2026-06-11，五维 R_int 消融）**：`run_intrinsic_dim_ablation.py` / `make loop-intrinsic-ablation`；`five_dim_intrinsic` heuristic→**partial**；product verify 含 mini 维度扫参。验证：**64 passed** + `make loop-product-verify`。下一轮：GPU GRPO + `compare_eval_to_paper`。
 - **Loop R11（2026-06-08，R_ext 契约 + 校准 α 消融）**：`docs/TRAIN_EVAL_GRADING.md`；`calibration_metrics.compute_ece`；`run_calibration_bonus_ablation.py` / `make loop-calibration-ablation`；`external_reward`→**implemented**；`eval_openai_grader` **partial**；`calibration_proxy_phi`→**implemented**；R_ext 报告含 `recommended_training_grader`。验证：`make loop-verify` + `make loop-product-verify`（6 checks）。下一轮：GPU `USE_MATH_GRADER=1` pipeline → `compare_eval_to_paper`。
 - **Loop R12（2026-06-08，eval OpenAI grader CPU 审计）**：`eval_openai_grader_audit.py`；`run_eval_openai_grader_report.py` / `make loop-eval-openai-grader`；product verify 第 7 项；`eval_openai_grader` verify 路径更新。验证：`make loop-verify` + `make loop-product-verify`（7 checks）。下一轮：GPU ckpt + `OPENAI_API_KEY` → `commands.sh` + `compare_eval_to_paper`。
+- **Loop R13（2026-06-08，五维 R_int 尺度 + GRPO w_d）**：`intrinsic_weights.py`；`dimension_weights_json` / `DIMENSION_WEIGHTS_JSON` in GRPO；`run_intrinsic_scale_report.py` / `make loop-intrinsic-scale`；`docs/FIVE_DIM_INTRINSIC.md`；ablation 增 `drop_delta` / `most_sensitive_dimension`；product verify 8 项。验证：`make loop-verify` + `make loop-product-verify`。下一轮：GPU GRPO + `compare_eval_to_paper` 或 `benchmark_reproduction` 文档链。
 
 ---
 

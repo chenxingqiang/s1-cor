@@ -31,6 +31,7 @@ from trl import GRPOTrainer, GRPOConfig
 
 from data_utils import DataConfig, prepare_grpo_dataset
 from reflection_parsing import extract_chain_sequence_from_text, extract_reflection_rounds
+from intrinsic_weights import parse_dimension_weights
 from rewards import RewardCalculator, RewardConfig
 from rewards.training_logger import CoRTrainingLogger, log_cor_reward
 
@@ -78,6 +79,10 @@ class CoRTrainingConfig:
     max_reflection_rounds: int = field(default=3)   # K: max iterations
     enable_reflection: bool = field(default=True)   # Enable multi-round reflection
     use_math_grader: bool = field(default=False)    # Eval-aligned R_ext (answer_grading.py)
+    dimension_weights_json: Optional[str] = field(
+        default=None,
+        metadata={"help": "JSON or k=v weights for five intrinsic dims (w_d)"},
+    )
 
     # W&B
     wandb_project: Optional[str] = field(default="cor-grpo")
@@ -122,6 +127,7 @@ def create_reward_fn(config: CoRTrainingConfig, enable_logging: bool = True):
         convergence_alpha=config.convergence_alpha,
         max_reflection_rounds=config.max_reflection_rounds,
         use_math_grader=config.use_math_grader,
+        dimension_weights=parse_dimension_weights(config.dimension_weights_json),
     )
     
     calculator = RewardCalculator(reward_config)
@@ -368,6 +374,11 @@ def train():
     logging.info("Creating reward function...")
     if config.use_math_grader:
         logging.info("R_ext: eval-aligned math grader enabled (answer_grading.py)")
+    if config.dimension_weights_json:
+        logging.info(
+            "R_int dimension_weights: %s",
+            parse_dimension_weights(config.dimension_weights_json),
+        )
     reward_fn = create_reward_fn(config)
     
     # Configure GRPO
