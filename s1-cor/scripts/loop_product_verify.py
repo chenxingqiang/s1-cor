@@ -71,6 +71,11 @@ PRODUCT_CHECKS: List[Tuple[str, List[str], str]] = [
         ["--json", "--samples", "5"],
         "eval_grading_path_mini",
     ),
+    (
+        "scripts/run_self_rating_intrinsic_correlation_report.py",
+        ["--json", "--samples", "5"],
+        "self_rating_intrinsic_correlation_mini",
+    ),
 ]
 
 

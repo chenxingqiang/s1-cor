@@ -110,6 +110,11 @@ def _product_loop_snapshots(include: bool = True) -> Dict[str, Any]:
             "scripts/run_eval_grading_path_report.py",
             ["--json", "--samples", "5"],
         ),
+        (
+            "self_rating_intrinsic_correlation_mini",
+            "scripts/run_self_rating_intrinsic_correlation_report.py",
+            ["--json", "--samples", "5"],
+        ),
     ]
     out: Dict[str, Any] = {}
     for key, script, args in specs:
@@ -196,6 +201,12 @@ def _summarize_product_report(key: str, report: Dict[str, Any]) -> Dict[str, Any
             "path_agreement_rate": report.get("path_agreement_rate"),
             "openai_fallback_likely": report.get("openai_fallback_likely_count"),
             "eval_pre_openai_accuracy": report.get("eval_pre_openai_accuracy"),
+        }
+    if key == "self_rating_intrinsic_correlation_mini":
+        return {
+            "pooled_pearson_r": report.get("pooled_pearson_r"),
+            "mean_calibration": report.get("mean_overall_calibration"),
+            "rated_samples": report.get("samples_with_self_rating"),
         }
     return {}
 
