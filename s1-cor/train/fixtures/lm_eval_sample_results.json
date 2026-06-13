@@ -1,4 +1,5 @@
 {
+  "_fixture_note": "SYNTHETIC CPU fixture for compare_eval_to_paper audits — NOT reproduced benchmark scores.",
   "results": {
     "aime24_nofigures": {
       "acc,none": 0.567

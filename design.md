@@ -43,10 +43,13 @@ R_improve(c_k, c_{k+1}) = Q(c_{k+1}) - Q(c_k)
 
 ### 2.5 Convergence Reward (NEW)
 ```
-R_converge = -|c_{k+1} - c_k|
+R_converge(c_k, c_{k+1}) = exp(-α · ‖Δc‖)
 ```
+Implementation: `ConvergenceRewardCalculator` — ‖Δc‖ proxied by L1 distance on intrinsic dimension scores (`intrinsic.py`).
 
 ## 3. Dual Coupling Theory
+
+> **Implementation note (publication)**: Training updates **θ only** via GRPO. Learned φ head is **deferred**; calibration tracked via CPU ECE proxies. See `docs/DEFERRED_CLAIMS.md`.
 
 ### 3.1 Structure
 ```
@@ -87,8 +90,10 @@ s1-cor/train/rewards/
 ├── calculator.py      # RewardCalculator (extended)
 ├── self_rating.py     # SelfRatingExtractor, Evaluator
 ├── intrinsic.py       # 5 dimension rewards + ReflectionReward
-└── reflection.py      # NEW: Reflection loop manager
+└── reflection_parsing.py   # Multi-round chain extraction (replaces reflection.py sketch)
 ```
+
+> `ReflectionManager` below is **design sketch**; production code uses `reflection_parsing.py` + `RewardCalculator.calculate_reflection_reward`.
 
 ### 5.2 Key Classes
 
@@ -187,6 +192,8 @@ My accuracy is low (3/10). The error is in step 2...
 | Candidates | N | 8 | GRPO group size |
 
 ## 9. Expected Results
+
+*Paper / README **target** numbers. GPU reproduction: `docs/EVAL_REPRODUCTION.md`. CPU fixture `train/fixtures/lm_eval_sample_results.json` is synthetic for `compare_eval_to_paper` audits only.*
 
 | Model | AIME24 | MATH500 | GPQA |
 |-------|--------|---------|------|

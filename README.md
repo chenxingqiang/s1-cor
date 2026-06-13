@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <a href="paper/main.pdf">📄 Paper</a> •
+  <a href="paper/main.tex">📄 Paper (TeX)</a> •
   <a href="#key-idea">Key Idea</a> •
   <a href="#quick-start">Quick Start</a> •
   <a href="#results">Results</a> •
@@ -20,9 +20,13 @@
 
 1. **Accurate self-assessment**: The model generates self-ratings during reasoning and is rewarded for calibrated self-evaluation
 2. **Reasoning quality**: Dense intrinsic rewards across 5 dimensions (Consistency, Completeness, Accuracy, Clarity, Format)
-3. **Iterative improvement**: Rewards for quality gains through self-reflection
+3. **Iterative improvement**: Rewards for quality gains through self-reflection (chain-level `R_improve` / `R_converge`)
 
-**Result**: 800× sample efficiency—competitive with o1-preview using only 1,000 training examples.
+**Sample efficiency**: On MATH500/AIME24, CoR targets strong performance with **1K** s1K-cor examples (see Results). The headline “800× vs r1-distill” is a **data-scale ratio** (1K vs 800K)—cite with ablation + checkpoint evidence, not CPU proxies alone.
+
+> **Implementation note**: Training uses **chain-level** intrinsic rewards and **θ-only GRPO** (no learned φ head, no per-token CoR discount). See [docs/DEFERRED_CLAIMS.md](docs/DEFERRED_CLAIMS.md) and [docs/theory_code_matrix.yaml](docs/theory_code_matrix.yaml).
+
+**Publication / reproducibility**: [docs/PUBLICATION_READINESS.md](docs/PUBLICATION_READINESS.md) · GPU benchmark path: [docs/EVAL_REPRODUCTION.md](docs/EVAL_REPRODUCTION.md)
 
 ---
 
@@ -70,13 +74,31 @@ make loop-ablation    # CPU：λ/μ/α 与反思深度 K
 
 ## Results
 
+*Targets from `design.md` §9 (CoR-32B, 1K samples, K=2 reflection). **Reproduce** on GPU: [docs/EVAL_REPRODUCTION.md](docs/EVAL_REPRODUCTION.md). Numbers in-repo are not shipped as trained checkpoints.*
+
 | Model | Samples | AIME24 | MATH500 | GPQA |
 |-------|---------|--------|---------|------|
 | o1-preview | N.A. | 44.6 | 85.5 | 73.3 |
 | r1-distill | 800K | 72.6 | 94.3 | 62.1 |
 | Sky-T1 | 17K | 43.3 | 82.4 | 56.8 |
 | Bespoke-32B | 17K | 63.3 | 93.0 | 58.1 |
-| **CoR-32B** | **1K** | **56.7** | **93.0** | **59.6** |
+| CoR-32B (SFT baseline) | 1K | 50.0 | 92.6 | 56.6 |
+| **CoR-32B (full)** | **1K** | **56.7** | **93.0** | **59.6** |
+
+---
+
+## Implementation status
+
+| Area | Tier | Doc |
+|------|------|-----|
+| Four-component reward + GRPO | implemented | [Theory-Code](#theory-code-mapping) |
+| 5-dim `R_int` | partial (heuristic) | [FIVE_DIM_INTRINSIC.md](docs/FIVE_DIM_INTRINSIC.md) |
+| Benchmark table | partial (GPU repro) | [PUBLICATION_READINESS.md](docs/PUBLICATION_READINESS.md) |
+| Token-level CoR / φ head | deferred | [DEFERRED_CLAIMS.md](docs/DEFERRED_CLAIMS.md) |
+
+```bash
+cd s1-cor && make loop-publication-ready   # CPU doc/claim audit
+```
 
 ---
 
@@ -100,7 +122,7 @@ R(c) = R_ext + λ·R_int + μ·R_improve + ν·R_converge
 | Theory | Code |
 |--------|------|
 | Total Reward Formula | `rewards/calculator.py:calculate_reflection_reward()` |
-| 5-Dimension Intrinsic | `rewards/intrinsic.py:IntrinsicRewardCalculator` |
+| 5-Dimension Intrinsic | `rewards/intrinsic.py` (**heuristic**, partial) |
 | Self-Rating Calibration | `rewards/self_rating.py:compute_calibration()` |
 | Improvement Reward | `rewards/intrinsic.py:ImprovementRewardCalculator` |
 | Convergence Reward | `rewards/intrinsic.py:ConvergenceRewardCalculator` |
@@ -128,7 +150,6 @@ s1-cor/
 
 paper/
 ├── main.tex                   # Paper source
-├── main.pdf                   # Compiled paper
 └── figures/
     ├── cor_architecture.pdf   # Framework diagram
     ├── cor_pipeline.pdf       # Training pipeline

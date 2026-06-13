@@ -101,10 +101,11 @@ make loop-eval-smoke      # lm_eval dummy
 make loop-intrinsic-correlation  # 自评 vs 启发式 r_d
 make loop-eval-grading-path   # 训练 vs eval 预-OpenAI 路径
 make loop-deferred-claims    # deferred 理论诚实审计
+make loop-publication-ready  # 顶会投稿 doc/claim 审计
 make loop-benchmark-repro # 论文复现 CPU 审计链
 ```
 
-## 5. Loop 轮次索引（R0–R11）
+## 5. Loop 轮次索引（R0–R18）
 
 | 轮次 | 主题 | 关键入口 |
 |------|------|----------|
@@ -126,5 +127,6 @@ make loop-benchmark-repro # 论文复现 CPU 审计链
 | R15 | eval 预-OpenAI 判题路径对齐 | `run_eval_grading_path_report.py`, `eval_grading_path_audit.py` |
 | R16 | 自评 vs 启发式 R_int 相关 | `run_self_rating_intrinsic_correlation_report.py` |
 | R17 | deferred 理论诚实契约 | `DEFERRED_CLAIMS.md`, `run_deferred_claims_report.py` |
+| R18 | 顶会投稿 readiness | `PUBLICATION_READINESS.md`, `loop-publication-ready` |
 
 详见 [AGENTS.md](../AGENTS.md) 无限优化闭环章节。

@@ -50,4 +50,4 @@ make loop-deferred-claims   # matrix deferred 项 ↔ 本文档一致性
 - **策略**：不得将 deferred 项标为 implemented 以通过 Loop。
 - **验证**：`make loop-deferred-claims` exit 0 表示文档与 matrix 同步。
 
-见 [LOOPS.md](LOOPS.md)、[theory_code_matrix.yaml](theory_code_matrix.yaml)、[AGENTS.md](../AGENTS.md)。
+见 [LOOPS.md](LOOPS.md)、[theory_code_matrix.yaml](theory_code_matrix.yaml)、[AGENTS.md](../AGENTS.md)、[PUBLICATION_READINESS.md](PUBLICATION_READINESS.md)。

@@ -120,6 +120,11 @@ def _product_loop_snapshots(include: bool = True) -> Dict[str, Any]:
             "scripts/run_deferred_claims_report.py",
             ["--json"],
         ),
+        (
+            "publication_readiness_audit",
+            "scripts/run_publication_readiness_report.py",
+            ["--json"],
+        ),
     ]
     out: Dict[str, Any] = {}
     for key, script, args in specs:
@@ -218,6 +223,11 @@ def _summarize_product_report(key: str, report: Dict[str, Any]) -> Dict[str, Any
             "audit_ok": report.get("audit_ok"),
             "deferred_count": report.get("deferred_count"),
             "issues": len(report.get("issues") or []),
+        }
+    if key == "publication_readiness_audit":
+        return {
+            "audit_ok": report.get("audit_ok"),
+            "p0_blocker": report.get("p0_blocker"),
         }
     return {}
 

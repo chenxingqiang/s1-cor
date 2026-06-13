@@ -46,6 +46,9 @@ loop-intrinsic-correlation:
 loop-deferred-claims:
 	python3 scripts/run_deferred_claims_report.py --json
 
+loop-publication-ready:
+	python3 scripts/run_publication_readiness_report.py --json
+
 loop-eval-openai-grader:
 	python3 scripts/run_eval_openai_grader_report.py --json
 

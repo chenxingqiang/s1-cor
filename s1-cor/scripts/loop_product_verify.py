@@ -81,6 +81,11 @@ PRODUCT_CHECKS: List[Tuple[str, List[str], str]] = [
         ["--json"],
         "deferred_claims_audit",
     ),
+    (
+        "scripts/run_publication_readiness_report.py",
+        ["--json"],
+        "publication_readiness_audit",
+    ),
 ]
 
 

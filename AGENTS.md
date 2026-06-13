@@ -270,6 +270,7 @@ make loop-verify      # 合并闸门等价
 - **Loop R15（2026-06-08，eval 预-OpenAI 路径对齐）**：`eval_grading_path_audit.py`；`run_eval_grading_path_report.py` / `make loop-eval-grading-path`；`openai_fallback_likely_count` 度量；product verify 10 项。验证：`make loop-verify` + `make loop-product-verify`。下一轮：GPU 全量 eval 或 `five_dim_intrinsic` 自评-启发式相关报告。
 - **Loop R16（2026-06-08，自评 vs 启发式 R_int 相关）**：`self_rating_intrinsic_correlation_audit.py`；`run_self_rating_intrinsic_correlation_report.py` / `make loop-intrinsic-correlation`；`pooled_pearson_r` + per-dim MAE；product verify 11 项。验证：`make loop-verify` + `make loop-product-verify`。下一轮：GPU pipeline + `compare_eval_to_paper`；或 deferred 项诚实文档。
 - **Loop R17（2026-06-08，deferred 诚实契约）**：`docs/DEFERRED_CLAIMS.md`；`deferred_claims_audit.py` / `make loop-deferred-claims`；matrix deferred verify 路径；product verify 12 项。验证：`make loop-verify` + `make loop-product-verify`。下一轮：GPU 全量 benchmark 或 `benchmark_reproduction` + `loop-eval-smoke` 联动。
+- **Loop R18（2026-06-08，顶会投稿 readiness）**：`docs/PUBLICATION_READINESS.md`；README/design 诚实表述 + SFT 基线行；`publication_readiness_audit` / `make loop-publication-ready`；lm_eval fixture 标 synthetic。验证：**91 passed** + product verify 13 项。**P0 仍为 GPU**：真实 ckpt → `compare_eval_to_paper` 全 pass。
 
 ---
 
