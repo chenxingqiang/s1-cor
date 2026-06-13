@@ -43,6 +43,9 @@ loop-intrinsic-scale:
 loop-intrinsic-correlation:
 	python3 scripts/run_self_rating_intrinsic_correlation_report.py --json --samples 10
 
+loop-deferred-claims:
+	python3 scripts/run_deferred_claims_report.py --json
+
 loop-eval-openai-grader:
 	python3 scripts/run_eval_openai_grader_report.py --json
 

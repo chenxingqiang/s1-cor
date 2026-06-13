@@ -53,12 +53,14 @@ components:
     code: null
     tier: deferred
     notes: "Training uses chain-level scalar R_int, not per-token shaping"
+    verify: "pytest train/test_deferred_claims_report.py; docs/DEFERRED_CLAIMS.md"
 
   - id: dual_coupling_phi
     theory: "theory.md §5-6 φ_{t+1} gradient on calibration"
     code: "s1-cor/scripts/run_calibration_report.py (proxy only)"
     tier: deferred
     notes: "Only θ updated via GRPO; ECE proxy in calibration_proxy_phi matrix entry"
+    verify: "pytest train/test_deferred_claims_report.py; docs/DEFERRED_CLAIMS.md"
 
   - id: grpo_integration
     theory: "theory.md §13-14, design.md §6.2"
