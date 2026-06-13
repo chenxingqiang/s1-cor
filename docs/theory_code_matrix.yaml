@@ -111,8 +111,8 @@ components:
     theory: "design.md §9, README Results"
     code: "s1-cor/eval/commands.sh + docs/EVAL_REPRODUCTION.md"
     tier: partial
-    notes: "GPU path documented; compare_eval_to_paper.py parses lm_eval JSON; ckpts not bundled"
-    verify: "pytest train/test_compare_eval_to_paper.py; check_eval_readiness.py; make loop-eval-smoke"
+    notes: "GPU path documented; CPU audit via run_benchmark_reproduction_report.py"
+    verify: "pytest train/test_benchmark_reproduction_report.py; make -C s1-cor loop-benchmark-repro; docs/EVAL_REPRODUCTION.md"
 
   - id: compare_eval_to_paper
     theory: "README Results table vs lm_eval output"

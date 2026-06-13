@@ -19,23 +19,13 @@ import os
 from pathlib import Path
 from typing import Any, Dict, List
 
-
-REPO_ROOT = Path(__file__).resolve().parents[1]
-HARNESS = REPO_ROOT / "eval" / "lm-evaluation-harness"
-COMMANDS = REPO_ROOT / "eval" / "commands.sh"
-
-# design.md §9 / README primary row (CoR-32B, 1K samples)
-PAPER_TARGETS = {
-    "AIME24": 56.7,
-    "MATH500": 93.0,
-    "GPQA": 59.6,
-}
-
-DEFAULT_CHECKPOINTS = [
-    "ckpts/cor-grpo",
-    "ckpts/cor-sft",
-    "ckpts/cor-32B",
-]
+from eval_repro_common import (
+    COMMANDS,
+    DEFAULT_CHECKPOINTS,
+    HARNESS,
+    PAPER_TARGETS,
+    REPO_ROOT,
+)
 
 
 def _has_cuda() -> bool:

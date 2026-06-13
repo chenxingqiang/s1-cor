@@ -16,11 +16,7 @@ import sys
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
-PAPER_TARGETS = {
-    "AIME24": 56.7,
-    "MATH500": 93.0,
-    "GPQA": 59.6,
-}
+from eval_repro_common import PAPER_TARGETS
 
 # lm_eval task name fragments → paper column
 TASK_ALIASES: Dict[str, str] = {

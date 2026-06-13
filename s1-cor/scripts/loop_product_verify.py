@@ -61,6 +61,11 @@ PRODUCT_CHECKS: List[Tuple[str, List[str], str]] = [
         ["--json", "--samples", "3"],
         "intrinsic_scale_mini",
     ),
+    (
+        "scripts/run_benchmark_reproduction_report.py",
+        ["--json"],
+        "benchmark_reproduction_audit",
+    ),
 ]
 
 

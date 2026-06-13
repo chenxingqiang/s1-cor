@@ -100,6 +100,11 @@ def _product_loop_snapshots(include: bool = True) -> Dict[str, Any]:
             "scripts/run_intrinsic_scale_report.py",
             ["--json", "--samples", "3"],
         ),
+        (
+            "benchmark_reproduction_audit",
+            "scripts/run_benchmark_reproduction_report.py",
+            ["--json"],
+        ),
     ]
     out: Dict[str, Any] = {}
     for key, script, args in specs:
@@ -174,6 +179,12 @@ def _summarize_product_report(key: str, report: Dict[str, Any]) -> Dict[str, Any
             "mean_intrinsic": report.get("mean_intrinsic"),
             "suggested_lambda": report.get("suggested_lambda_intrinsic"),
             "intrinsic_fraction": report.get("intrinsic_fraction_of_total"),
+        }
+    if key == "benchmark_reproduction_audit":
+        return {
+            "cpu_audit_ok": report.get("cpu_audit_ok"),
+            "gpu_reproduction_ready": report.get("gpu_reproduction_ready"),
+            "fixture_compare_ok": report.get("fixture_compare_ok"),
         }
     return {}
 
