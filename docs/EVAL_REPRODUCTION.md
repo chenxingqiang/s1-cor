@@ -33,7 +33,10 @@ Colab / 小 GPU 烟雾：`python train/sft_small.py --colab`（不产出 32B 论
 cd s1-cor
 python scripts/check_eval_readiness.py
 # 全部 ✅ 时 exit 0
+make loop-benchmark-repro   # CPU 审计：fixture 对比 + 四步复现清单
 ```
+
+`loop-benchmark-repro` 在 CPU VM 上应 **exit 0**（验证 `compare_eval_to_paper` 链路与 harness 路径）；**不代表**已复现论文数字。
 
 典型 blockers：无 CUDA、无 `ckpts/*/config.json`、未装 lm_eval、无 `OPENAI_API_KEY`。
 
