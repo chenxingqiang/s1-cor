@@ -98,6 +98,7 @@ make loop-intrinsic-scale     # R_ext vs R_int 尺度
 make loop-eval-openai-grader  # MATH/GPQA OpenAI grader CPU audit
 make loop-grpo-smoke      # GRPO reward_fn 预检
 make loop-eval-smoke      # lm_eval dummy
+make loop-eval-grading-path   # 训练 vs eval 预-OpenAI 路径
 make loop-benchmark-repro # 论文复现 CPU 审计链
 ```
 
@@ -120,5 +121,6 @@ make loop-benchmark-repro # 论文复现 CPU 审计链
 | R12 | eval OpenAI grader CPU 审计 | `run_eval_openai_grader_report.py`, `eval_openai_grader_audit.py` |
 | R13 | 五维 R_int 尺度 + GRPO w_d | `intrinsic_weights.py`, `run_intrinsic_scale_report.py`, `FIVE_DIM_INTRINSIC.md` |
 | R14 | benchmark 复现 CPU 审计链 | `run_benchmark_reproduction_report.py`, `eval_repro_common.py` |
+| R15 | eval 预-OpenAI 判题路径对齐 | `run_eval_grading_path_report.py`, `eval_grading_path_audit.py` |
 
 详见 [AGENTS.md](../AGENTS.md) 无限优化闭环章节。

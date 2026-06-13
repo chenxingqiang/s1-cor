@@ -66,6 +66,11 @@ PRODUCT_CHECKS: List[Tuple[str, List[str], str]] = [
         ["--json"],
         "benchmark_reproduction_audit",
     ),
+    (
+        "scripts/run_eval_grading_path_report.py",
+        ["--json", "--samples", "5"],
+        "eval_grading_path_mini",
+    ),
 ]
 
 
