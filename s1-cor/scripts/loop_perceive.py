@@ -90,6 +90,11 @@ def _product_loop_snapshots(include: bool = True) -> Dict[str, Any]:
             "scripts/run_calibration_bonus_ablation.py",
             ["--json", "--samples", "3", "--alpha-values", "0.0,0.2"],
         ),
+        (
+            "eval_openai_grader_audit",
+            "scripts/run_eval_openai_grader_report.py",
+            ["--json"],
+        ),
     ]
     out: Dict[str, Any] = {}
     for key, script, args in specs:
@@ -151,6 +156,13 @@ def _summarize_product_report(key: str, report: Dict[str, Any]) -> Dict[str, Any
             "alphas": len(sweep),
             "best_alpha": best.get("calibration_bonus"),
             "best_ece": best.get("ece_proxy"),
+        }
+    if key == "eval_openai_grader_audit":
+        smoke = report.get("regex_extraction_smoke") or {}
+        return {
+            "regex_smoke_ok": smoke.get("ok"),
+            "openai_api_key_set": report.get("openai_api_key_set"),
+            "ready_for_openai_eval": report.get("ready_for_openai_eval"),
         }
     return {}
 

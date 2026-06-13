@@ -85,8 +85,8 @@ components:
     theory: "lm-eval openai_math / gpqa OpenAI extraction"
     code: "s1-cor/eval/commands.sh + lm-evaluation-harness"
     tier: partial
-    notes: "Eval-only; requires OPENAI_API_KEY; not used in training R_ext"
-    verify: "scripts/check_eval_readiness.py; docs/TRAIN_EVAL_GRADING.md"
+    notes: "Eval-only; requires OPENAI_API_KEY; CPU audit via run_eval_openai_grader_report.py"
+    verify: "pytest train/test_eval_openai_grader_report.py; make -C s1-cor loop-eval-openai-grader; docs/TRAIN_EVAL_GRADING.md"
 
   - id: calibration_proxy_phi
     theory: "theory.md §5-6 φ calibration (θ-only GRPO; φ deferred)"

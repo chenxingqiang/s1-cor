@@ -51,6 +51,11 @@ PRODUCT_CHECKS: List[Tuple[str, List[str], str]] = [
         ["--json", "--samples", "3", "--alpha-values", "0.0,0.2"],
         "calibration_bonus_ablation_mini",
     ),
+    (
+        "scripts/run_eval_openai_grader_report.py",
+        ["--json"],
+        "eval_openai_grader_audit",
+    ),
 ]
 
 

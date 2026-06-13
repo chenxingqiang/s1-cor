@@ -28,6 +28,13 @@ make loop-r-ext-align    # string vs math；recommended_training_grader
 
 入口：`s1-cor/eval/commands.sh`（需 GPU + vLLM + ckpt）。
 
+CPU 审计（不调 OpenAI API）：
+
+```bash
+cd s1-cor
+make loop-eval-openai-grader   # 任务列表 + regex 提取 smoke + blockers
+```
+
 契约矩阵：`eval_openai_grader`（partial，eval-only）。
 
 ## 三角闭合状态
