@@ -268,6 +268,7 @@ make loop-verify      # 合并闸门等价
 - **Loop R13（2026-06-08，五维 R_int 尺度 + GRPO w_d）**：`intrinsic_weights.py`；`dimension_weights_json` / `DIMENSION_WEIGHTS_JSON` in GRPO；`run_intrinsic_scale_report.py` / `make loop-intrinsic-scale`；`docs/FIVE_DIM_INTRINSIC.md`；ablation 增 `drop_delta` / `most_sensitive_dimension`；product verify 8 项。验证：`make loop-verify` + `make loop-product-verify`。下一轮：GPU GRPO + `compare_eval_to_paper` 或 `benchmark_reproduction` 文档链。
 - **Loop R14（2026-06-08，benchmark 复现 CPU 审计）**：`eval_repro_common.py`；`run_benchmark_reproduction_report.py` / `make loop-benchmark-repro`；四步 `reproduction_steps` + fixture compare；product verify 9 项。验证：`make loop-verify` + `make loop-product-verify`。下一轮：GPU ckpt + `commands.sh` → `compare_eval_to_paper` 全 pass。
 - **Loop R15（2026-06-08，eval 预-OpenAI 路径对齐）**：`eval_grading_path_audit.py`；`run_eval_grading_path_report.py` / `make loop-eval-grading-path`；`openai_fallback_likely_count` 度量；product verify 10 项。验证：`make loop-verify` + `make loop-product-verify`。下一轮：GPU 全量 eval 或 `five_dim_intrinsic` 自评-启发式相关报告。
+- **Loop R16（2026-06-08，自评 vs 启发式 R_int 相关）**：`self_rating_intrinsic_correlation_audit.py`；`run_self_rating_intrinsic_correlation_report.py` / `make loop-intrinsic-correlation`；`pooled_pearson_r` + per-dim MAE；product verify 11 项。验证：`make loop-verify` + `make loop-product-verify`。下一轮：GPU pipeline + `compare_eval_to_paper`；或 deferred 项诚实文档。
 
 ---
 

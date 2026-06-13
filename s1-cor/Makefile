@@ -40,6 +40,9 @@ loop-intrinsic-ablation:
 loop-intrinsic-scale:
 	python3 scripts/run_intrinsic_scale_report.py --json --samples 10
 
+loop-intrinsic-correlation:
+	python3 scripts/run_self_rating_intrinsic_correlation_report.py --json --samples 10
+
 loop-eval-openai-grader:
 	python3 scripts/run_eval_openai_grader_report.py --json
 

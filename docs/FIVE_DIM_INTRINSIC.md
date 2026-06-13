@@ -21,7 +21,14 @@ $$R_{\text{int}}(c) = \sum_{d=1}^{D} w_d \, r_d(y_{\text{think}}) + w_{\text{sel
 cd s1-cor
 make loop-intrinsic-ablation   # w_d emphasize/drop 敏感度
 make loop-intrinsic-scale      # R_ext vs R_int 尺度 + suggested λ
+make loop-intrinsic-correlation  # 自评 vs 启发式 r_d 相关/MAE
 ```
+
+`run_self_rating_intrinsic_correlation_report.py` 输出：
+
+- `pooled_pearson_r` — 自评与启发式 $r_d$ 池化相关
+- `per_dimension[].mae` — 各维平均绝对误差
+- `most_miscalibrated_dimension` — MAE 最大维度
 
 `run_intrinsic_dim_ablation.py` 输出：
 
