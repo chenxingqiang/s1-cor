@@ -20,3 +20,5 @@ def test_r_ext_alignment_report_json():
     assert data["report"] == "r_ext_alignment"
     assert "agreement_rate" in data
     assert data["samples"] == 3
+    assert "recommended_training_grader" in data
+    assert "math_fixes_string" in data

@@ -77,16 +77,23 @@ components:
   - id: external_reward
     theory: "R_ext = 1[y_answer = y_gt]"
     code: "s1-cor/train/rewards/calculator.py + train/answer_grading.py"
+    tier: implemented
+    notes: "Training: string + math grader (USE_MATH_GRADER=1); eval OpenAI judge split to eval_openai_grader"
+    verify: "pytest train/test_answer_grading.py; make -C s1-cor loop-r-ext-align; docs/TRAIN_EVAL_GRADING.md"
+
+  - id: eval_openai_grader
+    theory: "lm-eval openai_math / gpqa OpenAI extraction"
+    code: "s1-cor/eval/commands.sh + lm-evaluation-harness"
     tier: partial
-    notes: "Default string match; RewardConfig.use_math_grader for lm-eval-aligned boxed/sympy path; OpenAI judge still eval-only"
-    verify: "pytest train/test_answer_grading.py train/test_r_ext_alignment.py; scripts/run_r_ext_alignment_report.py --json"
+    notes: "Eval-only; requires OPENAI_API_KEY; not used in training R_ext"
+    verify: "scripts/check_eval_readiness.py; docs/TRAIN_EVAL_GRADING.md"
 
   - id: calibration_proxy_phi
     theory: "theory.md §5-6 φ calibration (θ-only GRPO; φ deferred)"
-    code: "s1-cor/scripts/run_calibration_report.py"
-    tier: partial
-    notes: "ECE-style proxy on self-ratings vs heuristic actual quality; not learned φ head"
-    verify: "pytest train/test_calibration_report.py; scripts/run_calibration_report.py --json"
+    code: "s1-cor/scripts/run_calibration_report.py + run_calibration_bonus_ablation.py"
+    tier: implemented
+    notes: "ECE proxy + α sweep; not learned φ head"
+    verify: "pytest train/test_calibration_bonus_ablation.py; make -C s1-cor loop-calibration-ablation"
 
   - id: sft_self_rating_format
     theory: "design.md §6.1"
@@ -164,6 +171,10 @@ ablations_documented:
     sweep: [1, 2, 3, 4]
     status: script_cpu
     run: "cd s1-cor && python scripts/run_reflection_k_ablation.py --json"
+  - name: calibration_bonus_alpha
+    sweep: [0.0, 0.1, 0.2, 0.4]
+    status: script_cpu
+    run: "cd s1-cor && python scripts/run_calibration_bonus_ablation.py --json"
   - name: intrinsic_dimension_weights
     sweep: [uniform, emphasize_<dim>, drop_<dim>]
     status: script_cpu

@@ -85,6 +85,11 @@ def _product_loop_snapshots(include: bool = True) -> Dict[str, Any]:
             "scripts/run_intrinsic_dim_ablation.py",
             ["--json", "--samples", "3", "--presets", "uniform,drop"],
         ),
+        (
+            "calibration_bonus_ablation_mini",
+            "scripts/run_calibration_bonus_ablation.py",
+            ["--json", "--samples", "3", "--alpha-values", "0.0,0.2"],
+        ),
     ]
     out: Dict[str, Any] = {}
     for key, script, args in specs:
@@ -116,6 +121,8 @@ def _summarize_product_report(key: str, report: Dict[str, Any]) -> Dict[str, Any
         return {
             "agreement_rate": report.get("agreement_rate"),
             "disagreement_count": report.get("disagreement_count"),
+            "math_fixes_string": report.get("math_fixes_string"),
+            "recommended_training_grader": report.get("recommended_training_grader"),
         }
     if key == "calibration_proxy":
         return {
@@ -136,6 +143,14 @@ def _summarize_product_report(key: str, report: Dict[str, Any]) -> Dict[str, Any
                 (p.get("mean_intrinsic") for p in presets if p.get("preset") == "uniform_w0.2"),
                 None,
             ),
+        }
+    if key == "calibration_bonus_ablation_mini":
+        sweep = report.get("sweep") or []
+        best = report.get("best_by_ece") or {}
+        return {
+            "alphas": len(sweep),
+            "best_alpha": best.get("calibration_bonus"),
+            "best_ece": best.get("ece_proxy"),
         }
     return {}
 

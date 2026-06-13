@@ -22,12 +22,20 @@ def test_parse_matrix_finds_partial_gaps():
     assert "deferred" in tiers
 
 
-def test_rank_external_before_intrinsic_on_cpu():
+def test_rank_eval_openai_before_benchmark_on_cpu():
+    """benchmark_reproduction is GPU-blocked on CPU; eval_openai_grader ranks higher."""
     gaps = matrix_gaps(parse_matrix_components())
     ranked = rank_strategy_candidates(gaps, cuda_available=False, pytest_ok=True)
-    ext_rank = next(r["priority_rank"] for r in ranked if r["id"] == "external_reward")
-    int_rank = next(r["priority_rank"] for r in ranked if r["id"] == "five_dim_intrinsic")
-    assert ext_rank < int_rank
+    eval_rank = next(r["priority_rank"] for r in ranked if r["id"] == "eval_openai_grader")
+    bench_rank = next(r["priority_rank"] for r in ranked if r["id"] == "benchmark_reproduction")
+    assert eval_rank < bench_rank
+
+
+def test_external_reward_tier_implemented():
+    comps = parse_matrix_components()
+    ext = next(c for c in comps if c["id"] == "external_reward")
+    assert ext["tier"] == "implemented"
+    assert "external_reward" not in {g["id"] for g in matrix_gaps(comps)}
 
 
 def test_rank_partial_before_deferred_on_cpu():
