@@ -115,6 +115,11 @@ def _product_loop_snapshots(include: bool = True) -> Dict[str, Any]:
             "scripts/run_self_rating_intrinsic_correlation_report.py",
             ["--json", "--samples", "5"],
         ),
+        (
+            "deferred_claims_audit",
+            "scripts/run_deferred_claims_report.py",
+            ["--json"],
+        ),
     ]
     out: Dict[str, Any] = {}
     for key, script, args in specs:
@@ -207,6 +212,12 @@ def _summarize_product_report(key: str, report: Dict[str, Any]) -> Dict[str, Any
             "pooled_pearson_r": report.get("pooled_pearson_r"),
             "mean_calibration": report.get("mean_overall_calibration"),
             "rated_samples": report.get("samples_with_self_rating"),
+        }
+    if key == "deferred_claims_audit":
+        return {
+            "audit_ok": report.get("audit_ok"),
+            "deferred_count": report.get("deferred_count"),
+            "issues": len(report.get("issues") or []),
         }
     return {}
 

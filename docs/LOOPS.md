@@ -100,6 +100,7 @@ make loop-grpo-smoke      # GRPO reward_fn 预检
 make loop-eval-smoke      # lm_eval dummy
 make loop-intrinsic-correlation  # 自评 vs 启发式 r_d
 make loop-eval-grading-path   # 训练 vs eval 预-OpenAI 路径
+make loop-deferred-claims    # deferred 理论诚实审计
 make loop-benchmark-repro # 论文复现 CPU 审计链
 ```
 
@@ -124,5 +125,6 @@ make loop-benchmark-repro # 论文复现 CPU 审计链
 | R14 | benchmark 复现 CPU 审计链 | `run_benchmark_reproduction_report.py`, `eval_repro_common.py` |
 | R15 | eval 预-OpenAI 判题路径对齐 | `run_eval_grading_path_report.py`, `eval_grading_path_audit.py` |
 | R16 | 自评 vs 启发式 R_int 相关 | `run_self_rating_intrinsic_correlation_report.py` |
+| R17 | deferred 理论诚实契约 | `DEFERRED_CLAIMS.md`, `run_deferred_claims_report.py` |
 
 详见 [AGENTS.md](../AGENTS.md) 无限优化闭环章节。

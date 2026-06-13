@@ -76,6 +76,11 @@ PRODUCT_CHECKS: List[Tuple[str, List[str], str]] = [
         ["--json", "--samples", "5"],
         "self_rating_intrinsic_correlation_mini",
     ),
+    (
+        "scripts/run_deferred_claims_report.py",
+        ["--json"],
+        "deferred_claims_audit",
+    ),
 ]
 
 
