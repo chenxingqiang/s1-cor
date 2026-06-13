@@ -28,6 +28,9 @@ loop-r-ext-align:
 loop-calibration:
 	python3 scripts/run_calibration_report.py --json --samples 10
 
+loop-calibration-ablation:
+	python3 scripts/run_calibration_bonus_ablation.py --json --samples 10
+
 loop-grpo-smoke:
 	python3 scripts/run_grpo_reward_smoke.py --json --samples 5
 

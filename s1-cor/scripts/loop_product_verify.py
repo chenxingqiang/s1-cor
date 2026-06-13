@@ -46,6 +46,11 @@ PRODUCT_CHECKS: List[Tuple[str, List[str], str]] = [
         ["--json", "--samples", "3", "--presets", "uniform,drop"],
         "intrinsic_dim_ablation_mini",
     ),
+    (
+        "scripts/run_calibration_bonus_ablation.py",
+        ["--json", "--samples", "3", "--alpha-values", "0.0,0.2"],
+        "calibration_bonus_ablation_mini",
+    ),
 ]
 
 

@@ -92,12 +92,13 @@ make loop-product-verify  # 产品循环 CPU 证据（含 mini ablation）
 make loop-ablation        # λ/μ/α + K + 阶段预设
 make loop-r-ext-align     # R_ext string vs math grader
 make loop-calibration     # φ ECE proxy
+make loop-calibration-ablation  # calibration_bonus α 扫参
 make loop-intrinsic-ablation  # 五维 R_int w_d 消融
 make loop-grpo-smoke      # GRPO reward_fn 预检
 make loop-eval-smoke      # lm_eval dummy
 ```
 
-## 5. Loop 轮次索引（R0–R8）
+## 5. Loop 轮次索引（R0–R11）
 
 | 轮次 | 主题 | 关键入口 |
 |------|------|----------|
@@ -112,5 +113,6 @@ make loop-eval-smoke      # lm_eval dummy
 | R8 | 产品循环验证层 | `loop_product_verify.py` |
 | R9 | 元策略层 | `loop_strategy.py`, `loop_matrix.py` |
 | R10 | 五维 R_int 消融 | `run_intrinsic_dim_ablation.py` |
+| R11 | R_ext 契约 + α 校准消融 | `TRAIN_EVAL_GRADING.md`, `run_calibration_bonus_ablation.py` |
 
 详见 [AGENTS.md](../AGENTS.md) 无限优化闭环章节。

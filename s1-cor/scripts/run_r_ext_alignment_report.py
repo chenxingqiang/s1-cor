@@ -55,6 +55,8 @@ def run_report(dataset: str, n_samples: int) -> Dict[str, Any]:
     math_correct = 0
     both_correct = 0
     both_wrong = 0
+    math_fixes_string = 0
+    string_fixes_math = 0
 
     for i in range(n):
         sample = ds[i]
@@ -84,21 +86,32 @@ def run_report(dataset: str, n_samples: int) -> Dict[str, Any]:
                     "gt_excerpt": extract_answer_from_completion(gt)[:120],
                 }
             )
+            if r_math > 0.5 and r_string <= 0.5:
+                math_fixes_string += 1
+            elif r_string > 0.5 and r_math <= 0.5:
+                string_fixes_math += 1
+
+    string_acc = string_correct / n if n else 0.0
+    math_acc = math_correct / n if n else 0.0
+    recommended = "math" if math_acc >= string_acc or math_fixes_string > 0 else "string"
 
     return {
         "layer": "verify",
         "report": "r_ext_alignment",
         "dataset": dataset,
         "samples": n,
-        "string_match_accuracy": string_correct / n if n else 0.0,
-        "math_grader_accuracy": math_correct / n if n else 0.0,
+        "string_match_accuracy": string_acc,
+        "math_grader_accuracy": math_acc,
         "agreement_rate": 1.0 - (len(disagreements) / n if n else 0.0),
         "disagreement_count": len(disagreements),
+        "math_fixes_string": math_fixes_string,
+        "string_fixes_math": string_fixes_math,
+        "recommended_training_grader": recommended,
         "disagreements_sample": disagreements[:5],
         "notes": [
             "Pred=attempt, GT=solution (formatting gap between model output and reference).",
-            "Enable RewardConfig.use_math_grader=True or USE_MATH_GRADER=1 for GRPO.",
-            "MATH/GPQA OpenAI judge in eval/commands.sh remains a separate gap.",
+            "Training: USE_MATH_GRADER=1 when recommended_training_grader=math.",
+            "Eval OpenAI judge for MATH/GPQA: see docs/TRAIN_EVAL_GRADING.md (eval-only).",
         ],
     }
 
