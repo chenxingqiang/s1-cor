@@ -19,8 +19,8 @@ components:
     theory: "theory.md §2, target.md §3.1"
     code: "s1-cor/train/rewards/intrinsic.py + scripts/run_intrinsic_dim_ablation.py"
     tier: partial
-    notes: "Rule-based proxies; CPU w_d emphasize/drop ablation documents sensitivity (not learned Q_φ)"
-    verify: "pytest train/test_intrinsic_dim_ablation.py; make -C s1-cor loop-intrinsic-ablation"
+    notes: "Heuristic r_d + w_d ablation/scale; GRPO dimension_weights_json; not learned Q_phi"
+    verify: "pytest train/test_intrinsic_weights.py train/test_intrinsic_scale_report.py; make -C s1-cor loop-intrinsic-scale; docs/FIVE_DIM_INTRINSIC.md"
 
   - id: self_rating_calibration
     theory: "theory.md §3, design.md §2.3"

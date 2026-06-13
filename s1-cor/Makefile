@@ -37,6 +37,9 @@ loop-grpo-smoke:
 loop-intrinsic-ablation:
 	python3 scripts/run_intrinsic_dim_ablation.py --json --samples 10 --presets uniform,drop
 
+loop-intrinsic-scale:
+	python3 scripts/run_intrinsic_scale_report.py --json --samples 10
+
 loop-eval-openai-grader:
 	python3 scripts/run_eval_openai_grader_report.py --json
 

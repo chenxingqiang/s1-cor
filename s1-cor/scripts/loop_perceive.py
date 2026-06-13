@@ -95,6 +95,11 @@ def _product_loop_snapshots(include: bool = True) -> Dict[str, Any]:
             "scripts/run_eval_openai_grader_report.py",
             ["--json"],
         ),
+        (
+            "intrinsic_scale_mini",
+            "scripts/run_intrinsic_scale_report.py",
+            ["--json", "--samples", "3"],
+        ),
     ]
     out: Dict[str, Any] = {}
     for key, script, args in specs:
@@ -163,6 +168,12 @@ def _summarize_product_report(key: str, report: Dict[str, Any]) -> Dict[str, Any
             "regex_smoke_ok": smoke.get("ok"),
             "openai_api_key_set": report.get("openai_api_key_set"),
             "ready_for_openai_eval": report.get("ready_for_openai_eval"),
+        }
+    if key == "intrinsic_scale_mini":
+        return {
+            "mean_intrinsic": report.get("mean_intrinsic"),
+            "suggested_lambda": report.get("suggested_lambda_intrinsic"),
+            "intrinsic_fraction": report.get("intrinsic_fraction_of_total"),
         }
     return {}
 

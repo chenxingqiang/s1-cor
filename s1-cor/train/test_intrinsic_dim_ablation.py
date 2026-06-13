@@ -31,3 +31,13 @@ def test_intrinsic_dim_ablation_json():
     uniform = next(p for p in data["presets"] if p["preset"] == "uniform_w0.2")
     assert uniform["mean_intrinsic"] >= 0.0
     assert "consistency" in data["emphasis_delta_vs_uniform"]
+    if any(p["preset"].startswith("drop_") for p in data["presets"]):
+        assert "drop_delta_vs_uniform" in data
+        assert data.get("most_sensitive_dimension") in (
+            "consistency",
+            "completeness",
+            "accuracy",
+            "clarity",
+            "format",
+            None,
+        )

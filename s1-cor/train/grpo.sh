@@ -37,6 +37,7 @@ improvement_weight=0.5    # μ: improvement reward weight (NEW)
 convergence_weight=0.1    # ν: convergence reward weight (NEW)
 max_reflection_rounds=3   # K: max reflection iterations (NEW)
 use_math_grader="${USE_MATH_GRADER:-0}"  # 1 = eval-aligned R_ext (Loop R7)
+dimension_weights_json="${DIMENSION_WEIGHTS_JSON:-}"  # optional w_d override (Loop R13)
 
 # Hardware
 gpu_count=$(nvidia-smi -L | wc -l)
@@ -61,6 +62,11 @@ if [ "${use_math_grader}" = "1" ] || [ "${use_math_grader}" = "true" ]; then
     math_grader_flag="--use_math_grader=True"
 fi
 
+dim_weights_flag=""
+if [ -n "${dimension_weights_json}" ]; then
+    dim_weights_flag="--dimension_weights_json=${dimension_weights_json}"
+fi
+
 torchrun --nproc-per-node ${gpu_count} --master_port 12346 \
     train/grpo.py \
     --model_name=${base_model} \
@@ -75,6 +81,7 @@ torchrun --nproc-per-node ${gpu_count} --master_port 12346 \
     --max_reflection_rounds=${max_reflection_rounds} \
     --enable_reflection=True \
     ${math_grader_flag} \
+    ${dim_weights_flag} \
     --per_device_train_batch_size=${micro_batch_size} \
     --gradient_accumulation_steps=${gradient_accumulation_steps} \
     --num_train_epochs=${epochs} \

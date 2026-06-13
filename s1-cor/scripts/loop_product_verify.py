@@ -56,6 +56,11 @@ PRODUCT_CHECKS: List[Tuple[str, List[str], str]] = [
         ["--json"],
         "eval_openai_grader_audit",
     ),
+    (
+        "scripts/run_intrinsic_scale_report.py",
+        ["--json", "--samples", "3"],
+        "intrinsic_scale_mini",
+    ),
 ]
 
 
