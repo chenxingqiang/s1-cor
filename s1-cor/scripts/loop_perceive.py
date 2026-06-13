@@ -105,6 +105,11 @@ def _product_loop_snapshots(include: bool = True) -> Dict[str, Any]:
             "scripts/run_benchmark_reproduction_report.py",
             ["--json"],
         ),
+        (
+            "eval_grading_path_mini",
+            "scripts/run_eval_grading_path_report.py",
+            ["--json", "--samples", "5"],
+        ),
     ]
     out: Dict[str, Any] = {}
     for key, script, args in specs:
@@ -185,6 +190,12 @@ def _summarize_product_report(key: str, report: Dict[str, Any]) -> Dict[str, Any
             "cpu_audit_ok": report.get("cpu_audit_ok"),
             "gpu_reproduction_ready": report.get("gpu_reproduction_ready"),
             "fixture_compare_ok": report.get("fixture_compare_ok"),
+        }
+    if key == "eval_grading_path_mini":
+        return {
+            "path_agreement_rate": report.get("path_agreement_rate"),
+            "openai_fallback_likely": report.get("openai_fallback_likely_count"),
+            "eval_pre_openai_accuracy": report.get("eval_pre_openai_accuracy"),
         }
     return {}
 

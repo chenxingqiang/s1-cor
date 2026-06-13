@@ -43,6 +43,9 @@ loop-intrinsic-scale:
 loop-eval-openai-grader:
 	python3 scripts/run_eval_openai_grader_report.py --json
 
+loop-eval-grading-path:
+	python3 scripts/run_eval_grading_path_report.py --json --samples 10
+
 loop-benchmark-repro:
 	python3 scripts/run_benchmark_reproduction_report.py --json
 

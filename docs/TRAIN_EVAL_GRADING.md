@@ -33,6 +33,7 @@ CPU 审计（不调 OpenAI API）：
 ```bash
 cd s1-cor
 make loop-eval-openai-grader   # 任务列表 + regex 提取 smoke + blockers
+make loop-eval-grading-path    # 训练 vs eval 预-OpenAI 提取路径一致性
 ```
 
 契约矩阵：`eval_openai_grader`（partial，eval-only）。
