@@ -94,6 +94,7 @@ make loop-r-ext-align     # R_ext string vs math grader
 make loop-calibration     # φ ECE proxy
 make loop-calibration-ablation  # calibration_bonus α 扫参
 make loop-intrinsic-ablation  # 五维 R_int w_d 消融
+make loop-eval-openai-grader  # MATH/GPQA OpenAI grader CPU audit
 make loop-grpo-smoke      # GRPO reward_fn 预检
 make loop-eval-smoke      # lm_eval dummy
 ```
@@ -114,5 +115,6 @@ make loop-eval-smoke      # lm_eval dummy
 | R9 | 元策略层 | `loop_strategy.py`, `loop_matrix.py` |
 | R10 | 五维 R_int 消融 | `run_intrinsic_dim_ablation.py` |
 | R11 | R_ext 契约 + α 校准消融 | `TRAIN_EVAL_GRADING.md`, `run_calibration_bonus_ablation.py` |
+| R12 | eval OpenAI grader CPU 审计 | `run_eval_openai_grader_report.py`, `eval_openai_grader_audit.py` |
 
 详见 [AGENTS.md](../AGENTS.md) 无限优化闭环章节。
