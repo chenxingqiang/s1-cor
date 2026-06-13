@@ -7,6 +7,7 @@ paper_claims:
   sample_efficiency: "1K samples → competitive with o1-preview (README Results table)"
   benchmarks: [AIME24, MATH500, GPQA]
   core_formula: "R = R_ext + λ·R_int + μ·R_improve + ν·R_converge"
+  publication_p0: "GPU ckpt + real lm_eval JSON → compare_eval_to_paper pass (not CPU fixture)"
 
 components:
   - id: total_reward_formula
@@ -120,7 +121,15 @@ components:
     theory: "README Results table vs lm_eval output"
     code: "s1-cor/scripts/compare_eval_to_paper.py"
     tier: implemented
+    notes: "Fixture JSON is synthetic; real pass needs GPU lm_eval output"
     verify: "pytest train/test_compare_eval_to_paper.py"
+
+  - id: publication_readiness
+    theory: "Reviewer-facing claim hygiene; ICML/NeurIPS reproducibility"
+    code: "docs/PUBLICATION_READINESS.md + scripts/run_publication_readiness_report.py"
+    tier: partial
+    notes: "CPU doc audit OK; P0=GPU benchmark reproduction"
+    verify: "pytest train/test_publication_readiness_report.py; make -C s1-cor loop-publication-ready; docs/PUBLICATION_READINESS.md"
 
   - id: meta_loop_strategy
     theory: "AGENTS.md Layer 2; docs/LOOPS.md strategy"
