@@ -96,6 +96,11 @@ PRODUCT_CHECKS: List[Tuple[str, List[str], str]] = [
         ["--json", "--strict", "--samples", "5"],
         "five_dim_contract_mini",
     ),
+    (
+        "scripts/run_05b_gpu_readiness_report.py",
+        ["--json", "--strict", "--theory-samples", "3"],
+        "05b_gpu_readiness_mini",
+    ),
 ]
 
 

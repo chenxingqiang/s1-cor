@@ -31,6 +31,17 @@ python scripts/run_05b_theory_verify.py --json --strict
 
 ## GPU：训练与评测
 
+### 0. CPU→GPU 桥接（Loop R21）
+
+在 GPU 主机训练前，Cloud / CPU 可跑：
+
+```bash
+cd s1-cor
+make loop-05b-gpu-ready   # cpu_bridge_ok + theory_ok + pipeline_steps JSON
+```
+
+输出 `pipeline_steps`（SFT → GRPO → readiness → eval → compare）与 `gpu_blockers`。**不下载权重、不跑 vLLM**。
+
 ### 1. SFT（Colab / 单卡）
 
 ```bash
