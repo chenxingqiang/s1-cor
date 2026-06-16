@@ -135,6 +135,11 @@ def _product_loop_snapshots(include: bool = True) -> Dict[str, Any]:
             "scripts/run_five_dim_contract_report.py",
             ["--json", "--strict", "--samples", "5"],
         ),
+        (
+            "05b_gpu_readiness_mini",
+            "scripts/run_05b_gpu_readiness_report.py",
+            ["--json", "--strict", "--theory-samples", "3"],
+        ),
     ]
     out: Dict[str, Any] = {}
     for key, script, args in specs:
@@ -256,6 +261,13 @@ def _summarize_product_report(key: str, report: Dict[str, Any]) -> Dict[str, Any
             "pooled_pearson_r": (report.get("correlation_summary") or {}).get(
                 "pooled_pearson_r"
             ),
+        }
+    if key == "05b_gpu_readiness_mini":
+        return {
+            "cpu_bridge_ok": report.get("cpu_bridge_ok"),
+            "theory_ok": report.get("theory_ok"),
+            "gpu_eval_ready": report.get("gpu_eval_ready"),
+            "any_05b_checkpoint": report.get("any_05b_checkpoint"),
         }
     return {}
 

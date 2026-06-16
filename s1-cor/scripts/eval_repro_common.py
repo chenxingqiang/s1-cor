@@ -22,6 +22,49 @@ DEFAULT_CHECKPOINTS = [
     "ckpts/cor-32B",
 ]
 
+SCALE_05B_CHECKPOINTS = [
+    "ckpts/sft-0.5B-colab",
+    "ckpts/cor-0.5B",
+]
+
+SCALE_05B_PIPELINE = [
+    {
+        "id": "sft_05b",
+        "title": "SFT Qwen2.5-0.5B on s1K-cor",
+        "command": "export WANDB_DISABLED=true && bash train/colab_minimal.sh sft",
+        "artifact_glob": "ckpts/sft-0.5B-colab",
+        "doc": "docs/MODEL_05B_TEST.md",
+    },
+    {
+        "id": "grpo_05b",
+        "title": "CoR GRPO on 0.5B",
+        "command": "export WANDB_DISABLED=true USE_MATH_GRADER=1 REF_MODEL=ckpts/sft-0.5B-colab bash train/grpo_05b.sh deepseek",
+        "artifact_glob": "ckpts/cor-0.5B*",
+        "doc": "train/grpo_05b.sh",
+    },
+    {
+        "id": "readiness",
+        "title": "Benchmark eval readiness",
+        "command": "python scripts/check_eval_readiness.py --json",
+        "doc": "docs/EVAL_REPRODUCTION.md",
+    },
+    {
+        "id": "eval_05b",
+        "title": "lm_eval cor-0.5B (commands.sh line)",
+        "command": (
+            "cd eval/lm-evaluation-harness && "
+            "OPENAI_API_KEY=$OPENAI_API_KEY bash ../commands.sh  # set pretrained= to GRPO output"
+        ),
+        "doc": "s1-cor/eval/commands.sh",
+    },
+    {
+        "id": "compare",
+        "title": "Compare lm_eval JSON (sanity, not 32B paper targets)",
+        "command": "python scripts/compare_eval_to_paper.py --results-dir cor-0.5B-eval --json",
+        "doc": "docs/EVAL_REPRODUCTION.md",
+    },
+]
+
 REPRODUCTION_STEPS = [
     {
         "id": "train",

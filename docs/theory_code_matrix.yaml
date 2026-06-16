@@ -129,7 +129,7 @@ components:
     code: "s1-cor/scripts/run_05b_theory_verify.py + train/grpo_05b.sh"
     tier: partial
     notes: "CPU reward ladder proxy; GPU GRPO/lm_eval not required for contract gate"
-    verify: "pytest train/test_eval_scripts.py::test_05b_theory_verify_json; make -C s1-cor loop-05b-theory; docs/MODEL_05B_TEST.md"
+    verify: "pytest train/test_05b_gpu_readiness_report.py; make -C s1-cor loop-05b-gpu-ready; docs/MODEL_05B_TEST.md"
 
   - id: publication_readiness
     theory: "Reviewer-facing claim hygiene; ICML/NeurIPS reproducibility"
@@ -203,6 +203,9 @@ ablations_documented:
   - name: scale_05b_theory_ladder
     status: script_cpu
     run: "cd s1-cor && make loop-05b-theory"
+  - name: scale_05b_gpu_bridge
+    status: script_cpu
+    run: "cd s1-cor && make loop-05b-gpu-ready"
   - name: five_dim_intrinsic_contract
     status: script_cpu
     run: "cd s1-cor && make loop-five-dim-contract"
