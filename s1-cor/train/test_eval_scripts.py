@@ -90,6 +90,32 @@ def test_loop_strategy_json():
     assert "strategy_card" in data
 
 
+def test_05b_theory_verify_json():
+    script = ROOT / "scripts" / "run_05b_theory_verify.py"
+    proc = subprocess.run(
+        [
+            sys.executable,
+            str(script),
+            "--samples",
+            "5",
+            "--json",
+            "--strict",
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=True,
+        timeout=60,
+    )
+    data = json.loads(proc.stdout)
+    assert data["report"] == "05b_theory_verify"
+    assert data["model"]["hf_model_id"] == "Qwen/Qwen2.5-0.5B-Instruct"
+    assert data["theory_ok"] is True
+    assert len(data["design_md_stage_presets"]) == 3
+    for name, chk in data["theory_checks"].items():
+        assert chk["ok"], f"{name} failed: {chk['detail']}"
+
+
 def test_loop_product_verify_json():
     script = ROOT / "scripts" / "loop_product_verify.py"
     proc = subprocess.run(

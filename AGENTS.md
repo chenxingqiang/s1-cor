@@ -271,6 +271,7 @@ make loop-verify      # 合并闸门等价
 - **Loop R16（2026-06-08，自评 vs 启发式 R_int 相关）**：`self_rating_intrinsic_correlation_audit.py`；`run_self_rating_intrinsic_correlation_report.py` / `make loop-intrinsic-correlation`；`pooled_pearson_r` + per-dim MAE；product verify 11 项。验证：`make loop-verify` + `make loop-product-verify`。下一轮：GPU pipeline + `compare_eval_to_paper`；或 deferred 项诚实文档。
 - **Loop R17（2026-06-08，deferred 诚实契约）**：`docs/DEFERRED_CLAIMS.md`；`deferred_claims_audit.py` / `make loop-deferred-claims`；matrix deferred verify 路径；product verify 12 项。验证：`make loop-verify` + `make loop-product-verify`。下一轮：GPU 全量 benchmark 或 `benchmark_reproduction` + `loop-eval-smoke` 联动。
 - **Loop R18（2026-06-08，顶会投稿 readiness）**：`docs/PUBLICATION_READINESS.md`；README/design 诚实表述 + SFT 基线行；`publication_readiness_audit` / `make loop-publication-ready`；lm_eval fixture 标 synthetic。验证：**91 passed** + product verify 13 项。**P0 仍为 GPU**：真实 ckpt → `compare_eval_to_paper` 全 pass。
+- **Loop R19（2026-06-08，0.5B 理论阶梯）**：`docs/MODEL_05B_TEST.md`；`run_05b_theory_verify.py` / `make loop-05b-theory`（CPU 三阶段 + K 代理 + `theory_checks`）；`train/grpo_05b.sh`（GPU 单卡入口）。验证：`make loop-05b-theory` + pytest + product verify 14 项。下一轮：GPU 短训 0.5B → `eval/commands.sh` cor-0.5B 行。
 
 ---
 
@@ -317,6 +318,9 @@ validate_sample(sample, RewardCalculator(cfg), SelfRatingExtractor(),
 
 # Sample-level validation
 cd s1-cor && python train/validate_cor_logic.py --dataset deepseek --samples 5
+
+# 0.5B theory ladder (CPU reward proxy, R19)
+cd s1-cor && make loop-05b-theory
 ```
 
 Official README smoke test (needs HuggingFace access or working `local_data`):
@@ -333,6 +337,7 @@ See `README.md` and `s1-cor/README.md`:
 |------|---------|
 | Full pipeline | `bash s1-cor/train/run_cor_pipeline.sh` |
 | SFT | `python s1-cor/train/sft_small.py --model_size 0.5B --dataset hf` |
+| GRPO (0.5B quick) | `bash s1-cor/train/grpo_05b.sh` |
 | GRPO | `bash s1-cor/train/grpo.sh` |
 | lm-eval setup | `cd s1-cor/eval/lm-evaluation-harness && pip install -e .[math,vllm]` |
 | Benchmarks | `bash s1-cor/eval/commands.sh` |
