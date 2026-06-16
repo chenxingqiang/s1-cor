@@ -125,6 +125,16 @@ def _product_loop_snapshots(include: bool = True) -> Dict[str, Any]:
             "scripts/run_publication_readiness_report.py",
             ["--json"],
         ),
+        (
+            "05b_theory_verify_mini",
+            "scripts/run_05b_theory_verify.py",
+            ["--json", "--strict", "--samples", "5"],
+        ),
+        (
+            "five_dim_contract_mini",
+            "scripts/run_five_dim_contract_report.py",
+            ["--json", "--strict", "--samples", "5"],
+        ),
     ]
     out: Dict[str, Any] = {}
     for key, script, args in specs:
@@ -228,6 +238,24 @@ def _summarize_product_report(key: str, report: Dict[str, Any]) -> Dict[str, Any
         return {
             "audit_ok": report.get("audit_ok"),
             "p0_blocker": report.get("p0_blocker"),
+        }
+    if key == "05b_theory_verify_mini":
+        return {
+            "theory_ok": report.get("theory_ok"),
+            "stage_ladder_ok": (report.get("theory_checks") or {}).get(
+                "stage_ladder_reflection_ge_cor", {}
+            ).get("ok"),
+            "model": (report.get("model") or {}).get("hf_model_id"),
+        }
+    if key == "five_dim_contract_mini":
+        return {
+            "contract_ok": report.get("contract_ok"),
+            "most_sensitive": (report.get("ablation_summary") or {}).get(
+                "most_sensitive_dimension"
+            ),
+            "pooled_pearson_r": (report.get("correlation_summary") or {}).get(
+                "pooled_pearson_r"
+            ),
         }
     return {}
 

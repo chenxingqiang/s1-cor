@@ -24,6 +24,16 @@ make loop-intrinsic-scale      # R_ext vs R_int 尺度 + suggested λ
 make loop-intrinsic-correlation  # 自评 vs 启发式 r_d 相关/MAE
 ```
 
+`run_five_dim_contract_report.py` 输出：
+
+- `contract_ok` — 五维定义、文档、相关、消融敏感度是否齐全
+- `correlation_summary.pooled_pearson_r` — 自评 vs 启发式
+- `ablation_summary.most_sensitive_dimension` — w_d 消融最敏感维
+
+```bash
+make loop-five-dim-contract
+```
+
 `run_self_rating_intrinsic_correlation_report.py` 输出：
 
 - `pooled_pearson_r` — 自评与启发式 $r_d$ 池化相关

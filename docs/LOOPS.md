@@ -104,11 +104,12 @@ make loop-deferred-claims    # deferred 理论诚实审计
 make loop-publication-ready  # 顶会投稿 doc/claim 审计
 make loop-benchmark-repro # 论文复现 CPU 审计链
 make loop-05b-theory      # 0.5B 理论阶梯 CPU 代理（R19）
+make loop-five-dim-contract    # 五维契约 CPU 门（R20）
 ```
 
 0.5B 最小尺度理论验证（CPU 代理 + GPU 入口）见 [MODEL_05B_TEST.md](MODEL_05B_TEST.md)。
 
-## 5. Loop 轮次索引（R0–R19）
+## 5. Loop 轮次索引（R0–R20）
 
 | 轮次 | 主题 | 关键入口 |
 |------|------|----------|
@@ -132,5 +133,6 @@ make loop-05b-theory      # 0.5B 理论阶梯 CPU 代理（R19）
 | R17 | deferred 理论诚实契约 | `DEFERRED_CLAIMS.md`, `run_deferred_claims_report.py` |
 | R18 | 顶会投稿 readiness | `PUBLICATION_READINESS.md`, `loop-publication-ready` |
 | R19 | 0.5B 理论阶梯验证 | `run_05b_theory_verify.py`, `grpo_05b.sh`, `MODEL_05B_TEST.md` |
+| R20 | 五维契约门 + perceive 接线 | `run_five_dim_contract_report.py`, `loop-five-dim-contract` |
 
 详见 [AGENTS.md](../AGENTS.md) 无限优化闭环章节。
