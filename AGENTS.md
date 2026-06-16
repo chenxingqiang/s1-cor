@@ -272,6 +272,7 @@ make loop-verify      # 合并闸门等价
 - **Loop R17（2026-06-08，deferred 诚实契约）**：`docs/DEFERRED_CLAIMS.md`；`deferred_claims_audit.py` / `make loop-deferred-claims`；matrix deferred verify 路径；product verify 12 项。验证：`make loop-verify` + `make loop-product-verify`。下一轮：GPU 全量 benchmark 或 `benchmark_reproduction` + `loop-eval-smoke` 联动。
 - **Loop R18（2026-06-08，顶会投稿 readiness）**：`docs/PUBLICATION_READINESS.md`；README/design 诚实表述 + SFT 基线行；`publication_readiness_audit` / `make loop-publication-ready`；lm_eval fixture 标 synthetic。验证：**91 passed** + product verify 13 项。**P0 仍为 GPU**：真实 ckpt → `compare_eval_to_paper` 全 pass。
 - **Loop R19（2026-06-08，0.5B 理论阶梯）**：`docs/MODEL_05B_TEST.md`；`run_05b_theory_verify.py` / `make loop-05b-theory`（CPU 三阶段 + K 代理 + `theory_checks`）；`train/grpo_05b.sh`（GPU 单卡入口）。验证：`make loop-05b-theory` + pytest + product verify 14 项。下一轮：GPU 短训 0.5B → `eval/commands.sh` cor-0.5B 行。
+- **Loop R20（2026-06-08，五维契约 + perceive 接线）**：`run_five_dim_contract_report.py` / `make loop-five-dim-contract`；`five_dim_contract_audit`；`loop_perceive` 聚合 05b + 五维快照；`publication_readiness` 增 0.5B/五维节；matrix `scale_05b_validation`。验证：pytest + `make loop-verify` + product verify 15 项。下一轮：GPU `USE_MATH_GRADER=1` 0.5B 短训或 `compare_eval_to_paper`。
 
 ---
 
@@ -321,6 +322,9 @@ cd s1-cor && python train/validate_cor_logic.py --dataset deepseek --samples 5
 
 # 0.5B theory ladder (CPU reward proxy, R19)
 cd s1-cor && make loop-05b-theory
+
+# Five-dim intrinsic contract gate (R20)
+cd s1-cor && make loop-five-dim-contract
 ```
 
 Official README smoke test (needs HuggingFace access or working `local_data`):

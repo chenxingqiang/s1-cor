@@ -1,7 +1,7 @@
 # CoR development targets (meta loop layer hooks — not a full orchestrator).
 # See docs/LOOPS.md and AGENTS.md.
 
-.PHONY: loop-perceive loop-strategy loop-verify loop-product-verify loop-ablation loop-eval-smoke loop-05b-theory test
+.PHONY: loop-perceive loop-strategy loop-verify loop-product-verify loop-ablation loop-eval-smoke loop-05b-theory loop-five-dim-contract test
 
 loop-perceive:
 	python3 scripts/loop_perceive.py --json --skip-pytest
@@ -60,6 +60,9 @@ loop-benchmark-repro:
 
 loop-05b-theory:
 	python3 scripts/run_05b_theory_verify.py --json --strict --samples 10
+
+loop-five-dim-contract:
+	python3 scripts/run_five_dim_contract_report.py --json --strict --samples 10
 
 test:
 	python3 -m pytest train/ -q

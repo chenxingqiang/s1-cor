@@ -10,6 +10,7 @@ from typing import Any, Dict, List
 REPO_ROOT = Path(__file__).resolve().parents[1].parent
 README = REPO_ROOT / "README.md"
 PUBLICATION_DOC = REPO_ROOT / "docs" / "PUBLICATION_READINESS.md"
+MODEL_05B_DOC = REPO_ROOT / "docs" / "MODEL_05B_TEST.md"
 DEFERRED_DOC = REPO_ROOT / "docs" / "DEFERRED_CLAIMS.md"
 MATRIX = REPO_ROOT / "docs" / "theory_code_matrix.yaml"
 FIXTURE = REPO_ROOT / "s1-cor" / "train" / "fixtures" / "lm_eval_sample_results.json"
@@ -26,6 +27,7 @@ def build_publication_readiness_report() -> Dict[str, Any]:
     checks: Dict[str, bool] = {}
 
     checks["publication_doc_exists"] = PUBLICATION_DOC.is_file()
+    checks["model_05b_doc_exists"] = MODEL_05B_DOC.is_file()
     checks["deferred_doc_exists"] = DEFERRED_DOC.is_file()
     checks["matrix_exists"] = MATRIX.is_file()
     checks["paper_tex_exists"] = PAPER_TEX.is_file()
@@ -45,6 +47,14 @@ def build_publication_readiness_report() -> Dict[str, Any]:
     )
     checks["readme_implementation_status"] = (
         "Implementation" in readme_text or "implementation status" in readme_text.lower()
+    )
+
+    pub_text = PUBLICATION_DOC.read_text(encoding="utf-8") if PUBLICATION_DOC.is_file() else ""
+    checks["publication_mentions_05b_scale"] = (
+        "0.5B" in pub_text or "MODEL_05B_TEST" in pub_text
+    )
+    checks["publication_mentions_five_dim_contract"] = (
+        "five_dim" in pub_text.lower() or "FIVE_DIM_INTRINSIC" in pub_text
     )
 
     design = (REPO_ROOT / "design.md").read_text(encoding="utf-8") if (REPO_ROOT / "design.md").is_file() else ""
