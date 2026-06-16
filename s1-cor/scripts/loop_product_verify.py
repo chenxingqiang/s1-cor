@@ -86,6 +86,11 @@ PRODUCT_CHECKS: List[Tuple[str, List[str], str]] = [
         ["--json"],
         "publication_readiness_audit",
     ),
+    (
+        "scripts/run_05b_theory_verify.py",
+        ["--json", "--strict", "--samples", "5"],
+        "05b_theory_verify_mini",
+    ),
 ]
 
 
